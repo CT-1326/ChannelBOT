@@ -1,9 +1,10 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin')
 const express = require('express');
-const app = express();
-const Nightmare = require('nightmare');
-const nightmare = Nightmare({});
 
+admin.initializeApp();
+
+const app = express();
 const apiRouter = express.Router();
 app.use('/api/', apiRouter);
 
