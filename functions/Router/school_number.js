@@ -1,8 +1,19 @@
 const express = require('express');
+const admin = require('firebase-admin');
 const router = express.Router();
 
-router.post('/', function (req, res) {
-    const text = "스쿨 번호 입력!"
+router.post('/', async function (req, res) {
+    const text = await admin
+    .database()
+    .ref('School_Number/')
+    .child('num')
+    .once('value')
+    .then((snapshot) => {
+        return snapshot.val();
+    })
+    .catch((e) => {
+        console.log(e);
+    });
 
     const responseBody = {
         version: "2.0",
