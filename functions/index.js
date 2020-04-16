@@ -2,10 +2,13 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin')
 const express = require('express');
 const cors = require('cors');
+
 const sb = require('./Router/school_bus');
 const sn = require('./Router/school_number');
 const ls = require('./Router/library_state');
 const ci = require('./Router/cafe_info');
+
+const bus = require('./Crawling/bus');
 
 admin.initializeApp();
 
@@ -20,3 +23,5 @@ exports.helloWorld = functions
     .region('asia-northeast1')
     .https
     .onRequest(app);
+
+exports.bus = bus.scheduledFunction;
