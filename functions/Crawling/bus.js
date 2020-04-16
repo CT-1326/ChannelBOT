@@ -29,6 +29,3 @@ getData()
     });
 return null;
 });
-
-// exports.bus = functions.region('asia-northeast1').https.onRequest(()=>{
-// });
