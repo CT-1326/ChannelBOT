@@ -14,14 +14,14 @@ router.post('/', async function (req, res) {
         .catch((e) => {
             console.log(e);
         });
-        
+
     const responseBody = {
         version: "2.0",
         template: {
             outputs: [
                 {
                     simpleText: {
-                        text: text
+                        text: text.replace(/^\s+|\s+$|\t/g, "")
                     }
                 }
             ]
