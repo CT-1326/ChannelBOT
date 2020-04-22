@@ -22,8 +22,29 @@ exports.scheduledFunction = functions
         getData()
             .then(html => {
                 const $ = cheerio.load(html.data);
-                const $bodaylist = $("#con-wrap > div.content > dl:nth-child(6) > dd");
-                return $bodaylist.text();
+                const title = $(
+                    "#con-wrap > div.content > dl:nth-child(6) > dd > p:nth-child(1)"
+                )
+                    .text()
+                    .replace(/\n|\t/g, "");
+                const body = $(
+                    "#con-wrap > div.content > dl:nth-child(6) > dd > ol:nth-child(2)"
+                )
+                    .text()
+                    .replace(/\t/g, "");
+                const title2 = $(
+                    "#con-wrap > div.content > dl:nth-child(6) > dd > p.sub_title.mt10"
+                )
+                    .text()
+                    .replace(/\n|\t/g, "");
+                const body2 = $(
+                    "#con-wrap > div.content > dl:nth-child(6) > dd > ol:nth-child(4)"
+                )
+                    .text()
+                    .replace(/\s+$|\t/g, "");
+
+                const result = title + body + '\n\n' + title2 + body2;
+                return result;
             })
             .then((res) => {
                 console.log(res);

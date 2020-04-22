@@ -21,7 +21,7 @@ router.post('/', async function (req, res) {
             outputs: [
                 {
                     simpleText: {
-                        text: text.replace(/^\s+|\s+$|\t/g, "")
+                        text: text
                     }
                 }
             ]
