@@ -43,7 +43,7 @@ exports.scheduledFunction = functions
                     .text()
                     .replace(/\s+$|\t/g, "");
 
-                const result = title + body + '\n\n' + title2 + body2;
+                const result = '[' + title + ']' + body + '\n' + '[' + title2 + ']' + body2;
                 return result;
             })
             .then((res) => {
@@ -51,7 +51,7 @@ exports.scheduledFunction = functions
                 admin
                     .database()
                     .ref('School_Bus/')
-                    .set({info: res});
+                    .set({ info: res });
             });
         return null;
     });
