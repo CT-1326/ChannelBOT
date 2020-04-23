@@ -13,13 +13,23 @@
     
     Cheerio V1.0.0
 # Service list
-    셔틀버스 안내[텍스트]
+    셔틀버스 안내[텍스트 블록]
 
-    학교번호 안내 [텍스트]
+    학교번호 안내 [텍스트 블록]
 
-    학술정보관 열람실 좌석 현황 [리스트]
+    학술정보관 열람실 좌석 현황 [리스트 블록]
 
-    학식 안내 [리스트]
+    학식 안내 [리스트 블록]
+# Open-source libraries
+https://github.com/axios/axios
+
+    HTTP 통신 라이브러리
+https://github.com/cheeriojs/cheerio
+
+    웹 스크래핑 라이브러리
+https://github.com/puppeteer/puppeteer
+
+    Headless browser 라이브러리
+
 # License
 This project is licensed under the Apache 2.0 License - see the [ChannelBOT/LICENSE](LICENSE)
-    
