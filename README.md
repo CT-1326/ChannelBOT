@@ -8,10 +8,6 @@
     Firebase-admin V8.6.0
     
     Firebase-functions V3.3.0
-    
-    Axios V0.19.2
-    
-    Cheerio V1.0.0
 # Service list
     셔틀버스 안내[텍스트 블록]
 
