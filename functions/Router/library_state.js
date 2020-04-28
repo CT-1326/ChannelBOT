@@ -15,6 +15,18 @@ router.post('/', async function (req, res) {
         console.log(e);
     });
 
+    const text2 = await admin
+    .database()
+    .ref('Library_State/')
+    .child('2f')
+    .once('value')
+    .then((snapshot) => {
+        return snapshot.val();
+    })
+    .catch((e) => {
+        console.log(e);
+    });
+
     const responseBody = {
         version: "2.0",
         template: {
@@ -37,7 +49,7 @@ router.post('/', async function (req, res) {
                                 }
                             }, {
                                 "title": "1층 노트북 열람실",
-                                "description": "N/N",
+                                "description": text2,
                                 "imageUrl": "http://k.kakaocdn.net/dn/N4Epz/btqqHCfF5II/a3kMRckYml1NLPEo7nqTmK/1x1.jpg",
                                 "link": {
                                     "web": "https://namu.wiki/w/%EB%AC%B4%EC%A7%80(%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%94%84%EB" +

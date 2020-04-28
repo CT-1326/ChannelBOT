@@ -9,6 +9,9 @@ const ls = require('./Router/library_state');
 const ci = require('./Router/cafe_info');
 
 const bus = require('./Crawling/bus');
+const number = require('./Crawling/number');
+const library = require('./Crawling/library');
+const cafe = require('./Crawling/cafe');
 
 admin.initializeApp();
 
@@ -25,3 +28,6 @@ exports.helloWorld = functions
     .onRequest(app);
 
 exports.bus = bus.scheduledFunction;
+exports.number = number.scheduledFunction;
+// exports.library = library.scheduledFunction;
+// exports.cafe = this.cafe.scheduledFunction;
