@@ -13,7 +13,9 @@ exports.scheduledFunction = functions
     .https
     .onRequest(() => {
         const getData = async () => {
-            const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+            const browser = await puppeteer.launch({
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+            });
             const page = await browser.newPage();
             const ID = "smw7567";
             const PW = "Apsj1860178*";
@@ -37,5 +39,6 @@ exports.scheduledFunction = functions
                 .database()
                 .ref('School_Number/')
                 .set({info: html})
+            return null;
         });
     });
