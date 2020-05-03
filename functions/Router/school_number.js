@@ -6,7 +6,7 @@ router.post('/', async function (req, res) {
     const text = await admin
     .database()
     .ref('School_Number/')
-    .child('num')
+    .child('info')
     .once('value')
     .then((snapshot) => {
         return snapshot.val();
