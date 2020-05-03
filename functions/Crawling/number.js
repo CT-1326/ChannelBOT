@@ -1,6 +1,5 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-const cheerio = require('cheerio');
 const puppeteer = require('puppeteer');
 
 const op = {
@@ -30,7 +29,6 @@ exports.scheduledFunction = functions
                         .value = pw;
                 }, ID, PW);
                 await page.click('#container > form > p.submit > input');
-                // await page.waitForNavigation();
                 await page.goto('https://everytime.kr/389111/v/79312283');
                 await page.waitForSelector('#container > div.wrap.articles > article > a > p');
                 const info = await page.$eval(
