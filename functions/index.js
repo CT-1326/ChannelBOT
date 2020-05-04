@@ -29,5 +29,5 @@ exports.helloWorld = functions
 
 exports.bus = bus.scheduledFunction;
 exports.number = number.scheduledFunction;
-// exports.library = library.scheduledFunction;
+exports.library = library.scheduledFunction;
 // exports.cafe = this.cafe.scheduledFunction;
