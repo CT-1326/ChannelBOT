@@ -28,6 +28,8 @@ exports.helloWorld = functions
     .onRequest(app);
 
 exports.bus = bus.scheduledFunction;
-exports.number = number.scheduledFunction;
-exports.library = library.scheduledFunction;
+exports.number_schedul = number.scheduledFunction;
+exports.number = number.number;
+exports.library_schedul = library.scheduledFunction;
+exports.library = library.library;
 // exports.cafe = this.cafe.scheduledFunction;

@@ -1,12 +1,13 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const puppeteer = require('puppeteer');
+const axios = require('axios');
 
 const op = {
     timeoutSeconds: 60,
     memory: '512MB'
 }
-exports.scheduledFunction = functions
+exports.library = functions
     .runWith(op)
     .region('asia-northeast1')
     .https
@@ -66,5 +67,20 @@ exports.scheduledFunction = functions
             });
         } catch (error) {
             console.log('wtf : ', error);
+        }
+    });
+
+exports.scheduledFunction = functions
+    .region('asia-northeast1')
+    .pubsub
+    .schedule('0 0 * * *')
+    .timeZone('Asia/Seoul')
+    .onRun(async () => {
+        try {
+            return await axios.get(
+                'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/library'
+            );
+        } catch (error) {
+            console.log(error);
         }
     });
