@@ -45,6 +45,13 @@ router.post('/', async function (req, res) {
                                 "title": "1층 노트북 열람실",
                                 "description": text2 + ' [남은 좌석 / 전체 좌석]'
                             }
+                        ],
+                        "buttons": [
+                            {
+                                "label": "학술정보관 사이트",
+                                "action": "webLink",
+                                "webLinkUrl": "http://library.sungkyul.ac.kr/lib/SlimaPlus.csp"
+                            }
                         ]
                     }
                 }
