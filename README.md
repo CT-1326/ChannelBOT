@@ -9,13 +9,13 @@
     
     Firebase-functions V3.3.0
 # Service list
-    셔틀버스 안내[텍스트 블록]
+    셔틀버스 안내
 
-    학교번호 안내 [텍스트 블록]
+    학교번호 안내
 
-    학술정보관 열람실 좌석 현황 [리스트 블록]
+    학술정보관 열람실 좌석 현황
 
-    학식 안내 [리스트 블록]
+    학식 안내 [예정]
 # Open-source libraries
 https://github.com/axios/axios
 
