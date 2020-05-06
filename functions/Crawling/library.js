@@ -73,7 +73,7 @@ exports.library = functions
 exports.scheduledFunction = functions
     .region('asia-northeast1')
     .pubsub
-    .schedule('*/1 * * * 1-5')
+    .schedule('*/3 * * * 1-5')
     .timeZone('Asia/Seoul')
     .onRun(async () => {
         try {
