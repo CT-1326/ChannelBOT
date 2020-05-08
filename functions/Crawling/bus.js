@@ -8,7 +8,7 @@ exports.scheduledFunction = functions
     .pubsub
     .schedule('0 0 * * *')
     .timeZone('Asia/Seoul')
-    .onRun((context) => {
+    .onRun(() => {
         const getData = async () => {
             try {
                 return await axios.get(
@@ -46,7 +46,7 @@ exports.scheduledFunction = functions
                 const result = '[' + title + ']' + body + '\n' + '[' + title2 + ']' + body2;
                 return result;
             })
-            .then((res) => {
+            .then(res => {
                 console.log(res);
                 admin
                     .database()

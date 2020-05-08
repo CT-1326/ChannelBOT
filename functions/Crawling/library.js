@@ -20,7 +20,10 @@ exports.library = functions
                 const page = await browser.newPage();
                 const ID = "20160995";
                 const PW = "Apsj1860178*";
-                await page.goto('https://clicker.sungkyul.ac.kr/Clicker/LogOnClicker');
+                await page.goto(
+                    'https://clicker.sungkyul.ac.kr/Clicker/LogOnClicker',
+                    {waitUntil: "domcontentloaded"}
+                );
                 await page.evaluate((id, pw) => {
                     document
                         .querySelector('#textUserId')
@@ -28,9 +31,13 @@ exports.library = functions
                     document
                         .querySelector('#textUserPassword')
                         .value = pw;
+                    document
+                        .querySelector('#buttonLogin')
+                        .click();
                 }, ID, PW);
-                await page.click('#buttonLogin');
-                await page.waitForSelector('#table_board_list');
+                console.log('login success');
+
+                await page.waitForNavigation();
                 const max_laptop = await page.$eval(
                     '#table_board_list > tbody > tr:nth-child(1) > td:nth-child(2)',
                     e => e.outerText
@@ -66,7 +73,7 @@ exports.library = functions
                 return null;
             });
         } catch (error) {
-            console.log('wtf : ', error);
+            console.log('WTF : ', error);
         }
     });
 

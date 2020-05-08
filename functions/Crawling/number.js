@@ -18,9 +18,10 @@ exports.number = functions
                     args: ['--no-sandbox', '--disable-setuid-sandbox']
                 });
                 const page = await browser.newPage();
+                await page.setDefaultNavigationTimeout(0);
                 const ID = "smw7567";
                 const PW = "Apsj1860178*";
-                await page.goto('https://everytime.kr/login');
+                await page.goto('https://everytime.kr/login', {waitUntil: "domcontentloaded"});
                 await page.evaluate((id, pw) => {
                     document
                         .querySelector('#container > form > p:nth-child(1) > input')
@@ -28,9 +29,17 @@ exports.number = functions
                     document
                         .querySelector('#container > form > p:nth-child(2) > input')
                         .value = pw;
+                    document
+                        .querySelector('#container > form > p.submit > input')
+                        .click();
                 }, ID, PW);
-                await page.click('#container > form > p.submit > input');
-                await page.goto('https://everytime.kr/389111/v/79312283');
+                console.log('login success');
+                
+                await page.waitForNavigation();
+                await page.goto(
+                    'https://everytime.kr/389111/v/79312283',
+                    {waitUntil: "domcontentloaded"}
+                );
                 await page.waitForSelector('#container > div.wrap.articles > article > a > p');
                 const info = await page.$eval(
                     '#container > div.wrap.articles > article > a > p',
@@ -48,7 +57,7 @@ exports.number = functions
                 return null;
             });
         } catch (error) {
-            console.log('wtf : ', error);
+            console.log('WTF : ', error);
         }
     });
 
