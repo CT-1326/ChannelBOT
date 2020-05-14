@@ -19,8 +19,8 @@ exports.number = functions
                 });
                 const page = await browser.newPage();
                 await page.setDefaultNavigationTimeout(0);
-                const ID = "smw7567";
-                const PW = "Apsj1860178*";
+                const ID = "";
+                const PW = "";
                 await page.goto('https://everytime.kr/login', {waitUntil: "domcontentloaded"});
                 await page.evaluate((id, pw) => {
                     document

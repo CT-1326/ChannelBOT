@@ -18,26 +18,10 @@ exports.library = functions
                     args: ['--no-sandbox', '--disable-setuid-sandbox']
                 });
                 const page = await browser.newPage();
-                const ID = "20160995";
-                const PW = "Apsj1860178*";
                 await page.goto(
-                    'https://clicker.sungkyul.ac.kr/Clicker/LogOnClicker',
-                    {waitUntil: "domcontentloaded"}
+                    'http://clicker.sungkyul.ac.kr:81/clicker/k',
+                    {waitUntil: 'domcontentloaded'}
                 );
-                await page.evaluate((id, pw) => {
-                    document
-                        .querySelector('#textUserId')
-                        .value = id;
-                    document
-                        .querySelector('#textUserPassword')
-                        .value = pw;
-                    document
-                        .querySelector('#buttonLogin')
-                        .click();
-                }, ID, PW);
-                console.log('login success');
-
-                await page.waitForNavigation();
                 const max_laptop = await page.$eval(
                     '#table_board_list > tbody > tr:nth-child(1) > td:nth-child(2)',
                     e => e.outerText
