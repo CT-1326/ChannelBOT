@@ -8,6 +8,8 @@
     Firebase-admin V8.6.0
     
     Firebase-functions V3.3.0
+    
+    Heroku Scheduler
 # Service list
     셔틀버스 안내
 
