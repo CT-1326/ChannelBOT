@@ -31,4 +31,3 @@ exports.bus = bus.bus;
 exports.number = number.number;
 exports.library_schedul = library.scheduledFunction;
 exports.library = library.library;
-// exports.cafe = this.cafe.scheduledFunction;
