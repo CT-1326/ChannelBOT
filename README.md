@@ -10,14 +10,6 @@
     Firebase-functions V3.3.0
     
     Heroku Scheduler
-# Service list
-    셔틀버스 안내
-
-    학교번호 안내
-
-    학술정보관 열람실 좌석 현황
-
-    학식 안내 [예정]
 # Open-source libraries
 https://github.com/axios/axios
 
@@ -28,6 +20,5 @@ https://github.com/cheeriojs/cheerio
 https://github.com/puppeteer/puppeteer
 
     Headless browser 라이브러리
-
 # License
 This project is licensed under the Apache 2.0 License - see the [ChannelBOT/LICENSE](LICENSE)
