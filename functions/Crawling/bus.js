@@ -17,7 +17,6 @@ exports.bus = functions
                     console.log(error);
                 }
             };
-
             getData()
                 .then(html => {
                     const $ = cheerio.load(html.data);
