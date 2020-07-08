@@ -15,31 +15,35 @@ router.post('/', async function (req, res) {
             ],
             quickReplies: [
                 {
-                    "messageText": "학사 메뉴",
+                    "messageText": "학사 관련 알려줘",
                     "action": "message",
                     "label": "학사"
                 }, {
-                    "messageText": "새소식 메뉴",
+                    "messageText": "새소식 관련 알려줘",
                     "action": "message",
                     "label": "새소식"
                 }, {
-                    "messageText": "장학/등록 메뉴",
+                    "messageText": "장학/등록 관련 알려줘",
                     "action": "message",
                     "label": "장학/등록"
                 }, {
-                    "messageText": "입학 메뉴",
+                    "messageText": "입학 관련 알려줘",
                     "action": "message",
                     "label": "입학"
                 }, {
-                    "messageText": "취업 메뉴",
+                    "messageText": "취업 관련 알려줘",
                     "action": "message",
                     "label": "취업"
                 }, {
-                    "messageText": "행사 메뉴",
+                    "messageText": "행사 관련 알려줘",
                     "action": "message",
                     "label": "행사"
                 }, {
-                    "messageText": "일반 메뉴",
+                    "messageText": "글로벌 관련 알려줘",
+                    "action": "message",
+                    "label": "글로벌"
+                }, {
+                    "messageText": "일반 관련 알려줘",
                     "action": "message",
                     "label": "일반"
                 }
