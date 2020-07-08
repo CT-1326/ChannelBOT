@@ -19,11 +19,11 @@ exports.notice = functions
                 .then(html => {
                     const $ = cheerio.load(html.data);
                     const size = $('#main > div.main-bottom > div > div.recent-board > ul > li').length;
-                    const result = new Array(new Array(size + 1));
+                    const result = new Array(size + 1);
                     
                     for (let index = 1; index <= size; index++) {
                         const size2 = $('#new-tabscon' + index + '> ul > li').length;
-                        result[index] = new Array(size2);
+                        result[index] = new Array(size2 + 1);
                         for (let jindex = 1; jindex <= size2; jindex++) {
                             result[index][jindex] = $(
                                 '#new-tabscon' + index + '> ul > li:nth-child(' + jindex + ')'
