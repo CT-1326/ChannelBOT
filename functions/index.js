@@ -6,7 +6,7 @@ const cors = require('cors');
 const sb = require('./Router/school_bus');
 const sn = require('./Router/school_number');
 const ls = require('./Router/library_state');
-const sc = require('./Router/cafe_info');
+const sc = require('./Router/school_cafe');
 const snoti = require('./Router/school_notice');
 
 const bus = require('./Crawling/bus');
