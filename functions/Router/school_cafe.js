@@ -15,17 +15,19 @@ router.post('/', async function (req, res) {
             ],
             quickReplies: [
                 {
-                    "messageText": "면 종류 메뉴",
+                    "messageText": "면 종류 메뉴 알려줘",
                     "action": "block",
-                    "blockId": "5e1d828bffa748000195d73b",
+                    "blockId": "",
                     "label": "면 종류"
                 }, {
-                    "messageText": "밥 종류 메뉴",
-                    "action": "message",
+                    "messageText": "밥 종류 메뉴 알려줘",
+                    "action": "block",
+                    "blockId": "",
                     "label": "밥 종류"
                 }, {
-                    "messageText": "튀김 종류 메뉴",
-                    "action": "message",
+                    "messageText": "튀김 종류 메뉴 알려줘",
+                    "action": "block",
+                    "blockId": "",
                     "label": "튀김 종류"
                 }
             ]

@@ -15,6 +15,9 @@ const library = require('./Crawling/library');
 const cafe = require('./Crawling/cafe');
 const notice = require('./Crawling/notice');
 
+const noti_hub = require('./Router/notice_hub');
+const cafe_hub = require('./Router/cafe_hub');
+
 admin.initializeApp();
 
 const app = express();
@@ -36,3 +39,6 @@ exports.library_schedul = library.scheduledFunction;
 exports.library = library.library;
 exports.cafe = cafe.cafe;
 exports.notice = notice.notice;
+
+exports.noti_hub = noti_hub.noti_hub;
+exports.cafe_hub = cafe_hub.cafe_hub;
