@@ -12,7 +12,7 @@ exports.cafe = functions
                 try {
                     return await axios.get(
                         'https://www.sungkyul.ac.kr/mbs/skukr/jsp/restaurant/restaurant.jsp?configIdx=1' +
-                        '&firstWeekDay=2020-06-29&lastWeekDay=2020-07-03&id=skukr_050701000000'
+                        '&id=skukr_050701000000'
                     );
                 } catch (error) {
                     console.log(error);
@@ -43,7 +43,7 @@ exports.cafe = functions
                                 )
                                     .text()
                                     .replace(/\s/g, '')
-                                    .replace(/,/g, '\n');
+                                    .replace(/,/g, '\n\n');
                             }
                         }
                     }
@@ -51,11 +51,18 @@ exports.cafe = functions
                 })
                 .then(async (res) => {
                     console.log(res);
-                    for (let index = 1; index <= 5; index++) {
+                    if (typeof(res) == "string") {
                         await admin
                             .database()
-                            .ref('School_cafe/' + index)
-                            .set({menu: res[index]});
+                            .ref('School_Cafe/')
+                            .set({info: res});
+                    } else {
+                        for (let index = 1; index <= 5; index++) {
+                            await admin
+                                .database()
+                                .ref('School_Cafe/' + index)
+                                .set({menu: res[index]});
+                        }
                     }
                 });
             return null;

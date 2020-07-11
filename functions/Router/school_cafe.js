@@ -9,7 +9,7 @@ router.post('/', async function (req, res) {
             outputs: [
                 {
                     simpleText: {
-                        text: "원하시는 메뉴 분야를 선택해주세요!"
+                        text: "[중생관 지하1층 학식당]\n원하시는 메뉴 분야를 선택해주세요!"
                     }
                 }
             ],
@@ -17,17 +17,17 @@ router.post('/', async function (req, res) {
                 {
                     "messageText": "면 종류 메뉴 알려줘",
                     "action": "block",
-                    "blockId": "",
+                    "blockId": "5f080e3b3e869f00019d142d",
                     "label": "면 종류"
                 }, {
                     "messageText": "밥 종류 메뉴 알려줘",
                     "action": "block",
-                    "blockId": "",
+                    "blockId": "5f080e3b3e869f00019d142d",
                     "label": "밥 종류"
                 }, {
                     "messageText": "튀김 종류 메뉴 알려줘",
                     "action": "block",
-                    "blockId": "",
+                    "blockId": "5f080e3b3e869f00019d142d",
                     "label": "튀김 종류"
                 }
             ]
