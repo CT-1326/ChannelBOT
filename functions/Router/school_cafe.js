@@ -17,17 +17,17 @@ router.post('/', async function (req, res) {
                 {
                     "messageText": "면 종류 메뉴 알려줘",
                     "action": "block",
-                    "blockId": "5f080e3b3e869f00019d142d",
+                    "blockId": "",
                     "label": "면 종류"
                 }, {
                     "messageText": "밥 종류 메뉴 알려줘",
                     "action": "block",
-                    "blockId": "5f080e3b3e869f00019d142d",
+                    "blockId": "",
                     "label": "밥 종류"
                 }, {
                     "messageText": "튀김 종류 메뉴 알려줘",
                     "action": "block",
-                    "blockId": "5f080e3b3e869f00019d142d",
+                    "blockId": "",
                     "label": "튀김 종류"
                 }
             ]

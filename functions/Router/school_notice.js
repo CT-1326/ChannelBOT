@@ -17,42 +17,42 @@ router.post('/', async function (req, res) {
                 {
                     "messageText": "학사 관련 알려줘",
                     "action": "block",
-                    "blockId": "5f07e9c701c9fc00013d6ab7",
+                    "blockId": "",
                     "label": "학사"
                 }, {
                     "messageText": "새소식 관련 알려줘",
                     "action": "block",
-                    "blockId": "5f07e9c701c9fc00013d6ab7",
+                    "blockId": "",
                     "label": "새소식"
                 }, {
                     "messageText": "장학/등록 관련 알려줘",
                     "action": "block",
-                    "blockId": "5f07e9c701c9fc00013d6ab7",
+                    "blockId": "",
                     "label": "장학/등록"
                 }, {
                     "messageText": "입학 관련 알려줘",
                     "action": "block",
-                    "blockId": "5f07e9c701c9fc00013d6ab7",
+                    "blockId": "",
                     "label": "입학"
                 }, {
                     "messageText": "취업 관련 알려줘",
                     "action": "block",
-                    "blockId": "5f07e9c701c9fc00013d6ab7",
+                    "blockId": "",
                     "label": "취업"
                 }, {
                     "messageText": "행사 관련 알려줘",
                     "action": "block",
-                    "blockId": "5f07e9c701c9fc00013d6ab7",
+                    "blockId": "",
                     "label": "행사"
                 }, {
                     "messageText": "글로벌 관련 알려줘",
                     "action": "block",
-                    "blockId": "5f07e9c701c9fc00013d6ab7",
+                    "blockId": "",
                     "label": "글로벌"
                 }, {
                     "messageText": "일반 관련 알려줘",
                     "action": "block",
-                    "blockId": "5f07e9c701c9fc00013d6ab7",
+                    "blockId": "",
                     "label": "일반"
                 }
             ]
