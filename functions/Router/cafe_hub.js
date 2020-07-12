@@ -21,7 +21,7 @@ exports.cafe_hub = functions
         let today = new Date();
         let day = today.getDay();
 
-        if (day == 0 && day == 6) {
+        if (day == 0 || day == 6) {
             const responseBody = {
                 version: "2.0",
                 template: {
