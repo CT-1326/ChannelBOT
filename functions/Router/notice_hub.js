@@ -10,16 +10,18 @@ exports.noti_hub = functions
 
         switch (check) {
             case "학사 관련 알려줘":
-                const text = await admin
+                const result = await admin
                     .database()
                     .ref('School_Notice/학사')
                     .child('title')
                     .once('value')
                     .then(snapshot => {
-                        const arr = new Array();
+                        let text = new Array();
                         snapshot.forEach(item => {
-                            arr.push(item);
+                            text.push(item.val());
                         });
+                        console.log(text);
+                        return text;
                     })
                     .catch(e => {
                         console.log(e);
@@ -29,8 +31,31 @@ exports.noti_hub = functions
                     template: {
                         outputs: [
                             {
-                                simpleText: {
-                                    text: "학사를 체크!"
+                                "listCard": {
+                                    "header": {
+                                        "title": "학사 공지사항"
+                                    },
+                                    "items": [
+                                        {
+                                            "title": result[0]
+                                        }, {
+                                            "title": result[1]
+                                        }, {
+                                            "title": result[2]
+                                        }, {
+                                            "title": result[3]
+                                        }, {
+                                            "title": result[4]
+                                        }
+                                    ],
+                                    "buttons": [
+                                        {
+                                            "label": "학사 공지사항 페이지",
+                                            "action": "webLink",
+                                            "webLinkUrl": "https://www.sungkyul.ac.kr/mbs/skukr/jsp/board/list.jsp?boardId=29&id=skukr_06" +
+                                                "0102000000"
+                                        }
+                                    ]
                                 }
                             }
                         ]
@@ -42,13 +67,52 @@ exports.noti_hub = functions
                 break;
 
             case "새소식 관련 알려줘":
+                const result2 = await admin
+                    .database()
+                    .ref('School_Notice/새소식')
+                    .child('title')
+                    .once('value')
+                    .then(snapshot => {
+                        let text = new Array();
+                        snapshot.forEach(item => {
+                            text.push(item.val());
+                        });
+                        console.log(text);
+                        return text;
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
                 const responseBody2 = {
                     version: "2.0",
                     template: {
                         outputs: [
                             {
-                                simpleText: {
-                                    text: "새소식 체크!"
+                                "listCard": {
+                                    "header": {
+                                        "title": "새소식 공지사항"
+                                    },
+                                    "items": [
+                                        {
+                                            "title": result2[0]
+                                        }, {
+                                            "title": result2[1]
+                                        }, {
+                                            "title": result2[2]
+                                        }, {
+                                            "title": result2[3]
+                                        }, {
+                                            "title": result2[4]
+                                        }
+                                    ],
+                                    "buttons": [
+                                        {
+                                            "label": "새소식 공지사항 페이지",
+                                            "action": "webLink",
+                                            "webLinkUrl": "https://www.sungkyul.ac.kr/mbs/skukr/jsp/board/list.jsp?boardId=33&id=skukr_06" +
+                                                "0101000000"
+                                        }
+                                    ]
                                 }
                             }
                         ]
@@ -60,13 +124,52 @@ exports.noti_hub = functions
                 break;
 
             case "장학/등록 관련 알려줘":
+                const result3 = await admin
+                    .database()
+                    .ref('School_Notice/장학+등록')
+                    .child('title')
+                    .once('value')
+                    .then(snapshot => {
+                        let text = new Array();
+                        snapshot.forEach(item => {
+                            text.push(item.val());
+                        });
+                        console.log(text);
+                        return text;
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
                 const responseBody3 = {
                     version: "2.0",
                     template: {
                         outputs: [
                             {
-                                simpleText: {
-                                    text: "장학/등록 체크!"
+                                "listCard": {
+                                    "header": {
+                                        "title": "장학/등록 공지사항"
+                                    },
+                                    "items": [
+                                        {
+                                            "title": result3[0]
+                                        }, {
+                                            "title": result3[1]
+                                        }, {
+                                            "title": result3[2]
+                                        }, {
+                                            "title": result3[3]
+                                        }, {
+                                            "title": result3[4]
+                                        }
+                                    ],
+                                    "buttons": [
+                                        {
+                                            "label": "장학/등록 공지사항 페이지",
+                                            "action": "webLink",
+                                            "webLinkUrl": "https://www.sungkyul.ac.kr/mbs/skukr/jsp/board/list.jsp?boardId=34&id=skukr_06" +
+                                                "0103000000"
+                                        }
+                                    ]
                                 }
                             }
                         ]
@@ -78,13 +181,52 @@ exports.noti_hub = functions
                 break;
 
             case "입학 관련 알려줘":
+                const result4 = await admin
+                    .database()
+                    .ref('School_Notice/입학')
+                    .child('title')
+                    .once('value')
+                    .then(snapshot => {
+                        let text = new Array();
+                        snapshot.forEach(item => {
+                            text.push(item.val());
+                        });
+                        console.log(text);
+                        return text;
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
                 const responseBody4 = {
                     version: "2.0",
                     template: {
                         outputs: [
                             {
-                                simpleText: {
-                                    text: "입학 체크!"
+                                "listCard": {
+                                    "header": {
+                                        "title": "입학 공지사항"
+                                    },
+                                    "items": [
+                                        {
+                                            "title": result4[0]
+                                        }, {
+                                            "title": result4[1]
+                                        }, {
+                                            "title": result4[2]
+                                        }, {
+                                            "title": result4[3]
+                                        }, {
+                                            "title": result4[4]
+                                        }
+                                    ],
+                                    "buttons": [
+                                        {
+                                            "label": "입학 공지사항 페이지",
+                                            "action": "webLink",
+                                            "webLinkUrl": "https://www.sungkyul.ac.kr/mbs/skukr/jsp/board/list.jsp?boardId=35&id=skukr_06" +
+                                                "0104000000"
+                                        }
+                                    ]
                                 }
                             }
                         ]
@@ -96,13 +238,52 @@ exports.noti_hub = functions
                 break;
 
             case "취업 관련 알려줘":
+                const result5 = await admin
+                    .database()
+                    .ref('School_Notice/취업')
+                    .child('title')
+                    .once('value')
+                    .then(snapshot => {
+                        let text = new Array();
+                        snapshot.forEach(item => {
+                            text.push(item.val());
+                        });
+                        console.log(text);
+                        return text;
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
                 const responseBody5 = {
                     version: "2.0",
                     template: {
                         outputs: [
                             {
-                                simpleText: {
-                                    text: "취업 체크!"
+                                "listCard": {
+                                    "header": {
+                                        "title": "취업 공지사항"
+                                    },
+                                    "items": [
+                                        {
+                                            "title": result5[0]
+                                        }, {
+                                            "title": result5[1]
+                                        }, {
+                                            "title": result5[2]
+                                        }, {
+                                            "title": result5[3]
+                                        }, {
+                                            "title": result5[4]
+                                        }
+                                    ],
+                                    "buttons": [
+                                        {
+                                            "label": "취업 공지사항 페이지",
+                                            "action": "webLink",
+                                            "webLinkUrl": "https://www.sungkyul.ac.kr/mbs/skukr/jsp/board/list.jsp?boardId=90&id=skukr_06" +
+                                                "0109000000"
+                                        }
+                                    ]
                                 }
                             }
                         ]
@@ -114,13 +295,52 @@ exports.noti_hub = functions
                 break;
 
             case "행사 관련 알려줘":
+                const result6 = await admin
+                    .database()
+                    .ref('School_Notice/행사')
+                    .child('title')
+                    .once('value')
+                    .then(snapshot => {
+                        let text = new Array();
+                        snapshot.forEach(item => {
+                            text.push(item.val());
+                        });
+                        console.log(text);
+                        return text;
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
                 const responseBody6 = {
                     version: "2.0",
                     template: {
                         outputs: [
                             {
-                                simpleText: {
-                                    text: "행사 체크!"
+                                "listCard": {
+                                    "header": {
+                                        "title": "행사 공지사항"
+                                    },
+                                    "items": [
+                                        {
+                                            "title": result6[0]
+                                        }, {
+                                            "title": result6[1]
+                                        }, {
+                                            "title": result6[2]
+                                        }, {
+                                            "title": result6[3]
+                                        }, {
+                                            "title": result6[4]
+                                        }
+                                    ],
+                                    "buttons": [
+                                        {
+                                            "label": "행사 공지사항 페이지",
+                                            "action": "webLink",
+                                            "webLinkUrl": "https://www.sungkyul.ac.kr/mbs/skukr/jsp/board/list.jsp?boardId=36&id=skukr_06" +
+                                                "0105000000"
+                                        }
+                                    ]
                                 }
                             }
                         ]
@@ -132,13 +352,52 @@ exports.noti_hub = functions
                 break;
 
             case "글로벌 관련 알려줘":
+                const result7 = await admin
+                    .database()
+                    .ref('School_Notice/글로벌')
+                    .child('title')
+                    .once('value')
+                    .then(snapshot => {
+                        let text = new Array();
+                        snapshot.forEach(item => {
+                            text.push(item.val());
+                        });
+                        console.log(text);
+                        return text;
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
                 const responseBody7 = {
                     version: "2.0",
                     template: {
                         outputs: [
                             {
-                                simpleText: {
-                                    text: "글로벌 체크!"
+                                "listCard": {
+                                    "header": {
+                                        "title": "글로벌 공지사항"
+                                    },
+                                    "items": [
+                                        {
+                                            "title": result7[0]
+                                        }, {
+                                            "title": result7[1]
+                                        }, {
+                                            "title": result7[2]
+                                        }, {
+                                            "title": result7[3]
+                                        }, {
+                                            "title": result7[4]
+                                        }
+                                    ],
+                                    "buttons": [
+                                        {
+                                            "label": "글로벌 공지사항 페이지",
+                                            "action": "webLink",
+                                            "webLinkUrl": "https://www.sungkyul.ac.kr/mbs/skukr/jsp/board/list.jsp?boardId=37&id=skukr_06" +
+                                                "0106000000"
+                                        }
+                                    ]
                                 }
                             }
                         ]
@@ -148,15 +407,54 @@ exports.noti_hub = functions
                     .status(200)
                     .send(responseBody7);
                 break;
-                
+
             case "일반 관련 알려줘":
+                const result8 = await admin
+                    .database()
+                    .ref('School_Notice/일반')
+                    .child('title')
+                    .once('value')
+                    .then(snapshot => {
+                        let text = new Array();
+                        snapshot.forEach(item => {
+                            text.push(item.val());
+                        });
+                        console.log(text);
+                        return text;
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    });
                 const responseBody8 = {
                     version: "2.0",
                     template: {
                         outputs: [
                             {
-                                simpleText: {
-                                    text: "일반 체크!"
+                                "listCard": {
+                                    "header": {
+                                        "title": "일반 공지사항"
+                                    },
+                                    "items": [
+                                        {
+                                            "title": result8[0]
+                                        }, {
+                                            "title": result8[1]
+                                        }, {
+                                            "title": result8[2]
+                                        }, {
+                                            "title": result8[3]
+                                        }, {
+                                            "title": result8[4]
+                                        }
+                                    ],
+                                    "buttons": [
+                                        {
+                                            "label": "일반 공지사항 페이지",
+                                            "action": "webLink",
+                                            "webLinkUrl": "https://www.sungkyul.ac.kr/mbs/skukr/jsp/board/list.jsp?boardId=38&id=skukr_06" +
+                                                "0107000000"
+                                        }
+                                    ]
                                 }
                             }
                         ]
