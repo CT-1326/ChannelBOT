@@ -20,21 +20,35 @@ exports.notice = functions
                     const $ = cheerio.load(html.data);
                     const size = $('#main > div.main-bottom > div > div.recent-board > ul > li').length;
                     const result = new Array();
+                    const date = new Array();
+                    const url = new Array();
                     for (let index = 1; index <= size; index++) {
                         const size2 = $('#new-tabscon' + index + '> ul > li').length;
                         result[index] = new Array();
+                        date[index] = new Array();
+                        url[index] = new Array();
                         for (let jindex = 1; jindex <= size2; jindex++) {
                             result[index][jindex] = $(
                                 '#new-tabscon' + index + '> ul > li:nth-child(' + jindex + ') > a'
                             )
                                 .text()
                                 .replace(/\t/g, '');
+                            date[index][jindex] = $(
+                                '#new-tabscon' + index + '> ul > li:nth-child(' + jindex + ') > span'
+                            ).text();
+                            url[index][jindex] = $(
+                                '#new-tabscon' + index + '> ul > li:nth-child(' + jindex + ') > a'
+                            )
+                                .attr('href')
+                                .replace(/^/, 'https://www.sungkyul.ac.kr');
                         }
                     }
-                    return result;
+                    return ([result, date, url]);
                 })
-                .then(async (res) => {
-                    console.log(res);
+                .then(async ([res, req, rex]) => {
+                    console.log("타이틀: ", res);
+                    console.log("날짜: ", req);
+                    console.log("링크: ", rex);
                     const item = [
                         '학사',
                         '새소식',
@@ -50,7 +64,9 @@ exports.notice = functions
                             .database()
                             .ref('School_Notice/' + item[index])
                             .set({
-                                title: res[index + 1]
+                                title: res[index + 1],
+                                date: req[index + 1],
+                                url: rex[index + 1]
                             });
                     }
                 });
