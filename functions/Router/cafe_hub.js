@@ -44,7 +44,7 @@ exports.cafe_hub = functions
                     outputs: [
                         {
                             simpleText: {
-                                text: "현재 식단이 존재하지 않습니다"
+                                text: non
                             }
                         }
                     ]
