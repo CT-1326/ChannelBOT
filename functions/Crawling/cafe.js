@@ -57,6 +57,10 @@ exports.cafe = functions
                             .ref('School_Cafe/')
                             .set({info: res});
                     } else {
+                        await admin
+                            .database()
+                            .ref('School_Cafe/')
+                            .remove();
                         for (let index = 1; index <= 5; index++) {
                             await admin
                                 .database()
