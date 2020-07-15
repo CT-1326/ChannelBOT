@@ -1,62 +1,57 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-const puppeteer = require('puppeteer');
 const axios = require('axios');
+const cheerio = require('cheerio');
 
-const op = {
-    timeoutSeconds: 60,
-    memory: '512MB'
-}
 exports.library = functions
-    .runWith(op)
     .region('asia-northeast1')
     .https
     .onRequest(() => {
         try {
             const getData = async () => {
-                const browser = await puppeteer.launch({
-                    ignoreDefaultArgs: ['--disable-extensions'],
-                    args: ['--no-sandbox', '--disable-setuid-sandbox']
+                try {
+                    return await axios.get('http://clicker.sungkyul.ac.kr:81/clicker/k');
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+            getData()
+                .then(html => {
+                    const $ = cheerio.load(html.data);
+                    const max_laptop = $(
+                        '#table_board_list > tbody > tr:nth-child(1) > td:nth-child(2)'
+                    )
+                        .text()
+                        .replace(/\s/g, '');
+                    const now_laptop = $('#clicker_ajax_room_status_absent_20150629114729638')
+                        .text()
+                        .replace(/\s/g, '');
+                    const max_normal = $(
+                        '#table_board_list > tbody > tr:nth-child(2) > td:nth-child(2)'
+                    )
+                        .text()
+                        .replace(/\s/g, '');
+                    const now_normal = $('#clicker_ajax_room_status_absent_20150629114747516')
+                        .text()
+                        .replace(/\s/g, '');
+                    const result = new Array();
+                    result[0] = now_laptop + '/' + max_laptop;
+                    result[1] = now_normal + '/' + max_normal;
+                    return result;
+                })
+                .then(async (res) => {
+                    console.log(res);
+                    admin
+                        .database()
+                        .ref('Library_State/1f_laptop')
+                        .set({state: res[0]});
+                    admin
+                        .database()
+                        .ref('Library_State/1f_normal')
+                        .set({state: res[1]});
+                    return null;
                 });
-                const page = await browser.newPage();
-                await page.goto(
-                    'http://clicker.sungkyul.ac.kr:81/clicker/k',
-                    {waitUntil: 'domcontentloaded'}
-                );
-                const max_laptop = await page.$eval(
-                    '#table_board_list > tbody > tr:nth-child(1) > td:nth-child(2)',
-                    e => e.outerText
-                );
-                const now_laptop = await page.$eval(
-                    '#clicker_ajax_room_status_absent_20150629114729638',
-                    e => e.outerText
-                );
-                const max_normal = await page.$eval(
-                    '#table_board_list > tbody > tr:nth-child(2) > td:nth-child(2)',
-                    e => e.outerText
-                );
-                const now_normal = await page.$eval(
-                    '#clicker_ajax_room_status_absent_20150629114747516',
-                    e => e.outerText
-                );
-                const info = new Array();
-                info[0] = now_laptop + '/' + max_laptop;
-                info[1] = now_normal + '/' + max_normal;
-                await browser.close();
-                return info;
-            }
-            getData().then(res => {
-                console.log(res);
-                admin
-                    .database()
-                    .ref('Library_State/1f_laptop')
-                    .set({state: res[0]});
-                admin
-                    .database()
-                    .ref('Library_State/1f_normal')
-                    .set({state: res[1]});
-                return null;
-            });
+            return null;
         } catch (error) {
             console.log('WTF : ', error);
         }
