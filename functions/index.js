@@ -14,7 +14,6 @@ const number = require('./Crawling/number');
 const library = require('./Crawling/library');
 const cafe = require('./Crawling/cafe');
 const notice = require('./Crawling/notice');
-
 const noti_hub = require('./Router/notice_hub');
 const cafe_hub = require('./Router/cafe_hub');
 
