@@ -39,6 +39,5 @@ exports.library_schedul = library.scheduledFunction;
 exports.library = library.library;
 exports.cafe = cafe.cafe;
 exports.notice = notice.notice;
-
 exports.noti_hub = noti_hub.noti_hub;
 exports.cafe_hub = cafe_hub.cafe_hub;

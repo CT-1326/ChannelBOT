@@ -23,7 +23,7 @@ exports.cafe = functions
                     const $ = cheerio.load(html.data);
                     const size = $('#con-wrap > div.content > div.menubody > div > table').length;
                     if (size == 0) {
-                        const result = "현재 식단이 존재하지 않습니다";
+                        const result = "오늘은 쉬는날이라 메뉴가 없어요!";
                         return result;
                     }
 

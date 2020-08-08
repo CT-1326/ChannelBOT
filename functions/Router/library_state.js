@@ -40,10 +40,10 @@ router.post('/', async function (req, res) {
                         "items": [
                             {
                                 "title": "1층 일반 열람실",
-                                "description": text + ' [남은 좌석 / 전체 좌석]'
+                                "description": text + ' [남은 좌석/전체 좌석]'
                             }, {
                                 "title": "1층 노트북 열람실",
-                                "description": text2 + ' [남은 좌석 / 전체 좌석]'
+                                "description": text2 + ' [남은 좌석/전체 좌석]'
                             }
                         ],
                         "buttons": [

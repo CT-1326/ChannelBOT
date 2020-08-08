@@ -28,7 +28,7 @@ exports.cafe_hub = functions
                     outputs: [
                         {
                             simpleText: {
-                                text: "오늘은 주말이라 학식당 운영이 없어요"
+                                text: "오늘은 주말이라 학식당 운영이 없어요!"
                             }
                         }
                     ]

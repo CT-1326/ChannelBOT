@@ -9,7 +9,7 @@ exports.noti_hub = functions
         const check = userRequest.utterance;
 
         switch (check) {
-            case "학사 관련 알려줘":
+            case "학사 관련해서 알려줘":
                 const result = await admin
                     .database()
                     .ref('School_Notice/학사')
@@ -118,7 +118,7 @@ exports.noti_hub = functions
                     .send(responseBody);
                 break;
 
-            case "새소식 관련 알려줘":
+            case "새소식 관련해서 알려줘":
                 const result2 = await admin
                     .database()
                     .ref('School_Notice/새소식')
@@ -227,7 +227,7 @@ exports.noti_hub = functions
                     .send(responseBody2);
                 break;
 
-            case "장학/등록 관련 알려줘":
+            case "장학/등록 관련해서 알려줘":
                 const result3 = await admin
                     .database()
                     .ref('School_Notice/장학+등록')
@@ -336,7 +336,7 @@ exports.noti_hub = functions
                     .send(responseBody3);
                 break;
 
-            case "입학 관련 알려줘":
+            case "입학 관련해서 알려줘":
                 const result4 = await admin
                     .database()
                     .ref('School_Notice/입학')
@@ -445,7 +445,7 @@ exports.noti_hub = functions
                     .send(responseBody4);
                 break;
 
-            case "취업 관련 알려줘":
+            case "취업 관련해서 알려줘":
                 const result5 = await admin
                     .database()
                     .ref('School_Notice/취업')
@@ -554,7 +554,7 @@ exports.noti_hub = functions
                     .send(responseBody5);
                 break;
 
-            case "행사 관련 알려줘":
+            case "행사 관련해서 알려줘":
                 const result6 = await admin
                     .database()
                     .ref('School_Notice/행사')
@@ -663,7 +663,7 @@ exports.noti_hub = functions
                     .send(responseBody6);
                 break;
 
-            case "글로벌 관련 알려줘":
+            case "글로벌 관련해서 알려줘":
                 const result7 = await admin
                     .database()
                     .ref('School_Notice/글로벌')
@@ -772,7 +772,7 @@ exports.noti_hub = functions
                     .send(responseBody7);
                 break;
 
-            case "일반 관련 알려줘":
+            case "일반 관련해서 알려줘":
                 const result8 = await admin
                     .database()
                     .ref('School_Notice/일반')
