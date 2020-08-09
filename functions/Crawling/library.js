@@ -5,8 +5,10 @@ const cheerio = require('cheerio');
 
 exports.library = functions
     .region('asia-northeast1')
-    .https
-    .onRequest(() => {
+    .pubsub
+    .schedule('*/5 * * * 1-5')
+    .timeZone('Asia/Seoul')
+    .onRun(async () => {
         try {
             const getData = async () => {
                 try {
@@ -54,20 +56,5 @@ exports.library = functions
             return null;
         } catch (error) {
             console.log('WTF : ', error);
-        }
-    });
-
-exports.scheduledFunction = functions
-    .region('asia-northeast1')
-    .pubsub
-    .schedule('*/5 * * * 1-5')
-    .timeZone('Asia/Seoul')
-    .onRun(async () => {
-        try {
-            return await axios.get(
-                'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/library'
-            );
-        } catch (error) {
-            console.log(error);
         }
     });
