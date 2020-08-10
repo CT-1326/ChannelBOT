@@ -1,7 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const puppeteer = require('puppeteer');
-const axios = require('axios');
 
 const op = {
     timeoutSeconds: 60,
