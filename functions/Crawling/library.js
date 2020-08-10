@@ -6,7 +6,7 @@ const cheerio = require('cheerio');
 exports.library = functions
     .region('asia-northeast1')
     .pubsub
-    .schedule('*/5 * * * 1-5')
+    .schedule('* * * * 1-5')
     .timeZone('Asia/Seoul')
     .onRun(async () => {
         try {
