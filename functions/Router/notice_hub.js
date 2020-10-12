@@ -5,6 +5,8 @@ exports.noti_hub = functions
     .region('asia-northeast1')
     .https
     .onRequest(async (req, res) => {
+        admin.initializeApp();
+        
         const userRequest = req.body.userRequest;
         const check = userRequest.utterance;
 

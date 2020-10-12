@@ -3,6 +3,8 @@ const admin = require('firebase-admin');
 const router = express.Router();
 
 router.post('/', async function (req, res) {
+    admin.initializeApp();
+    
     const text = await admin
         .database()
         .ref('School_Bus/')
