@@ -1,5 +1,5 @@
 const functions = require('firebase-functions');
-// const admin = require('firebase-admin')
+const admin = require('firebase-admin')
 const express = require('express');
 const cors = require('cors');
 
@@ -17,7 +17,7 @@ const library = require('./Crawling/library');
 const cafe = require('./Crawling/cafe');
 const notice = require('./Crawling/notice');
 
-// admin.initializeApp();
+admin.initializeApp();
 
 const app = express();
 app.use(cors());

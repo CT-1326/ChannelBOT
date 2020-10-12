@@ -3,8 +3,6 @@ const admin = require('firebase-admin');
 const router = express.Router();
 
 router.post('/', async function (req, res) {
-    admin.initializeApp();
-    
     const text = await admin
         .database()
         .ref('Library_State/1f_normal')
