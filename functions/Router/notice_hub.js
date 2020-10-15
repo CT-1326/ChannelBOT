@@ -20,7 +20,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -36,7 +35,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -52,7 +50,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -129,7 +126,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -145,7 +141,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -161,7 +156,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -238,7 +232,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -254,7 +247,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -270,7 +262,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -347,7 +338,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -363,7 +353,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -379,7 +368,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -456,7 +444,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -472,7 +459,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -488,7 +474,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -565,7 +550,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -581,7 +565,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -597,7 +580,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -674,7 +656,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -690,7 +671,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -706,7 +686,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -783,7 +762,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -799,7 +777,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
@@ -815,7 +792,6 @@ exports.noti_hub = functions
                         snapshot.forEach(item => {
                             text.push(item.val());
                         });
-                        console.log(text);
                         return text;
                     })
                     .catch(e => {
