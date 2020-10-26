@@ -14,7 +14,10 @@ exports.number = functions
         try {
             const getData = async () => {
                 const browser = await puppeteer.launch({
-                    args: ['--no-sandbox', '--disable-setuid-sandbox']
+                    args: [
+                        '--no-sandbox', '--disable-setuid-sandbox', '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHT' +
+                                'ML, like Gecko) Chrome/86.0.4240.111 Safari/537.36'
+                    ]
                 });
                 const page = await browser.newPage();
                 await page.setDefaultNavigationTimeout(0);
@@ -33,7 +36,7 @@ exports.number = functions
                         .click();
                 }, ID, PW);
                 console.log('login success');
-                
+
                 await page.waitForNavigation();
                 await page.goto(
                     'https://everytime.kr/389111/v/79312283',
