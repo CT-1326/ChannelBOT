@@ -5,9 +5,7 @@
     
     ExpressJS V4.17.1
     
-    Firebase-admin V8.6.0
-    
-    Firebase-functions V3.3.0
+    Firebase V8.4.1
     
     Heroku Scheduler
 # Open-source libraries
