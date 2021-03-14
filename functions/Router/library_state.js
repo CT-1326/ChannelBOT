@@ -34,8 +34,7 @@ router.post('/', async function (req, res) {
                     "listCard": {
                         "header": {
                             "title": "학술정보관 열람실 좌석 현황",
-                            "imageUrl": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1." +
-                                "daumcdn.net%2Fcfile%2Ftistory%2F1133B8485059B01703"
+                            "imageUrl": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F1133B8485059B01703"
                         },
                         "items": [
                             {
