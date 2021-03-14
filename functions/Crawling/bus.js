@@ -8,40 +8,26 @@ exports.bus = functions
     .https
     .onRequest(() => {
         try {
-            const getData = async () => {
-                try {
-                    return await axios.get(
-                        'https://www.sungkyul.ac.kr/mbs/skukr/subview.jsp?id=skukr_010802000000'
-                    );
-                } catch (error) {
-                    console.log(error);
-                }
-            };
-            getData()
+            axios
+                .get('https://www.sungkyul.ac.kr/skukr/262/subview.do')
                 .then(html => {
                     const $ = cheerio.load(html.data);
-                    const title = $(
-                        "#con-wrap > div.content > dl:nth-child(6) > dd > p:nth-child(1)"
-                    )
+                    const title = $("#menu262_obj3182 > h3").text();
+                    const body = $("#menu262_obj3183 > ul ")
                         .text()
-                        .replace(/\n|\t/g, "");
-                    const body = $(
-                        "#con-wrap > div.content > dl:nth-child(6) > dd > ol:nth-child(2)"
-                    )
+                        .replace(/\s/g, "")
+                        .split(')')
+                        .join(')\n');
+                    // console.log(title); console.log(body);
+                    const title2 = $("#menu262_obj3185 > h3").text();
+                    const body2 = $("#menu262_obj3186 > ul")
                         .text()
-                        .replace(/\t/g, "");
-                    const title2 = $(
-                        "#con-wrap > div.content > dl:nth-child(6) > dd > p.sub_title.mt10"
-                    )
-                        .text()
-                        .replace(/\n|\t/g, "");
-                    const body2 = $(
-                        "#con-wrap > div.content > dl:nth-child(6) > dd > ol:nth-child(4)"
-                    )
-                        .text()
-                        .replace(/\s+$|\t/g, "");
-
-                    const result = '[' + title + ']' + body + '\n[' + title2 + ']' + body2;
+                        .replace(/\s/g, "")
+                        .split(')')
+                        .join(')\n')
+                        .replace(/\s+$/, '');
+                    // console.log(title2); console.log(body2);
+                    const result = '[' + title + ']\n' + body + '\n[' + title2 + ']\n' + body2;
                     return result;
                 })
                 .then(res => {
@@ -51,7 +37,6 @@ exports.bus = functions
                         .ref('School_Bus/')
                         .set({info: res});
                 });
-            return null;
         } catch (error) {
             console.log('WTF : ', error);
         }

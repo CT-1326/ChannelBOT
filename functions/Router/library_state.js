@@ -3,7 +3,7 @@ const admin = require('firebase-admin');
 const router = express.Router();
 
 router.post('/', async function (req, res) {
-    const text = await admin
+    const normal = await admin
         .database()
         .ref('Library_State/1f_normal')
         .child('state')
@@ -14,7 +14,7 @@ router.post('/', async function (req, res) {
         .catch((e) => {
             console.log(e);
         });
-    const text2 = await admin
+    const laptop = await admin
         .database()
         .ref('Library_State/1f_laptop')
         .child('state')
@@ -40,10 +40,10 @@ router.post('/', async function (req, res) {
                         "items": [
                             {
                                 "title": "1층 일반 열람실",
-                                "description": text + ' [남은 좌석/전체 좌석]'
+                                "description": normal + ' [남은 좌석/전체 좌석]'
                             }, {
                                 "title": "1층 노트북 열람실",
-                                "description": text2 + ' [남은 좌석/전체 좌석]'
+                                "description": laptop + ' [남은 좌석/전체 좌석]'
                             }
                         ],
                         "buttons": [

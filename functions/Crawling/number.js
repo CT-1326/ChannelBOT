@@ -56,7 +56,6 @@ exports.number = functions
                     .database()
                     .ref('School_Number')
                     .set({info: res});
-                return null;
             });
         } catch (error) {
             console.log('WTF : ', error);

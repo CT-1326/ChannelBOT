@@ -3,7 +3,7 @@ const admin = require('firebase-admin');
 const router = express.Router();
 
 router.post('/', async function (req, res) {
-    const text = await admin
+    const bus = await admin
         .database()
         .ref('School_Bus/')
         .child('info')
@@ -21,7 +21,7 @@ router.post('/', async function (req, res) {
             outputs: [
                 {
                     simpleText: {
-                        text: text
+                        text: bus
                     }
                 }
             ]

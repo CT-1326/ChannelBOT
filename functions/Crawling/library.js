@@ -8,16 +8,10 @@ exports.library = functions
     .pubsub
     .schedule('* * * * 1-5')
     .timeZone('Asia/Seoul')
-    .onRun(async () => {
+    .onRun(() => {
         try {
-            const getData = async () => {
-                try {
-                    return await axios.get('http://clicker.sungkyul.ac.kr:81/clicker/k');
-                } catch (error) {
-                    console.log(error);
-                }
-            };
-            getData()
+            axios
+                .get('http://clicker.sungkyul.ac.kr:81/clicker/k')
                 .then(html => {
                     const $ = cheerio.load(html.data);
                     const max_laptop = $(
@@ -41,7 +35,7 @@ exports.library = functions
                     result[1] = now_normal + '/' + max_normal;
                     return result;
                 })
-                .then(async (res) => {
+                .then((res) => {
                     console.log(res);
                     admin
                         .database()
@@ -51,9 +45,7 @@ exports.library = functions
                         .database()
                         .ref('Library_State/1f_normal')
                         .set({state: res[1]});
-                    return null;
                 });
-            return null;
         } catch (error) {
             console.log('WTF : ', error);
         }

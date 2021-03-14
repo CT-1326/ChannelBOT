@@ -56,7 +56,7 @@ exports.cafe_hub = functions
         } else {
             switch (check) {
                 case "면 종류 메뉴 알려줘":
-                    const text = await admin
+                    const nodel = await admin
                         .database()
                         .ref('School_Cafe/' + day)
                         .child('menu/1')
@@ -73,7 +73,7 @@ exports.cafe_hub = functions
                             outputs: [
                                 {
                                     simpleText: {
-                                        text: text
+                                        text: nodel
                                     }
                                 }
                             ]
@@ -85,7 +85,7 @@ exports.cafe_hub = functions
                     break;
 
                 case "밥 종류 메뉴 알려줘":
-                    const text2 = await admin
+                    const rice = await admin
                         .database()
                         .ref('School_Cafe/' + day)
                         .child('menu/3')
@@ -102,7 +102,7 @@ exports.cafe_hub = functions
                             outputs: [
                                 {
                                     simpleText: {
-                                        text: text2
+                                        text: rice
                                     }
                                 }
                             ]
@@ -114,7 +114,7 @@ exports.cafe_hub = functions
                     break;
 
                 case "튀김 종류 메뉴 알려줘":
-                    const text3 = await admin
+                    const fried = await admin
                         .database()
                         .ref('School_Cafe/' + day)
                         .child('menu/5')
@@ -131,7 +131,7 @@ exports.cafe_hub = functions
                             outputs: [
                                 {
                                     simpleText: {
-                                        text: text3
+                                        text: fried
                                     }
                                 }
                             ]
