@@ -4,16 +4,16 @@ const router = express.Router();
 
 router.post('/', async function (req, res) {
     const number = await admin
-    .database()
-    .ref('School_Number/')
-    .child('info')
-    .once('value')
-    .then((snapshot) => {
-        return snapshot.val();
-    })
-    .catch((e) => {
-        console.log(e);
-    });
+        .database()
+        .ref('School_Number/')
+        .child('info')
+        .once('value')
+        .then((snapshot) => {
+            return snapshot.val();
+        })
+        .catch((e) => {
+            console.log(e);
+        });
 
     const responseBody = {
         version: "2.0",
