@@ -15,14 +15,14 @@ exports.bus = functions
                     const title = $("#menu262_obj3182 > h3").text();
                     const body = $("#menu262_obj3183 > ul ")
                         .text()
-                        .replace(/\s/g, "")
+                        .replace(/\n/g, "")
                         .split(')')
                         .join(')\n');
                     // console.log(title); console.log(body);
                     const title2 = $("#menu262_obj3185 > h3").text();
                     const body2 = $("#menu262_obj3186 > ul")
                         .text()
-                        .replace(/\s/g, "")
+                        .replace(/\n/g, "")
                         .split(')')
                         .join(')\n')
                         .replace(/\s+$/, '');
