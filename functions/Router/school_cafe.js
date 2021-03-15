@@ -8,7 +8,7 @@ router.post('/', async function (req, res) {
             outputs: [
                 {
                     simpleText: {
-                        text: "[중생관 지하1층 학식당]\n보고 싶은 오늘의 학식 종류를 선택해주세요"
+                        text: "[중생관 지하1층 학식당]\n보고 싶은 오늘의 학식 종류를 선택해주세요\n\n* 학식당은 오전 11시부터 오후 6시30분까지 운영됩니다! (Break time 15:30 ~ 16:30)"
                     }
                 }
             ],

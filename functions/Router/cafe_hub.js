@@ -7,21 +7,11 @@ exports.cafe_hub = functions
     .onRequest(async (req, res) => {
         const userRequest = req.body.userRequest;
         const check = userRequest.utterance;
-        const non = await admin
-            .database()
-            .ref('School_Cafe/')
-            .child('info')
-            .once('value')
-            .then(snapshot => {
-                return snapshot.val();
-            })
-            .catch(e => {
-                console.log(e);
-            });
-        let today = new Date();
-        let day = today.getDay();
+        let day = new Date();
+        let today = day.getDay();
+        console.log(check);
 
-        if (day == 0 || day == 6) {
+        if (today == 0 || today == 6) {
             const responseBody = {
                 version: "2.0",
                 template: {
@@ -37,29 +27,13 @@ exports.cafe_hub = functions
             res
                 .status(200)
                 .send(responseBody);
-        } else if (non) {
-            const respon = {
-                version: "2.0",
-                template: {
-                    outputs: [
-                        {
-                            simpleText: {
-                                text: non
-                            }
-                        }
-                    ]
-                }
-            };
-            res
-                .status(200)
-                .send(respon);
         } else {
             switch (check) {
                 case "면 종류 메뉴 알려줘":
                     const nodel = await admin
                         .database()
-                        .ref('School_Cafe/' + day)
-                        .child('menu/1')
+                        .ref('School_Cafe/1')
+                        .child('menu/' + (today + 1))
                         .once('value')
                         .then(snapshot => {
                             return snapshot.val();
@@ -67,6 +41,7 @@ exports.cafe_hub = functions
                         .catch(e => {
                             console.log(e);
                         });
+                    console.log(nodel);
                     const responseBody = {
                         version: "2.0",
                         template: {
@@ -87,8 +62,8 @@ exports.cafe_hub = functions
                 case "밥 종류 메뉴 알려줘":
                     const rice = await admin
                         .database()
-                        .ref('School_Cafe/' + day)
-                        .child('menu/3')
+                        .ref('School_Cafe/2')
+                        .child('menu/' + (today + 1))
                         .once('value')
                         .then(snapshot => {
                             return snapshot.val();
@@ -96,6 +71,7 @@ exports.cafe_hub = functions
                         .catch(e => {
                             console.log(e);
                         });
+                    console.log(rice);
                     const responseBody2 = {
                         version: "2.0",
                         template: {
@@ -116,8 +92,8 @@ exports.cafe_hub = functions
                 case "튀김 종류 메뉴 알려줘":
                     const fried = await admin
                         .database()
-                        .ref('School_Cafe/' + day)
-                        .child('menu/5')
+                        .ref('School_Cafe/3')
+                        .child('menu/' + (today + 1))
                         .once('value')
                         .then(snapshot => {
                             return snapshot.val();
@@ -125,6 +101,7 @@ exports.cafe_hub = functions
                         .catch(e => {
                             console.log(e);
                         });
+                    console.log(fried);
                     const responseBody3 = {
                         version: "2.0",
                         template: {
@@ -146,5 +123,4 @@ exports.cafe_hub = functions
                     break;
             }
         }
-        return null;
     });

@@ -6,70 +6,41 @@ const cheerio = require("cheerio");
 exports.cafe = functions
     .region('asia-northeast1')
     .https
-    .onRequest(() => {
+    .onRequest(async () => {
         try {
-            const getData = async () => {
-                try {
-                    return await axios.get(
-                        'https://www.sungkyul.ac.kr/mbs/skukr/jsp/restaurant/restaurant.jsp?configIdx=1' +
-                        '&id=skukr_050701000000'
-                    );
-                } catch (error) {
-                    console.log(error);
-                }
-            };
-            getData()
+            await axios
+                .get('https://www.sungkyul.ac.kr/skukr/340/subview.do')
                 .then(html => {
                     const $ = cheerio.load(html.data);
-                    const size = $('#con-wrap > div.content > div.menubody > div > table').length;
-                    if (size == 0) {
-                        const result = "오늘은 쉬는날이라 메뉴가 없어요!";
-                        return result;
-                    }
-
-                    const result = new Array(size + 1);
-                    for (let index = 1; index <= size; index++) {
-                        const size2 = $(
-                            '#con-wrap > div.content > div.menubody > div > table:nth-child(1) > tbody > tr'
+                    const trSize = $('#viewForm > div > table > tbody > tr').length;
+                    // console.log(trSize);
+                    const result = new Array(trSize + 1);
+                    for (let index = 1; index <= trSize; index++) {
+                        const tdSize = $(
+                            '#viewForm > div > table > tbody > tr:nth-child(' + index + ') > td'
                         ).length;
-                        result[index] = new Array(size2 + 1);
-                        for (let jindex = 1; jindex <= size2; jindex++) {
-                            if (jindex % 2 == 0) {
-                                continue;
-                            } else {
-                                result[index][jindex] = $(
-                                    '#con-wrap > div.content > div.menubody > div > table:nth-child(' + index + ') ' +
-                                    '> tbody > tr:nth-child(' + jindex + ') > td'
-                                )
-                                    .text()
-                                    .replace(/\s/g, '')
-                                    .replace(/,/g, '\n\n');
-                            }
+                        // console.log(tdSize);
+                        result[index] = new Array(tdSize - 2);
+                        for (let jndex = 2; jndex <= tdSize - 2; jndex++) {
+                            result[index][jndex] = $(
+                                '#viewForm > div > table > tbody > tr:nth-child(' + index +
+                                ') > td:nth-child(' + jndex + ')'
+                            )
+                                .text()
+                                .replace(/,/g, '\n');
                         }
                     }
                     return result;
                 })
                 .then(async (res) => {
                     console.log(res);
-                    if (typeof(res) == "string") {
+                    for (let index = 1; index <= 3; index++) {
                         await admin
                             .database()
-                            .ref('School_Cafe/')
-                            .set({info: res});
-                    } else {
-                        await admin
-                            .database()
-                            .ref('School_Cafe/')
-                            .remove();
-                        for (let index = 1; index <= 5; index++) {
-                            await admin
-                                .database()
-                                .ref('School_Cafe/' + index)
-                                .set({menu: res[index]});
-                        }
+                            .ref('School_Cafe/' + index)
+                            .set({menu: res[index]});
                     }
-                });
-            return null;
+                })
         } catch (error) {
             console.log('WTF : ', error);
         }
