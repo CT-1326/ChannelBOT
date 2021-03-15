@@ -35,7 +35,7 @@ exports.library = functions
                     result[1] = now_normal + '/' + max_normal;
                     return result;
                 })
-                .then((res) => {
+                .then(res => {
                     console.log(res);
                     admin
                         .database()

@@ -8,7 +8,7 @@ router.post('/', async function (req, res) {
         .ref('Library_State/1f_normal')
         .child('state')
         .once('value')
-        .then((snapshot) => {
+        .then(snapshot => {
             return snapshot.val();
         })
         .catch((e) => {
@@ -19,7 +19,7 @@ router.post('/', async function (req, res) {
         .ref('Library_State/1f_laptop')
         .child('state')
         .once('value')
-        .then((snapshot) => {
+        .then(snapshot => {
             return snapshot.val();
         })
         .catch((e) => {

@@ -50,7 +50,6 @@ exports.notcold = functions
             cold_normal();
             cold_notice();
             colde_cafe();
-            return null;
         } catch (error) {
             console.log('WTF : ', error);
         }

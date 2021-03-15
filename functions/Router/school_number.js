@@ -8,7 +8,7 @@ router.post('/', async function (req, res) {
         .ref('School_Number/')
         .child('info')
         .once('value')
-        .then((snapshot) => {
+        .then(snapshot => {
             return snapshot.val();
         })
         .catch((e) => {
