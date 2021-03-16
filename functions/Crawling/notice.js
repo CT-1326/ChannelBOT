@@ -8,42 +8,42 @@ exports.notice = functions
     .https
     .onRequest(() => {
         try {
-            const getData = async () => {
-                try {
-                    return await axios.get('https://www.sungkyul.ac.kr/mbs/skukr/index.jsp');
-                } catch (error) {
-                    console.log(error);
-                }
-            };
-            getData()
+            axios
+                .get('https://www.sungkyul.ac.kr/sites/skukr/index.do#page2')
                 .then(html => {
                     const $ = cheerio.load(html.data);
-                    const size = $('#main > div.main-bottom > div > div.recent-board > ul > li').length;
-                    const result = new Array();
+                    const liSize = $('#menu160_obj5589 > div._fnctWrap > div > ul > li').length;
+                    // console.log(liSize);
+                    const title = new Array();
                     const date = new Array();
                     const url = new Array();
-                    for (let index = 1; index <= size; index++) {
-                        const size2 = $('#new-tabscon' + index + '> ul > li').length;
-                        result[index] = new Array();
+                    for (let index = 1; index <= liSize; index++) {
+                        const inliSize = $(
+                            '#menu160_obj5589 > div._fnctWrap > div > ul > li:nth-child(' + index + ') > di' +
+                            'v > ul > li'
+                        ).length;
+                        // console.log(inliSize);
+                        title[index] = new Array();
                         date[index] = new Array();
                         url[index] = new Array();
-                        for (let jindex = 1; jindex <= size2; jindex++) {
-                            result[index][jindex] = $(
-                                '#new-tabscon' + index + '> ul > li:nth-child(' + jindex + ') > a'
-                            )
-                                .text()
-                                .replace(/\t/g, '');
-                            date[index][jindex] = $(
-                                '#new-tabscon' + index + '> ul > li:nth-child(' + jindex + ') > span'
+                        for (let jndex = 1; jndex <= inliSize; jndex++) {
+                            title[index][jndex] = $(
+                                '#menu160_obj5589 > div._fnctWrap > div > ul > li:nth-child(' + index + ') > di' +
+                                'v > ul > li:nth-child(' + jndex + ') > div > div > a > strong'
                             ).text();
-                            url[index][jindex] = $(
-                                '#new-tabscon' + index + '> ul > li:nth-child(' + jindex + ') > a'
+                            date[index][jndex] = $(
+                                '#menu160_obj5589 > div._fnctWrap > div > ul > li:nth-child(' + index + ') > di' +
+                                'v > ul > li:nth-child(' + jndex + ') > div > span'
+                            ).text();
+                            url[index][jndex] = $(
+                                '#menu160_obj5589 > div._fnctWrap > div > ul > li:nth-child(' + index + ') > di' +
+                                'v > ul > li:nth-child(' + jndex + ') > div > div > a'
                             )
                                 .attr('href')
                                 .replace(/^/, 'https://www.sungkyul.ac.kr');
                         }
                     }
-                    return ([result, date, url]);
+                    return ([title, date, url]);
                 })
                 .then(async ([res, req, rex]) => {
                     console.log("타이틀: ", res);
@@ -54,10 +54,11 @@ exports.notice = functions
                         '새소식',
                         '장학+등록',
                         '입학',
+                        '취업',
                         '행사',
                         '글로벌',
                         '일반',
-                        '취업'
+                        '비교과'
                     ];
                     for (let index = 0; index < item.length; index++) {
                         await admin
@@ -70,7 +71,6 @@ exports.notice = functions
                             });
                     }
                 });
-            return null;
         } catch (error) {
             console.log('WTF : ', error);
         }

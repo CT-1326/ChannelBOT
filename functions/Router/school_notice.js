@@ -53,6 +53,11 @@ router.post('/', async function (req, res) {
                     "action": "block",
                     "blockId": "",
                     "label": "일반"
+                }, {
+                    "messageText": "비교과 관련해서 알려줘",
+                    "action": "block",
+                    "blockId": "",
+                    "label": "비교과"
                 }
             ]
         }
