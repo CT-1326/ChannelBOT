@@ -14,13 +14,13 @@ exports.cafe = functions
                     const $ = cheerio.load(html.data);
                     const trSize = $('#viewForm > div > table > tbody > tr').length;
                     // console.log(trSize);
-                    const result = new Array(trSize + 1);
+                    const result = new Array();
                     for (let index = 1; index <= trSize; index++) {
                         const tdSize = $(
                             '#viewForm > div > table > tbody > tr:nth-child(' + index + ') > td'
                         ).length;
                         // console.log(tdSize);
-                        result[index] = new Array(tdSize - 2);
+                        result[index] = new Array();
                         for (let jndex = 2; jndex <= tdSize - 2; jndex++) {
                             result[index][jndex] = $(
                                 '#viewForm > div > table > tbody > tr:nth-child(' + index +
