@@ -27,6 +27,7 @@ exports.cafe = functions
                                 ') > td:nth-child(' + jndex + ')'
                             )
                                 .text()
+                                .replace(/ⓣ/g, '')
                                 .replace(/,/g, '\n');
                         }
                     }
