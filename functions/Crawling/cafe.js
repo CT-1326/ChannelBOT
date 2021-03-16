@@ -6,9 +6,9 @@ const cheerio = require("cheerio");
 exports.cafe = functions
     .region('asia-northeast1')
     .https
-    .onRequest(async () => {
+    .onRequest(() => {
         try {
-            await axios
+            axios
                 .get('https://www.sungkyul.ac.kr/skukr/340/subview.do')
                 .then(html => {
                     const $ = cheerio.load(html.data);
@@ -41,7 +41,7 @@ exports.cafe = functions
                             .ref('School_Cafe/' + index)
                             .set({menu: res[index]});
                     }
-                })
+                });
         } catch (error) {
             console.log('WTF : ', error);
         }
