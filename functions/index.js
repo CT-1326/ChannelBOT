@@ -16,6 +16,7 @@ const library = require('./Crawling/library');
 const cafe = require('./Crawling/cafe');
 const notice = require('./Crawling/notice');
 const notcold = require('./notcold');
+const wakeUp = require('./Scheduler/wakeUp');
 
 admin.initializeApp();
 const app = express();
@@ -38,3 +39,8 @@ exports.notice = notice.notice;
 exports.noti_hub = noti_hub.noti_hub;
 exports.cafe_hub = cafe_hub.cafe_hub;
 exports.notcold = notcold.notcold;
+exports.wakeUp = wakeUp.bus;
+exports.wakeUp = wakeUp.cafe;
+exports.wakeUp = wakeUp.library;
+exports.wakeUp = wakeUp.notice;
+exports.wakeUp = wakeUp.number;
