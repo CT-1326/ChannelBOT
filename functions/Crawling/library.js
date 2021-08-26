@@ -11,7 +11,7 @@ exports.library = functions
     .onRun(() => {
         try {
             axios
-                .get('http://clicker.sungkyul.ac.kr:81/clicker/k')
+                .get('https://clicker.sungkyul.ac.kr/Clicker/k')
                 .then(html => {
                     const $ = cheerio.load(html.data);
                     const max_laptop = $(
