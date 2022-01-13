@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/', async function (req, res) {
+    console.log(req.headers.key);
     const responseBody = {
         version: "2.0",
         template: {
@@ -16,17 +17,17 @@ router.post('/', async function (req, res) {
                 {
                     "messageText": "면 종류 메뉴 알려줘",
                     "action": "block",
-                    "blockId": "",
+                    "blockId": req.headers.key,
                     "label": "면 종류"
                 }, {
                     "messageText": "밥 종류 메뉴 알려줘",
                     "action": "block",
-                    "blockId": "",
+                    "blockId": req.headers.key,
                     "label": "밥 종류"
                 }, {
                     "messageText": "튀김 종류 메뉴 알려줘",
                     "action": "block",
-                    "blockId": "",
+                    "blockId": req.headers.key,
                     "label": "튀김 종류"
                 }
             ]
