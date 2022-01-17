@@ -22,9 +22,10 @@ const notice = require('./Crawling/notice');
 const notcold = require('./Scheduler/notcold');
 
 app.use(cors());
-app.use('/ch', function (req, res) {
+app.use('/ch',  (req, res) => {
+    console.log('use ch');
     res.send('hi');
-})
+});
 app.use('/sb', sb);
 app.use('/sn', sn);
 app.use('/sc', sc);
