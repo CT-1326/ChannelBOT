@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', async function (req, res) {
+router.post('/', async function (req, res) {
     console.log(req.headers.key);
     const responseBody = {
         version: "2.0",
