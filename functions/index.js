@@ -22,6 +22,9 @@ const notice = require('./Crawling/notice');
 const notcold = require('./Scheduler/notcold');
 
 app.use(cors());
+app.use('/ch', function (req, res) {
+    res.send('hi');
+})
 app.use('/sb', sb);
 app.use('/sn', sn);
 app.use('/sc', sc);
