@@ -42,7 +42,3 @@ exports.noti_hub = noti_hub.noti_hub;
 exports.cafe_hub = cafe_hub.cafe_hub;
 
 exports.notcold = notcold.notcold;
-exports.busTrigger = trigger.busTrigger;
-exports.numberTrigger = trigger.numberTrigger;
-exports.cafeTrigger = trigger.cafeTrigger;
-exports.noticeTrigger = trigger.noticeTrigger;
