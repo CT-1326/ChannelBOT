@@ -20,7 +20,6 @@ const cafe = require('./Crawling/cafe');
 const notice = require('./Crawling/notice');
 
 const notcold = require('./Scheduler/notcold');
-const trigger = require('./Scheduler/serviceTrigger');
 
 app.use(cors());
 app.use('/sb', sb);
