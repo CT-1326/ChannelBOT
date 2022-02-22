@@ -3,60 +3,80 @@ const admin = require('firebase-admin');
 const router = express.Router();
 
 router.post('/', async function (req, res) {
-    const normal = await admin
-        .database()
-        .ref('Library_State/1f_normal')
-        .child('state')
-        .once('value')
-        .then(snapshot => {
-            return snapshot.val();
-        })
-        .catch((e) => {
-            console.log(e);
-        });
-    const laptop = await admin
-        .database()
-        .ref('Library_State/1f_laptop')
-        .child('state')
-        .once('value')
-        .then(snapshot => {
-            return snapshot.val();
-        })
-        .catch((e) => {
-            console.log(e);
-        });
+    const userFriend = req.body.userRequest.user.properties.isFriend;
+    console.log(userFriend);
+    let responseBody;
 
-    const responseBody = {
-        version: "2.0",
-        template: {
-            outputs: [
-                {
-                    "listCard": {
-                        "header": {
-                            "title": "학술정보관 열람실 좌석 현황",
-                            "imageUrl": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F1133B8485059B01703"
-                        },
-                        "items": [
-                            {
-                                "title": "1층 일반 열람실",
-                                "description": normal + ' [남은 좌석/전체 좌석]'
-                            }, {
-                                "title": "1층 노트북 열람실",
-                                "description": laptop + ' [남은 좌석/전체 좌석]'
-                            }
-                        ],
-                        "buttons": [
-                            {
-                                "label": "학술정보관 사이트",
-                                "action": "webLink",
-                                "webLinkUrl": "http://library.sungkyul.ac.kr/lib/SlimaPlus.csp"
-                            }
-                        ]
+    if (userFriend == true) {
+        const normal = await admin
+            .database()
+            .ref('Library_State/1f_normal')
+            .child('state')
+            .once('value')
+            .then(snapshot => {
+                return snapshot.val();
+            })
+            .catch((e) => {
+                console.error(e);
+            });
+        const laptop = await admin
+            .database()
+            .ref('Library_State/1f_laptop')
+            .child('state')
+            .once('value')
+            .then(snapshot => {
+                return snapshot.val();
+            })
+            .catch((e) => {
+                console.error(e);
+            });
+
+        responseBody = {
+            version: "2.0",
+            template: {
+                outputs: [
+                    {
+                        "listCard": {
+                            "header": {
+                                "title": "학술정보관 열람실 좌석 현황",
+                                "imageUrl": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1." +
+                                    "daumcdn.net%2Fcfile%2Ftistory%2F1133B8485059B01703"
+                            },
+                            "items": [
+                                {
+                                    "title": "1층 일반 열람실",
+                                    "description": normal + ' [남은 좌석/전체 좌석]'
+                                }, {
+                                    "title": "1층 노트북 열람실",
+                                    "description": laptop + ' [남은 좌석/전체 좌석]'
+                                }
+                            ],
+                            "buttons": [
+                                {
+                                    "label": "학술정보관 사이트",
+                                    "action": "webLink",
+                                    "webLinkUrl": "http://library.sungkyul.ac.kr/lib/SlimaPlus.csp"
+                                }
+                            ]
+                        }
                     }
-                }
-            ]
-        }
-    };
+                ]
+            }
+        };
+    } else {
+        responseBody = {
+            version: "2.0",
+            template: {
+                outputs: [
+                    {
+                        simpleText: {
+                            text: "🔕 채널봇 채널 추가부터 하셔야 이용이 가능해요!"
+                        }
+                    }
+                ]
+            }
+        };
+    }
 
     res
         .status(200)

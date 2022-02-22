@@ -2,67 +2,72 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/', async function (req, res) {
-    console.log(req.headers.key);
-    const responseBody = {
-        version: "2.0",
-        template: {
-            outputs: [
-                {
-                    simpleText: {
-                        text: "원하시는 학교 공지사항 메뉴를 선택해주세요"
+    const userFriend = req.body.userRequest.user.properties.isFriend;
+    console.log(userFriend);
+    let responseBody;
+    const quickReplies = [];
+    const messageText = [
+        "학사 관련해서 알려줘",
+        "새소식 관련해서 알려줘",
+        "장학/등록 관련해서 알려줘",
+        "입학 관련해서 알려줘",
+        "취업 관련해서 알려줘",
+        "행사 관련해서 알려줘",
+        "글로벌 관련해서 알려줘",
+        "일반 관련해서 알려줘",
+        "비교과 관련해서 알려줘"
+    ];
+    const label = [
+        "학사",
+        "새소식",
+        "장학/등록",
+        "입학",
+        "취업",
+        "행사",
+        "글로벌",
+        "일반",
+        "비교과"
+    ];
+
+    if (userFriend == true) {
+        label.forEach((value, index) => {
+            quickReplies.push({
+                "messageText": messageText[index],
+                "action": "block",
+                "blockId": functions
+                    .config()
+                    .service_key
+                    .notice,
+                "label": value
+            });
+        });
+        responseBody = {
+            version: "2.0",
+            template: {
+                outputs: [
+                    {
+                        simpleText: {
+                            text: "원하시는 학교 공지사항 메뉴를 선택해주세요"
+                        }
                     }
-                }
-            ],
-            quickReplies: [
-                {
-                    "messageText": "학사 관련해서 알려줘",
-                    "action": "block",
-                    "blockId": req.headers.key,
-                    "label": "학사"
-                }, {
-                    "messageText": "새소식 관련해서 알려줘",
-                    "action": "block",
-                    "blockId": req.headers.key,
-                    "label": "새소식"
-                }, {
-                    "messageText": "장학/등록 관련해서 알려줘",
-                    "action": "block",
-                    "blockId": req.headers.key,
-                    "label": "장학/등록"
-                }, {
-                    "messageText": "입학 관련해서 알려줘",
-                    "action": "block",
-                    "blockId": req.headers.key,
-                    "label": "입학"
-                }, {
-                    "messageText": "취업 관련해서 알려줘",
-                    "action": "block",
-                    "blockId": req.headers.key,
-                    "label": "취업"
-                }, {
-                    "messageText": "행사 관련해서 알려줘",
-                    "action": "block",
-                    "blockId": req.headers.key,
-                    "label": "행사"
-                }, {
-                    "messageText": "글로벌 관련해서 알려줘",
-                    "action": "block",
-                    "blockId": req.headers.key,
-                    "label": "글로벌"
-                }, {
-                    "messageText": "일반 관련해서 알려줘",
-                    "action": "block",
-                    "blockId": req.headers.key,
-                    "label": "일반"
-                }, {
-                    "messageText": "비교과 관련해서 알려줘",
-                    "action": "block",
-                    "blockId": req.headers.key,
-                    "label": "비교과"
-                }
-            ]
-        }
-    };
+                ],
+                quickReplies: quickReplies
+            }
+        };
+    } else {
+        responseBody = {
+            version: "2.0",
+            template: {
+                outputs: [
+                    {
+                        simpleText: {
+                            text: "🔕 채널봇 채널 추가부터 하셔야 이용이 가능해요!"
+                        }
+                    }
+                ]
+            }
+        };
+    }
 
     res
         .status(200)
