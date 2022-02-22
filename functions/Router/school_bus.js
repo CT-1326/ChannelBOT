@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post('/', async function (req, res) {
     const userFriend = req.body.userRequest.user.properties.isFriend;
-    console.log(userFriend);
+    // console.log(userFriend);
     let responseBody;
 
     if (userFriend == true) {

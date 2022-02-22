@@ -3,11 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 router.post(async (req, res) => {
-    const userRequest = req.body.userRequest;
-    const check = userRequest.utterance;
+    const userRequest = req.body.userRequest.utterance;
     let day = new Date();
     let today = day.getDay();
-    console.log(check);
 
     if (today == 0 || today == 6) {
         const responseBody = {
@@ -26,7 +24,7 @@ router.post(async (req, res) => {
             .status(200)
             .send(responseBody);
     } else {
-        switch (check) {
+        switch (userRequest) {
             case "면 종류 메뉴 알려줘":
                 const nodel = await admin
                     .database()

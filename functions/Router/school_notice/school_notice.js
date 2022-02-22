@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const functions = require('firebase-functions');
 
 router.post('/', async function (req, res) {
     const userFriend = req.body.userRequest.user.properties.isFriend;
-    console.log(userFriend);
+    // console.log(userFriend);
     let responseBody;
     const quickReplies = [];
     const messageText = [

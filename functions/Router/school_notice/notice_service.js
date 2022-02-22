@@ -3,10 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 router.post(async (req, res) => {
-    const userRequest = req.body.userRequest;
-    const check = userRequest.utterance;
+    const userRequest = req.body.userRequest.utterance;
 
-    switch (check) {
+    switch (userRequest) {
         case "학사 관련해서 알려줘":
             const title_result = await admin
                 .database()
