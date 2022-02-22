@@ -4,11 +4,14 @@ const router = express.Router();
 
 router.post(async (req, res) => {
     const userRequest = req.body.userRequest.utterance;
+    console.log(userRequest);
     let day = new Date();
     let today = day.getDay();
+    // console.log(today);
+    let responseBody;
 
     if (today == 0 || today == 6) {
-        const responseBody = {
+        responseBody = {
             version: "2.0",
             template: {
                 outputs: [
@@ -20,9 +23,6 @@ router.post(async (req, res) => {
                 ]
             }
         };
-        res
-            .status(200)
-            .send(responseBody);
     } else {
         switch (userRequest) {
             case "면 종류 메뉴 알려줘":
@@ -37,10 +37,10 @@ router.post(async (req, res) => {
                         return snapshot.val();
                     })
                     .catch(e => {
-                        console.log(e);
+                        console.error('Error from nodel :', e);
                     });
-                console.log(nodel);
-                const responseBody = {
+                // console.log(nodel);
+                responseBody = {
                     version: "2.0",
                     template: {
                         outputs: [
@@ -52,9 +52,6 @@ router.post(async (req, res) => {
                         ]
                     }
                 };
-                res
-                    .status(200)
-                    .send(responseBody);
                 break;
 
             case "밥 종류 메뉴 알려줘":
@@ -69,10 +66,10 @@ router.post(async (req, res) => {
                         return snapshot.val();
                     })
                     .catch(e => {
-                        console.log(e);
+                        console.error('Error from rice :', e);;
                     });
-                console.log(rice);
-                const responseBody2 = {
+                // console.log(rice);
+                responseBody = {
                     version: "2.0",
                     template: {
                         outputs: [
@@ -84,9 +81,6 @@ router.post(async (req, res) => {
                         ]
                     }
                 };
-                res
-                    .status(200)
-                    .send(responseBody2);
                 break;
 
             case "튀김 종류 메뉴 알려줘":
@@ -101,10 +95,10 @@ router.post(async (req, res) => {
                         return snapshot.val();
                     })
                     .catch(e => {
-                        console.log(e);
+                        console.error('Error from fried :', e);;
                     });
-                console.log(fried);
-                const responseBody3 = {
+                // console.log(fried);
+                responseBody = {
                     version: "2.0",
                     template: {
                         outputs: [
@@ -116,15 +110,16 @@ router.post(async (req, res) => {
                         ]
                     }
                 };
-                res
-                    .status(200)
-                    .send(responseBody3);
                 break;
 
             default:
                 break;
         }
     }
+
+    res
+        .status(201)
+        .send(responseBody);
 });
 
 module.exports = router;

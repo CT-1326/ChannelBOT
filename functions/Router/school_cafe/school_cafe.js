@@ -64,7 +64,7 @@ router.post('/', async function (req, res) {
     }
 
     res
-        .status(200)
+        .status(201)
         .send(responseBody);
 });
 

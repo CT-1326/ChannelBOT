@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.post(async (req, res) => {
     const userRequest = req.body.userRequest.utterance;
+    console.log(userRequest);
 
     switch (userRequest) {
         case "학사 관련해서 알려줘":
@@ -107,7 +108,7 @@ router.post(async (req, res) => {
                 }
             };
             res
-                .status(200)
+                .status(201)
                 .send(responseBody);
             break;
 
@@ -212,7 +213,7 @@ router.post(async (req, res) => {
                 }
             };
             res
-                .status(200)
+                .status(201)
                 .send(responseBody2);
             break;
 
@@ -317,7 +318,7 @@ router.post(async (req, res) => {
                 }
             };
             res
-                .status(200)
+                .status(201)
                 .send(responseBody3);
             break;
 
@@ -422,7 +423,7 @@ router.post(async (req, res) => {
                 }
             };
             res
-                .status(200)
+                .status(201)
                 .send(responseBody4);
             break;
 
@@ -527,7 +528,7 @@ router.post(async (req, res) => {
                 }
             };
             res
-                .status(200)
+                .status(201)
                 .send(responseBody5);
             break;
 
@@ -632,7 +633,7 @@ router.post(async (req, res) => {
                 }
             };
             res
-                .status(200)
+                .status(201)
                 .send(responseBody6);
             break;
 
@@ -737,7 +738,7 @@ router.post(async (req, res) => {
                 }
             };
             res
-                .status(200)
+                .status(201)
                 .send(responseBody7);
             break;
 
@@ -842,7 +843,7 @@ router.post(async (req, res) => {
                 }
             };
             res
-                .status(200)
+                .status(201)
                 .send(responseBody8);
             break;
 
@@ -947,7 +948,7 @@ router.post(async (req, res) => {
                 }
             };
             res
-                .status(200)
+                .status(201)
                 .send(responseBody9);
             break;
 
