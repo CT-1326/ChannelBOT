@@ -2,9 +2,9 @@ const admin = require('firebase-admin');
 const express = require('express');
 const router = express.Router();
 
-router.post(async (req, res) => {
+router.post('/', async (req, res) => {
     const userRequest = req.body.userRequest.utterance;
-    console.log(userRequest);
+    // console.log(userRequest);
     let day = new Date();
     let today = day.getDay();
     // console.log(today);
