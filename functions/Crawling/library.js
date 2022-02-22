@@ -9,7 +9,6 @@ exports.library = functions
     .schedule('* * * * 1-5')
     .timeZone('Asia/Seoul')
     .onRun(() => {
-
         axios
             .get('https://clicker.sungkyul.ac.kr/Clicker/k')
             .then(html => {
