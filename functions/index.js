@@ -5,13 +5,13 @@ const cors = require('cors');
 admin.initializeApp();
 const app = express();
 
-const sb = require('./Router/school_bus');
-const sn = require('./Router/school_number');
-const ls = require('./Router/library_state');
-const sc = require('./Router/school_cafe');
-const snoti = require('./Router/school_notice');
-const noti_hub = require('./Router/notice_hub');
-const cafe_hub = require('./Router/cafe_hub');
+const schoolBus = require('./Router/school_bus');
+const schoolNumber = require('./Router/school_number');
+const libraryState = require('./Router/library_state');
+const schoolCafe = require('./Router/school_cafe/school_cafe');
+const cafeService = require('./Router/school_cafe/cafe_service');
+const schoolNotice = require('./Router/school_notice/school_notice');
+const noticeService = require('./Router/school_notice/notice_service');
 
 const bus = require('./Crawling/bus');
 const number = require('./Crawling/number');
@@ -22,12 +22,14 @@ const notice = require('./Crawling/notice');
 const notcold = require('./Scheduler/notcold');
 
 app.use(cors());
-app.use('/sb', sb);
-app.use('/sn', sn);
-app.use('/sc', sc);
-app.use('/ls', ls);
-app.use('/snoti', snoti);
-exports.helloWorld = functions
+app.use('/schoolBus', schoolBus);
+app.use('/schoolNumber', schoolNumber);
+app.use('/libraryState', libraryState);
+app.use('/schoolCafe', schoolCafe);
+app.use('/schoolCafe/schoolCafe_service', cafeService);
+app.use('/schoolNotice', schoolNotice);
+app.use('/schoolNotice/schoolNotice_service', noticeService);
+exports.middleWare = functions
     .region('asia-northeast1')
     .https
     .onRequest(app);
@@ -37,7 +39,5 @@ exports.number = number.number;
 exports.library = library.library;
 exports.cafe = cafe.cafe;
 exports.notice = notice.notice;
-exports.noti_hub = noti_hub.noti_hub;
-exports.cafe_hub = cafe_hub.cafe_hub;
 
 exports.notcold = notcold.notcold;
