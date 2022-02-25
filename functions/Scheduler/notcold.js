@@ -2,9 +2,10 @@ const functions = require('firebase-functions');
 const axios = require('axios');
 
 exports.notcold = functions
-    .region('asia-northeast1')
-    .https
-    .onRequest((req, res) => {
+    .pubsub
+    .schedule('*/5 * * * *')
+    .timeZone('Asia/Seoul')
+    .onRun((req, res) => {
         const cold_normal = async () => {
             const userRequest = {
                 user: {
