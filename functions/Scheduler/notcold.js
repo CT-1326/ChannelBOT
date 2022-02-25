@@ -49,23 +49,28 @@ exports.notcold = functions
         cold_normal()
             .then(result => {
                 console.log('cold_normal:', result.status);
+                res.send(200);
             })
             .catch(e => {
                 console.error('cold_normal break was fail...:', e);
+                res.send(e.status);
             });
         colde_cafe()
             .then(result => {
                 console.log('cold_cafe:', result.status);
+                res.send(200);
             })
             .catch(e => {
                 console.error('cold_cafe break was fail...:', e);
+                res.send(e.status);
             });
         cold_notice()
             .then(result => {
                 console.log('cold_notice:', result.status);
+                res.send(200);
             })
             .catch(e => {
                 console.error('cold_notice break was fail...:', e);
+                res.send(e.status);
             });
-        res.send(200);
     });
