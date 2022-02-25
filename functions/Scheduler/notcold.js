@@ -3,54 +3,67 @@ const axios = require('axios');
 
 exports.notcold = functions
     .region('asia-northeast1')
-    .pubsub
-    .schedule('*/5 * * * *')
-    .timeZone('Asia/Seoul')
-    .onRun(() => {
+    .https
+    .onRequest((req, res) => {
         const cold_normal = async () => {
-            try {
-                return await axios.post(
-                    'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolB' +
-                    'us'
-                );
-            } catch (error) {
-                console.error('cold_normal break was fail...:', error);
-            }
+            const userRequest = {
+                user: {
+                    "properties": {
+                        "isFriend": false
+                    }
+                }
+            };
+            return await axios.post(
+                'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolB' +
+                        'us',
+                userRequest
+            );
         };
         const colde_cafe = async () => {
-            try {
-                const body = {
-                    userRequest: {
-                        "utterance": "면 종류 메뉴 알려줘"
-                    }
-                };
-                return await axios.post(
-                    'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolC' +
-                            'afe/schoolCafe_service',
-                    body
-                )
-            } catch (error) {
-                console.error('cold_cafe break was fail...:', error);
-            }
+            const body = {
+                userRequest: {
+                    "utterance": "면 종류 메뉴 알려줘"
+                }
+            };
+            return await axios.post(
+                'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolC' +
+                        'afe/schoolCafe_service',
+                body
+            )
         };
         const cold_notice = async () => {
-            try {
-                const body = {
-                    userRequest: {
-                        "utterance": "학사 관련해서 알려줘"
-                    }
-                };
-                return await axios.post(
-                    'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolN' +
-                            'otice/schoolNotice_service',
-                    body
-                )
-            } catch (error) {
-                console.error('cold_notice break was fail...:', error);
-            }
+            const body = {
+                userRequest: {
+                    "utterance": "학사 관련해서 알려줘"
+                }
+            };
+            return await axios.post(
+                'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolN' +
+                        'otice/schoolNotice_service',
+                body
+            )
         };
-        
-        cold_normal();
-        colde_cafe();
-        cold_notice();
+
+        cold_normal()
+            .then(result => {
+                console.log('cold_normal:', result.status);
+            })
+            .catch(e => {
+                console.error('cold_normal break was fail...:', e);
+            });
+        colde_cafe()
+            .then(result => {
+                console.log('cold_cafe:', result.status);
+            })
+            .catch(e => {
+                console.error('cold_cafe break was fail...:', e);
+            });
+        cold_notice()
+            .then(result => {
+                console.log('cold_notice:', result.status);
+            })
+            .catch(e => {
+                console.error('cold_notice break was fail...:', e);
+            });
+        res.send(200);
     });
