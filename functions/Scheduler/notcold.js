@@ -2,6 +2,7 @@ const functions = require('firebase-functions');
 const axios = require('axios');
 
 exports.notcold = functions
+    .region('asia-northeast1')
     .pubsub
     .schedule('*/5 * * * *')
     .timeZone('Asia/Seoul')
