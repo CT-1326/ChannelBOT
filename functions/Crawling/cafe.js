@@ -6,7 +6,7 @@ const cheerio = require("cheerio");
 exports.cafe = functions
     .region('asia-northeast1')
     .https
-    .onRequest(() => {
+    .onRequest((req, res) => {
         axios
             .get('https://www.sungkyul.ac.kr/skukr/340/subview.do')
             .then(html => {
@@ -32,14 +32,15 @@ exports.cafe = functions
                 }
                 return result;
             })
-            .then(async (res) => {
-                console.log(res);
+            .then(async (result) => {
+                console.log(result);
                 for (let index = 1; index <= 3; index++) {
                     await admin
                         .database()
                         .ref('School_Cafe/' + index)
-                        .set({menu: res[index]});
+                        .set({menu: result[index]});
                 }
+                res.send(201);
             })
             .catch(e => {
                 console.error('Error from crawling cafe:', e);

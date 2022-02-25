@@ -11,7 +11,7 @@ exports.number = functions
     .runWith(op)
     .region('asia-northeast1')
     .https
-    .onRequest(() => {
+    .onRequest((req, res) => {
         const getData = async () => {
             const browser = await puppeteer.launch({
                 args: [
@@ -57,12 +57,13 @@ exports.number = functions
             return info;
         }
         getData()
-            .then(res => {
-                console.log(res);
+            .then(result => {
+                console.log(result);
                 admin
                     .database()
                     .ref('School_Number')
-                    .set({info: res});
+                    .set({info: result});
+                res.send(201);
             })
             .catch(e => {
                 console.error('Error from crawling number:', e);

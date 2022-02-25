@@ -6,7 +6,7 @@ const cheerio = require("cheerio");
 exports.notice = functions
     .region('asia-northeast1')
     .https
-    .onRequest(() => {
+    .onRequest((req, res) => {
         axios
             .get('https://www.sungkyul.ac.kr/sites/skukr/index.do#page2')
             .then(html => {
@@ -44,10 +44,10 @@ exports.notice = functions
                 }
                 return ([title, date, url]);
             })
-            .then(async ([res, req, rex]) => {
-                console.log("타이틀: ", res);
-                console.log("날짜: ", req);
-                console.log("링크: ", rex);
+            .then(async ([title, date, url]) => {
+                console.log("타이틀: ", title);
+                console.log("날짜: ", date);
+                console.log("링크: ", url);
                 const item = [
                     '학사',
                     '새소식',
@@ -64,11 +64,12 @@ exports.notice = functions
                         .database()
                         .ref('School_Notice/' + item[index])
                         .set({
-                            title: res[index + 1],
-                            date: req[index + 1],
-                            url: rex[index + 1]
+                            title: title[index + 1],
+                            date: date[index + 1],
+                            url: url[index + 1]
                         });
                 }
+                res.send(201);
             })
             .catch(e => {
                 console.error('Error from crawling notice:', e);
