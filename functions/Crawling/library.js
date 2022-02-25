@@ -8,7 +8,7 @@ exports.library = functions
     .pubsub
     .schedule('* * * * 1-5')
     .timeZone('Asia/Seoul')
-    .onRun((req, res) => {
+    .onRun(() => {
         axios
             .get('https://clicker.sungkyul.ac.kr/Clicker/k')
             .then(html => {
@@ -44,9 +44,9 @@ exports.library = functions
                     .database()
                     .ref('Library_State/1f_normal')
                     .set({state: result[1]});
-                res.send(201);
             })
             .catch(e => {
                 console.error('Error from crawling library:', e);
-            })
-        });
+            });
+        return null;
+    });
