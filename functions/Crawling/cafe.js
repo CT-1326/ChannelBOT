@@ -11,9 +11,18 @@ exports.cafe = functions
             .get('https://www.sungkyul.ac.kr/skukr/340/subview.do')
             .then(html => {
                 const $ = cheerio.load(html.data);
+                const title = $(
+                    '#menu340_obj2839 > div._fnctWrap.diet > div.info > div.box-info > dl'
+                )
+                    .text()
+                    .trim()
+                    .replace(/\t/g, '')
+                    .replace(/\n\n/g, '\n');
+                // console.log(title);
                 const trSize = $('#viewForm > div > table > tbody > tr').length;
                 // console.log(trSize);
                 const result = new Array();
+                result[0] = title;
                 for (let index = 1; index <= trSize; index++) {
                     const tdSize = $(
                         '#viewForm > div > table > tbody > tr:nth-child(' + index + ') > td'
@@ -34,6 +43,10 @@ exports.cafe = functions
             })
             .then(async (result) => {
                 console.log(result);
+                await admin
+                    .database()
+                    .ref('School_Cafe/' + 0)
+                    .set(result[0]);
                 for (let index = 1; index <= 3; index++) {
                     await admin
                         .database()

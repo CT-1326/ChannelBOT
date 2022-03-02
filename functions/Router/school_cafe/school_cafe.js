@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 
 router.post('/', async function (req, res) {
     const userFriend = req.body.userRequest.user.properties.isFriend;
@@ -8,14 +9,24 @@ router.post('/', async function (req, res) {
     let responseBody;
 
     if (userFriend == true) {
+        const title = await admin
+            .database()
+            .ref('School_Cafe')
+            .child('0/')
+            .once('value')
+            .then(snapshot => {
+                return snapshot.val();
+            })
+            .catch(e => {
+                console.error('Error from cafe title :', e);
+            });
         responseBody = {
             version: "2.0",
             template: {
                 outputs: [
                     {
                         simpleText: {
-                            text: "[중생관 지하1층 학식당]\n보고 싶은 오늘의 학식 종류를 선택해주세요\n\n* 학식당은 오전 11시부터 오후 6시30분까지 운영됩니다! (" +
-                                "Break time 15:30 ~ 16:30)"
+                            text: title + '\n\n보고 싶은 오늘의 학식 종류를 선택해주세요'
                         }
                     }
                 ],
