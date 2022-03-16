@@ -14,16 +14,6 @@ exports.notcold = functions
                 }
             }
         };
-        const data = JSON.stringify({
-            "userRequest": {
-                "utterance": "면 종류 메뉴 알려줘"
-            }
-        });
-        const data2 = JSON.stringify({
-            "userRequest": {
-                "utterance": "학사 관련해서 알려줘"
-            }
-        });
         const config = {
             method: 'post',
             url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolC' +
@@ -32,7 +22,11 @@ exports.notcold = functions
                 'Content-Type': 'application/json',
                 'Cookie': '__Host-GAPS=1:23ae_DitgsPMuGttitn9FgkTTIDD8Q:zy22LzBdrhMCLSeb'
             },
-            data: data
+            data: {
+                "userRequest": {
+                    "utterance": "면 종류 메뉴 알려줘"
+                }
+            }
         };
         const config2 = {
             method: 'post',
@@ -42,7 +36,11 @@ exports.notcold = functions
                 'Content-Type': 'application/json',
                 'Cookie': '__Host-GAPS=1:23ae_DitgsPMuGttitn9FgkTTIDD8Q:zy22LzBdrhMCLSeb'
             },
-            data: data2
+            data: {
+                "userRequest": {
+                    "utterance": "학사 관련해서 알려줘"
+                }
+            }
         };
 
         await axios
