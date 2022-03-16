@@ -14,12 +14,37 @@ exports.notcold = functions
                 }
             }
         };
-        const body = {
-            userRequest: {
+        const data = JSON.stringify({
+            "userRequest": {
                 "utterance": "면 종류 메뉴 알려줘"
             }
+        });
+        const data2 = JSON.stringify({
+            "userRequest": {
+                "utterance": "학사 관련해서 알려줘"
+            }
+        });
+        const config = {
+            method: 'post',
+            url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolC' +
+                    'afe/schoolCafe_service',
+            headers: {
+                'Content-Type': 'application/json',
+                'Cookie': '__Host-GAPS=1:23ae_DitgsPMuGttitn9FgkTTIDD8Q:zy22LzBdrhMCLSeb'
+            },
+            data: data
         };
-        
+        const config2 = {
+            method: 'post',
+            url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolN' +
+                    'otice/schoolNotice_service',
+            headers: {
+                'Content-Type': 'application/json',
+                'Cookie': '__Host-GAPS=1:23ae_DitgsPMuGttitn9FgkTTIDD8Q:zy22LzBdrhMCLSeb'
+            },
+            data: data2
+        };
+
         await axios
             .post(
                 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolB' +
@@ -29,32 +54,22 @@ exports.notcold = functions
             .then(result => {
                 console.log(result.status);
             })
-            .catch(e => {
-                console.error('Errof from notcold bus : ', e);
+            .catch(error => {
+                console.error('Error from notcold bus : ', error);
             });
-        await axios
-            .post(
-                'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolC' +
-                        'afe/schoolCafe_service',
-                {body}
-            )
+        await axios(config)
             .then(result => {
                 console.log(result.status);
             })
-            .catch(e => {
-                console.error('Errof from notcold cafeService : ', e);
+            .catch(function (error) {
+                console.log('Error from notcold cafe : ', error);
             });
-        await axios
-            .post(
-                'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolN' +
-                        'otice/schoolNotice_service',
-                {body}
-            )
+        await axios(config2)
             .then(result => {
                 console.log(result.status);
             })
-            .catch(e => {
-                console.error('Errof from notcold noticeService : ', e);
+            .catch(function (error) {
+                console.log('Error from notcold notice : ', error);
             });
 
         return null;
