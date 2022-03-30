@@ -9,33 +9,34 @@ exports.bus = functions
     .onRequest((req, res) => {
         axios
             .get('https://www.sungkyul.ac.kr/skukr/262/subview.do')
-            .then(html => {
+            .then(async (html) => {
                 const $ = cheerio.load(html.data);
                 const inTitle = $("#menu262_obj3182 > h3").text();
-                const inBody = $("#menu262_obj3183 > ul ")
-                    .text()
-                    .replace(/\n/g, "")
-                    .split(')')
-                    .join(')\n');
-                // console.log(inTitle); console.log(inBody);
+                const inBody = $("#menu262_obj3183 > ul > li:nth-child(1)").text();
+                const inBody2 = $("#menu262_obj3183 > ul > li:nth-child(2)").text();
+                console.log(inTitle);
+                console.log(inBody, inBody2);
                 const outTitle = $("#menu262_obj3185 > h3").text();
-                const outBody = $("#menu262_obj3186 > ul")
-                    .text()
-                    .replace(/\n/g, "")
-                    .split(')')
-                    .join(')\n')
-                    .replace(/\s+$/, '');
-                // console.log(outTitle); console.log(outBody);
-                const result = '[' + inTitle + ']\n' + inBody + '\n[' + outTitle + ']\n' +
-                        outBody;
-                return result;
-            })
-            .then(result => {
-                console.log(result);
-                admin
+                const outBody = $("#menu262_obj3186 > ul > li:nth-child(1)").text();
+                const outBody2 = $("#menu262_obj3186 > ul > li:nth-child(2)").text();
+                console.log(outTitle);
+                console.log(outBody, outBody2);
+                
+                await admin
                     .database()
                     .ref('School_Bus/')
-                    .set({info: result});
+                    .set({
+                        in: {
+                            title: `${inTitle}`,
+                            start: `${inBody}`,
+                            end: `${inBody2}`
+                        },
+                        out: {
+                            title: `${outTitle}`,
+                            start: `${outBody}`,
+                            end: `${outBody2}`
+                        }
+                    });
                 res.send(201);
             })
             .catch(e => {

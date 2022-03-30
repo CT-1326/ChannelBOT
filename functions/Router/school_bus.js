@@ -8,10 +8,10 @@ router.post('/', async function (req, res) {
     let responseBody;
 
     if (userFriend == true) {
-        const bus = await admin
+        const inBus = await admin
             .database()
             .ref('School_Bus/')
-            .child('info')
+            .child('in')
             .once('value')
             .then(snapshot => {
                 return snapshot.val();
@@ -19,20 +19,90 @@ router.post('/', async function (req, res) {
             .catch((e) => {
                 console.error(e);
             });
-
+        // console.log(inBus);
+        const outBus = await admin
+            .database()
+            .ref('School_Bus/')
+            .child('out')
+            .once('value')
+            .then(snapshot => {
+                return snapshot.val();
+            })
+            .catch((e) => {
+                console.error(e);
+            });
+        // console.log(outBus);
         responseBody = {
             version: "2.0",
             template: {
                 outputs: [
                     {
-                        simpleText: {
-                            text: bus
+                        carousel: {
+                            type: "itemCard",
+                            items: [
+                                {
+                                    "head": {
+                                        "title": `${inBus.title}`
+                                    },
+                                    "itemList": [
+                                        {
+                                            "title": `${inBus
+                                                .start
+                                                .substr(0, 3)
+                                                .replace(':', '')
+                                                .trim()}`,
+                                            "description": `${inBus
+                                                .start
+                                                .substr(5)
+                                                .trim()}`
+                                        }, {
+                                            "title": `${inBus
+                                                .end
+                                                .substr(0, 3)
+                                                .replace(':', '')
+                                                .trim()}`,
+                                            "description": `${inBus
+                                                .end
+                                                .substr(5)
+                                                .trim()}`
+                                        }
+                                    ],
+                                    "title": "해당 안내 내용은 학교 홈페이지에 내용를 기반으로 작성되었습니다."
+                                }, {
+                                    "head": {
+                                        "title": `${outBus.title}`
+                                    },
+                                    "itemList": [
+                                        {
+                                            "title": `${outBus
+                                                .start
+                                                .substr(0, 3)
+                                                .replace(':', '')
+                                                .trim()}`,
+                                            "description": `${inBus
+                                                .start
+                                                .substr(4)
+                                                .trim()}`
+                                        }, {
+                                            "title": `${inBus
+                                                .end
+                                                .substr(0, 3)
+                                                .replace(':', '')
+                                                .trim()}`,
+                                            "description": `${inBus
+                                                .end
+                                                .substr(4)
+                                                .trim()}`
+                                        }
+                                    ],
+                                    "title": "해당 안내 내용은 학교 홈페이지에 내용를 기반으로 작성되었습니다."
+                                }
+                            ]
                         }
                     }
                 ]
             }
         };
-
     } else {
         responseBody = {
             version: "2.0",
