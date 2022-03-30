@@ -48,7 +48,7 @@ router.post('/', async function (req, res) {
                 outputs: [
                     {
                         simpleText: {
-                            text: "원하시는 학교 공지사항 메뉴를 선택해주세요"
+                            text: "💬 원하시는 학교 공지사항 메뉴를 선택해주세요"
                         }
                     }
                 ],

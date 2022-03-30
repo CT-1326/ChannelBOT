@@ -26,7 +26,7 @@ router.post('/', async function (req, res) {
                 outputs: [
                     {
                         simpleText: {
-                            text: title + '\n\n보고 싶은 오늘의 학식 종류를 선택해주세요'
+                            text: title + '\n\n💬 보고 싶은 오늘의 학식 종류를 선택해주세요'
                         }
                     }
                 ],
