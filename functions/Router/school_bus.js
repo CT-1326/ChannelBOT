@@ -67,7 +67,7 @@ router.post('/', async function (req, res) {
                                                 .trim()}`
                                         }
                                     ],
-                                    "title": "해당 안내 내용은 학교 홈페이지의 내용를 기반으로 작성되었습니다."
+                                    "title": "해당 안내 내용은 학교 홈페이지의 내용을 기반으로 작성되었습니다."
                                 }, {
                                     "head": {
                                         "title": `${outBus.title}`
@@ -95,7 +95,7 @@ router.post('/', async function (req, res) {
                                                 .trim()}`
                                         }
                                     ],
-                                    "title": "해당 안내 내용은 학교 홈페이지의 내용를 기반으로 작성되었습니다."
+                                    "title": "해당 안내 내용은 학교 홈페이지의 내용을 기반으로 작성되었습니다."
                                 }
                             ]
                         }
