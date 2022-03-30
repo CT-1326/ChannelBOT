@@ -79,17 +79,17 @@ router.post('/', async function (req, res) {
                                                 .substr(0, 3)
                                                 .replace(':', '')
                                                 .trim()}`,
-                                            "description": `${inBus
+                                            "description": `${outBus
                                                 .start
                                                 .substr(4)
                                                 .trim()}`
                                         }, {
-                                            "title": `${inBus
+                                            "title": `${outBus
                                                 .end
                                                 .substr(0, 3)
                                                 .replace(':', '')
                                                 .trim()}`,
-                                            "description": `${inBus
+                                            "description": `${outBus
                                                 .end
                                                 .substr(4)
                                                 .trim()}`
