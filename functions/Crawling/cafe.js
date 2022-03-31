@@ -40,7 +40,7 @@ exports.cafe = functions
                     // console.log(tdSize);
                     result[index] = new Array();
                     for (let jndex = 2; jndex <= tdSize - 2; jndex++) {
-                        result[index][jndex] = $(
+                        result[index][jndex - 1] = $(
                             '#viewForm > div > table > tbody > tr:nth-child(' + index +
                             ') > td:nth-child(' + jndex + ')'
                         )
@@ -53,15 +53,23 @@ exports.cafe = functions
                 await admin
                     .database()
                     .ref('School_Cafe/')
-                    .set({
-                        title: `${title}`,
-                        description: `${description}`,
-                        menu: {
-                            noodles: `${result[1]}`,
-                            bab: `${result[2]}`,
-                            fry: `${result[3]}`
-                        }
-                    });
+                    .set({title: `${title}`, description: `${description}`});
+                const menuCount = $("#viewForm > div > table > tbody > tr").length;
+                console.log(menuCount);
+                const menuTitle = [];
+                for (let index = 1; index <= menuCount; index++) {
+                    menuTitle[index] = $(
+                        "#viewForm > div > table > tbody > tr:nth-child(" + index +
+                        ") > td:nth-child(1)"
+                    ).text();
+                }
+                console.log(menuTitle);
+                for (let index = 1; index < menuTitle.length; index++) {
+                    await admin
+                        .database()
+                        .ref('School_Cafe/' + menuTitle[index])
+                        .update({menu: result[index]});
+                }
                 res.send(201);
             })
             .catch(e => {

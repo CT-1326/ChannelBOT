@@ -7,8 +7,22 @@ router.post('/', async function (req, res) {
     const userFriend = req.body.userRequest.user.properties.isFriend;
     // console.log(userFriend);
     let responseBody;
+    const quickReplies = [];
+    const messageText = ["면 종류 메뉴를 알려줘", "밥 종류 메뉴를 알려줘", "튀김 종류 메뉴를 알려줘"];
+    const label = ["면 종류", "밥 종류", "튀김 종류"];
 
     if (userFriend == true) {
+        label.forEach((value, index) => {
+            quickReplies.push({
+                "messageText": messageText[index],
+                "action": "block",
+                "blockId": functions
+                    .config()
+                    .service_key
+                    .cafe,
+                "label": value
+            });
+        });
         const title = await admin
             .database()
             .ref('School_Cafe/')
@@ -41,33 +55,7 @@ router.post('/', async function (req, res) {
                         }
                     }
                 ],
-                quickReplies: [
-                    {
-                        "messageText": "면 종류 메뉴 알려줘",
-                        "action": "block",
-                        "blockId": functions
-                            .config()
-                            .service_key
-                            .cafe,
-                        "label": "면 종류"
-                    }, {
-                        "messageText": "밥 종류 메뉴 알려줘",
-                        "action": "block",
-                        "blockId": functions
-                            .config()
-                            .service_key
-                            .cafe,
-                        "label": "밥 종류"
-                    }, {
-                        "messageText": "튀김 종류 메뉴 알려줘",
-                        "action": "block",
-                        "blockId": functions
-                            .config()
-                            .service_key
-                            .cafe,
-                        "label": "튀김 종류"
-                    }
-                ]
+                quickReplies: quickReplies
             }
         };
     } else {
