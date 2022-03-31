@@ -9,20 +9,30 @@ exports.cafe = functions
     .onRequest((req, res) => {
         axios
             .get('https://www.sungkyul.ac.kr/skukr/340/subview.do')
-            .then(html => {
+            .then(async (html) => {
                 const $ = cheerio.load(html.data);
                 const title = $(
-                    '#menu340_obj2839 > div._fnctWrap.diet > div.info > div.box-info > dl'
+                    '#menu340_obj2839 > div._fnctWrap.diet > div.info > div.box-info > dl > dt'
+                )
+                    .text()
+                    .trim();
+                // console.log(title);
+                const description = $(
+                    '#menu340_obj2839 > div._fnctWrap.diet > div.info > div.box-info > dl > dd:nth-' +
+                    'child(2)'
                 )
                     .text()
                     .trim()
                     .replace(/\t/g, '')
-                    .replace(/\n\n/g, '\n');
-                // console.log(title);
+                    .replace(/\n/g, '')
+                    .concat('\n', $(
+                        '#menu340_obj2839 > div._fnctWrap.diet > div.info > div.box-info > dl > dd:nth-' +
+                        'child(3)'
+                    ).text().trim().replace(/\t/g, '').replace(/\n/g, ''));
+                // console.log(description);
                 const trSize = $('#viewForm > div > table > tbody > tr').length;
                 // console.log(trSize);
                 const result = new Array();
-                result[0] = title;
                 for (let index = 1; index <= trSize; index++) {
                     const tdSize = $(
                         '#viewForm > div > table > tbody > tr:nth-child(' + index + ') > td'
@@ -39,23 +49,45 @@ exports.cafe = functions
                             .replace(/,/g, '\n');
                     }
                 }
-                return result;
-            })
-            .then(async (result) => {
-                console.log(result);
+                // console.log(result);
                 await admin
                     .database()
-                    .ref('School_Cafe/' + 0)
-                    .set(result[0]);
-                for (let index = 1; index <= 3; index++) {
-                    await admin
-                        .database()
-                        .ref('School_Cafe/' + index)
-                        .set({menu: result[index]});
-                }
+                    .ref('School_Cafe/')
+                    .set({
+                        title: `${title}`,
+                        description: `${description}`,
+                        menu: {
+                            noodles: `${result[1]}`,
+                            bab: `${result[2]}`,
+                            fry: `${result[3]}`
+                        }
+                    });
+                const ss = await admin
+                    .database()
+                    .ref('School_Cafe/')
+                    .child('title')
+                    .once('value')
+                    .then(snapshot => {
+                        return snapshot.val();
+                    })
+                    .catch(e => {
+                        console.error('Error from cafe title :', e);
+                    });
+                const sss = await admin
+                    .database()
+                    .ref('School_Cafe/')
+                    .child('description')
+                    .once('value')
+                    .then(snapshot => {
+                        return snapshot.val();
+                    })
+                    .catch(e => {
+                        console.error('Error from cafe title :', e);
+                    });
+                console.log(ss + sss);
                 res.send(201);
             })
             .catch(e => {
                 console.error('Error from crawling cafe:', e);
-            })
-        });
+            });
+    });

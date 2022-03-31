@@ -11,8 +11,8 @@ router.post('/', async function (req, res) {
     if (userFriend == true) {
         const title = await admin
             .database()
-            .ref('School_Cafe')
-            .child('0/')
+            .ref('School_Cafe/')
+            .child('title')
             .once('value')
             .then(snapshot => {
                 return snapshot.val();
@@ -20,13 +20,24 @@ router.post('/', async function (req, res) {
             .catch(e => {
                 console.error('Error from cafe title :', e);
             });
+        const description = await admin
+            .database()
+            .ref('School_Cafe/')
+            .child('description')
+            .once('value')
+            .then(snapshot => {
+                return snapshot.val();
+            })
+            .catch(e => {
+                console.error('Error from cafe description :', e);
+            });
         responseBody = {
             version: "2.0",
             template: {
                 outputs: [
                     {
                         simpleText: {
-                            text: title + '\n\n💬 보고 싶은 오늘의 학식 종류를 선택해주세요'
+                            text: title + description + '\n\n💬 보고 싶은 오늘의 학식 종류를 선택해주세요'
                         }
                     }
                 ],
