@@ -9,7 +9,6 @@ router.post('/', async (req, res) => {
     let today = day.getDay();
     // console.log(today);
     let responseBody;
-    let title = ['현재 해당 서비스는 업데이트중에 있어요!','현재 해당 서비스는 업데이트중에 있어요!','현재 해당 서비스는 업데이트중에 있어요!'];
 
     if (today == 0 || today == 6) {
         responseBody = {
@@ -26,6 +25,7 @@ router.post('/', async (req, res) => {
         };
     } else {
         console.log(userRequest);
+        let title = ['현재 해당 서비스는 업데이트중에 있어요!','현재 해당 서비스는 업데이트중에 있어요!','현재 해당 서비스는 업데이트중에 있어요!'];
         let itemList = [];
 
         switch (userRequest) {
