@@ -26,27 +26,13 @@ router.post('/', async (req, res) => {
     } else {
         switch (userRequest) {
             case "면 종류 메뉴 알려줘":
-                const nodel = await admin
-                    .database()
-                    .ref('School_Cafe/1')
-                    .child('menu/' + (
-                        today + 1
-                    ))
-                    .once('value')
-                    .then(snapshot => {
-                        return snapshot.val();
-                    })
-                    .catch(e => {
-                        console.error('Error from nodel :', e);
-                    });
-                // console.log(nodel);
                 responseBody = {
                     version: "2.0",
                     template: {
                         outputs: [
                             {
                                 simpleText: {
-                                    text: nodel
+                                    text: '현재 서비스 점검중에 있어요!'
                                 }
                             }
                         ]
@@ -55,27 +41,13 @@ router.post('/', async (req, res) => {
                 break;
 
             case "밥 종류 메뉴 알려줘":
-                const rice = await admin
-                    .database()
-                    .ref('School_Cafe/2')
-                    .child('menu/' + (
-                        today + 1
-                    ))
-                    .once('value')
-                    .then(snapshot => {
-                        return snapshot.val();
-                    })
-                    .catch(e => {
-                        console.error('Error from rice :', e);;
-                    });
-                // console.log(rice);
                 responseBody = {
                     version: "2.0",
                     template: {
                         outputs: [
                             {
                                 simpleText: {
-                                    text: rice
+                                    text: '현재 서비스 점검중에 있어요!'
                                 }
                             }
                         ]
@@ -84,27 +56,13 @@ router.post('/', async (req, res) => {
                 break;
 
             case "튀김 종류 메뉴 알려줘":
-                const fried = await admin
-                    .database()
-                    .ref('School_Cafe/3')
-                    .child('menu/' + (
-                        today + 1
-                    ))
-                    .once('value')
-                    .then(snapshot => {
-                        return snapshot.val();
-                    })
-                    .catch(e => {
-                        console.error('Error from fried :', e);;
-                    });
-                // console.log(fried);
                 responseBody = {
                     version: "2.0",
                     template: {
                         outputs: [
                             {
                                 simpleText: {
-                                    text: fried
+                                    text: '현재 서비스 점검중에 있어요!'
                                 }
                             }
                         ]
