@@ -25,19 +25,26 @@ router.post('/', async (req, res) => {
         };
     } else {
         console.log(userRequest);
-        // let title = ['현재 해당 서비스는 업데이트중에 있어요!','현재 해당 서비스는 업데이트중에 있어요!','현재 해당 서비스는 업데이트중에 있어요!'];
-        // let itemList = [];
+        let title = ['현재 해당 서비스는 업데이트중에 있어요!'];
+        let itemList = [];
 
         switch (userRequest) {
-            case "면 종류 메뉴 알려줘":
-                console.log('1');
+            case "면 종류 메뉴를 알려줘":
+                title.forEach((value, index) => {
+                    console.log(value, index);
+                    itemList.push({"title": index, "description": value});
+                });
+
                 responseBody = {
                     version: "2.0",
                     template: {
                         outputs: [
                             {
-                                simpleText: {
-                                    text: "현재 서비스 점검중에 있어요!"
+                                itemCard: {
+                                    "head": {
+                                        "title": "면 종류"
+                                    },
+                                    "itemList": itemList
                                 }
                             }
                         ]
@@ -45,15 +52,22 @@ router.post('/', async (req, res) => {
                 };
                 break;
 
-            case "밥 종류 메뉴 알려줘":
-                console.log('2');
+            case "밥 종류 메뉴를 알려줘":
+                title.forEach((value, index) => {
+                    console.log(value, index);
+                    itemList.push({"title": index, "description": value});
+                });
+
                 responseBody = {
                     version: "2.0",
                     template: {
                         outputs: [
                             {
-                                simpleText: {
-                                    text: "현재 서비스 점검중에 있어요!"
+                                itemCard: {
+                                    "head": {
+                                        "title": "밥 종류"
+                                    },
+                                    "itemList": itemList
                                 }
                             }
                         ]
@@ -61,15 +75,22 @@ router.post('/', async (req, res) => {
                 };
                 break;
 
-            case "튀김 종류 메뉴 알려줘":
-                console.log('3');
+            case "튀김 종류 메뉴를 알려줘":
+                title.forEach((value, index) => {
+                    console.log(value, index);
+                    itemList.push({"title": index, "description": value});
+                });
+
                 responseBody = {
                     version: "2.0",
                     template: {
                         outputs: [
                             {
-                                simpleText: {
-                                    text: "현재 서비스 점검중에 있어요!"
+                                itemCard: {
+                                    "head": {
+                                        "title": "튀김 종류"
+                                    },
+                                    "itemList": itemList
                                 }
                             }
                         ]
