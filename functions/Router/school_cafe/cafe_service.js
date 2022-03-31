@@ -24,14 +24,13 @@ router.post('/', async (req, res) => {
             }
         };
     } else {
-        console.log(userRequest);
         let title = ['현재 해당 서비스는 업데이트중에 있어요!'];
         let itemList = [];
 
         switch (userRequest) {
             case "면 종류 메뉴를 알려줘":
                 title.forEach((value, index) => {
-                    console.log(value, index);
+                    // console.log(value, index);
                     itemList.push({"title": index, "description": value});
                 });
 
@@ -54,7 +53,7 @@ router.post('/', async (req, res) => {
 
             case "밥 종류 메뉴를 알려줘":
                 title.forEach((value, index) => {
-                    console.log(value, index);
+                    // console.log(value, index);
                     itemList.push({"title": index, "description": value});
                 });
 
@@ -77,7 +76,7 @@ router.post('/', async (req, res) => {
 
             case "튀김 종류 메뉴를 알려줘":
                 title.forEach((value, index) => {
-                    console.log(value, index);
+                    // console.log(value, index);
                     itemList.push({"title": index, "description": value});
                 });
 
