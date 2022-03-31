@@ -73,5 +73,5 @@ exports.notice = functions
             })
             .catch(e => {
                 console.error('Error from crawling notice:', e);
-            })
-        });
+            });
+    });

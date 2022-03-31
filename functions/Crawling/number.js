@@ -67,5 +67,5 @@ exports.number = functions
             })
             .catch(e => {
                 console.error('Error from crawling number:', e);
-            })
-        });
+            });
+    });
