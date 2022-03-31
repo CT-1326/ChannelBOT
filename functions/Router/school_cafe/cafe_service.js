@@ -40,14 +40,8 @@ router.post('/', async (req, res) => {
                     template: {
                         outputs: [
                             {
-                                itemCard: {
-                                    "head": {
-                                        "title": "면 종류"
-                                    },
-                                    "itemList": [{
-                                        "title": "매장명",
-                                        "description": "판교 A스퀘어점"
-                                      },]
+                                simpleText: {
+                                    text: "현재 서비스 점검중에 있어요!"
                                 }
                             }
                         ]
@@ -66,14 +60,8 @@ router.post('/', async (req, res) => {
                     template: {
                         outputs: [
                             {
-                                itemCard: {
-                                    "head": {
-                                        "title": "밥 종류"
-                                    },
-                                    "itemList": [{
-                                        "title": "매장명",
-                                        "description": "판교 A스퀘어점"
-                                      },]
+                                simpleText: {
+                                    text: "현재 서비스 점검중에 있어요!"
                                 }
                             }
                         ]
@@ -92,14 +80,8 @@ router.post('/', async (req, res) => {
                     template: {
                         outputs: [
                             {
-                                itemCard: {
-                                    "head": {
-                                        "title": "튀김 종류"
-                                    },
-                                    "itemList": [{
-                                        "title": "매장명",
-                                        "description": "판교 A스퀘어점"
-                                      },]
+                                simpleText: {
+                                    text: "현재 서비스 점검중에 있어요!"
                                 }
                             }
                         ]
