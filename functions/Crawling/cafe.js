@@ -55,7 +55,7 @@ exports.cafe = functions
                     .ref('School_Cafe/')
                     .set({title: `${title}`, description: `${description}`});
                 const menuCount = $("#viewForm > div > table > tbody > tr").length;
-                console.log(menuCount);
+                // console.log(menuCount);
                 const menuTitle = [];
                 for (let index = 1; index <= menuCount; index++) {
                     menuTitle[index] = $(
@@ -63,7 +63,7 @@ exports.cafe = functions
                         ") > td:nth-child(1)"
                     ).text();
                 }
-                console.log(menuTitle);
+                // console.log(menuTitle);
                 for (let index = 1; index < menuTitle.length; index++) {
                     await admin
                         .database()

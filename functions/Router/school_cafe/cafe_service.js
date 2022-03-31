@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
     let today = day.getDay();
     // console.log(today);
     let responseBody;
-    const title = ['현재 해당 서비스는 업데이트중에 있어요!'];
+    const title = ['현재 해당 서비스는 업데이트중에 있어요!','현재 해당 서비스는 업데이트중에 있어요!','현재 해당 서비스는 업데이트중에 있어요!'];
 
     if (today == 0 || today == 6) {
         responseBody = {
@@ -25,11 +25,13 @@ router.post('/', async (req, res) => {
             }
         };
     } else {
+        console.log(userRequest);
         let itemList = [];
 
         switch (userRequest) {
             case "면 종류 메뉴 알려줘":
                 title.forEach((value, index) => {
+                    console.log(value, index);
                     itemList.push({"title": index, "description": value});
                 });
                 responseBody = {
@@ -51,6 +53,7 @@ router.post('/', async (req, res) => {
 
             case "밥 종류 메뉴 알려줘":
                 title.forEach((value, index) => {
+                    console.log(value, index);
                     itemList.push({"title": index, "description": value});
                 });
                 responseBody = {
@@ -72,6 +75,7 @@ router.post('/', async (req, res) => {
 
             case "튀김 종류 메뉴 알려줘":
                 title.forEach((value, index) => {
+                    console.log(value, index);
                     itemList.push({"title": index, "description": value});
                 });
                 responseBody = {
