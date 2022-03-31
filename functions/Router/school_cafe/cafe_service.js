@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
     let today = day.getDay();
     // console.log(today);
     let responseBody;
-    const title = ['현재 해당 서비스는 업데이트중에 있어요!','현재 해당 서비스는 업데이트중에 있어요!','현재 해당 서비스는 업데이트중에 있어요!'];
+    let title = ['현재 해당 서비스는 업데이트중에 있어요!','현재 해당 서비스는 업데이트중에 있어요!','현재 해당 서비스는 업데이트중에 있어요!'];
 
     if (today == 0 || today == 6) {
         responseBody = {
@@ -34,6 +34,7 @@ router.post('/', async (req, res) => {
                     console.log(value, index);
                     itemList.push({"title": index, "description": value});
                 });
+                console.log(itemList);
                 responseBody = {
                     version: "2.0",
                     template: {
@@ -43,7 +44,10 @@ router.post('/', async (req, res) => {
                                     "head": {
                                         "title": "면 종류"
                                     },
-                                    "itemList": itemList
+                                    "itemList": [{
+                                        "title": "매장명",
+                                        "description": "판교 A스퀘어점"
+                                      },]
                                 }
                             }
                         ]
@@ -56,6 +60,7 @@ router.post('/', async (req, res) => {
                     console.log(value, index);
                     itemList.push({"title": index, "description": value});
                 });
+                console.log(itemList);
                 responseBody = {
                     version: "2.0",
                     template: {
@@ -65,7 +70,10 @@ router.post('/', async (req, res) => {
                                     "head": {
                                         "title": "밥 종류"
                                     },
-                                    "itemList": itemList
+                                    "itemList": [{
+                                        "title": "매장명",
+                                        "description": "판교 A스퀘어점"
+                                      },]
                                 }
                             }
                         ]
@@ -78,6 +86,7 @@ router.post('/', async (req, res) => {
                     console.log(value, index);
                     itemList.push({"title": index, "description": value});
                 });
+                console.log(itemList);
                 responseBody = {
                     version: "2.0",
                     template: {
@@ -87,7 +96,10 @@ router.post('/', async (req, res) => {
                                     "head": {
                                         "title": "튀김 종류"
                                     },
-                                    "itemList": itemList
+                                    "itemList": [{
+                                        "title": "매장명",
+                                        "description": "판교 A스퀘어점"
+                                      },]
                                 }
                             }
                         ]
