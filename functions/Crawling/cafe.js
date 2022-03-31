@@ -62,29 +62,6 @@ exports.cafe = functions
                             fry: `${result[3]}`
                         }
                     });
-                const ss = await admin
-                    .database()
-                    .ref('School_Cafe/')
-                    .child('title')
-                    .once('value')
-                    .then(snapshot => {
-                        return snapshot.val();
-                    })
-                    .catch(e => {
-                        console.error('Error from cafe title :', e);
-                    });
-                const sss = await admin
-                    .database()
-                    .ref('School_Cafe/')
-                    .child('description')
-                    .once('value')
-                    .then(snapshot => {
-                        return snapshot.val();
-                    })
-                    .catch(e => {
-                        console.error('Error from cafe title :', e);
-                    });
-                console.log(ss + sss);
                 res.send(201);
             })
             .catch(e => {
