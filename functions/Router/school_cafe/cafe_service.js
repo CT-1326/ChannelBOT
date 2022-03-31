@@ -30,6 +30,7 @@ router.post('/', async (req, res) => {
 
         switch (userRequest) {
             case "면 종류 메뉴 알려줘":
+                console.log('1');
                 responseBody = {
                     version: "2.0",
                     template: {
@@ -45,6 +46,7 @@ router.post('/', async (req, res) => {
                 break;
 
             case "밥 종류 메뉴 알려줘":
+                console.log('2');
                 responseBody = {
                     version: "2.0",
                     template: {
@@ -60,6 +62,7 @@ router.post('/', async (req, res) => {
                 break;
 
             case "튀김 종류 메뉴 알려줘":
+                console.log('3');
                 responseBody = {
                     version: "2.0",
                     template: {
