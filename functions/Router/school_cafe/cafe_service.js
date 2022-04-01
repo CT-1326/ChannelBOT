@@ -87,7 +87,7 @@ router.post('/', async (req, res) => {
                             {
                                 itemCard: {
                                     "head": {
-                                        "title": "면 종류"
+                                        "title": "🍜 면 종류"
                                     },
                                     "itemList": itemList
                                 }
@@ -114,7 +114,7 @@ router.post('/', async (req, res) => {
                             {
                                 itemCard: {
                                     "head": {
-                                        "title": "밥 종류"
+                                        "title": "🍛 밥 종류"
                                     },
                                     "itemList": itemList
                                 }
@@ -141,7 +141,7 @@ router.post('/', async (req, res) => {
                             {
                                 itemCard: {
                                     "head": {
-                                        "title": "튀김 종류"
+                                        "title": "🍤 튀김 종류"
                                     },
                                     "itemList": itemList
                                 }
