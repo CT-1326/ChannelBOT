@@ -24,14 +24,60 @@ router.post('/', async (req, res) => {
             }
         };
     } else {
-        let title = ['현재 해당 서비스는 업데이트중에 있어요!'];
+        const noodel = await admin
+            .database()
+            .ref('School_Cafe/')
+            .child('Roll & Noodles/menu/' + (
+                today
+            ))
+            .once('value')
+            .then(snapshot => {
+                return snapshot.val();
+            })
+            .catch(e => {
+                console.error('Error from noodel :', e);
+            });
+        // console.log(noodel);
+        const rice = await admin
+            .database()
+            .ref('School_Cafe/')
+            .child('The bab/menu/' + (
+                today
+            ))
+            .once('value')
+            .then(snapshot => {
+                return snapshot.val();
+            })
+            .catch(e => {
+                console.error('Error from rice :', e);
+            });
+        // console.log(rice);
+        const fried = await admin
+            .database()
+            .ref('School_Cafe/')
+            .child('Fry & Rice/menu/' + (
+                today
+            ))
+            .once('value')
+            .then(snapshot => {
+                return snapshot.val();
+            })
+            .catch(e => {
+                console.error('Error from fried :', e);
+            });
+        // console.log(fried);
+        let menu;
         let itemList = [];
 
         switch (userRequest) {
             case "면 종류 메뉴를 알려줘":
-                title.forEach((value, index) => {
+                menu = noodel.split('\n');
+                menu.forEach((value, index) => {
                     // console.log(value, index);
-                    itemList.push({"title": index, "description": value});
+                    itemList.push({
+                        "title": index + 1,
+                        "description": value
+                    });
                 });
 
                 responseBody = {
@@ -52,9 +98,13 @@ router.post('/', async (req, res) => {
                 break;
 
             case "밥 종류 메뉴를 알려줘":
-                title.forEach((value, index) => {
+                menu = rice.split('\n');
+                menu.forEach((value, index) => {
                     // console.log(value, index);
-                    itemList.push({"title": index, "description": value});
+                    itemList.push({
+                        "title": index + 1,
+                        "description": value
+                    });
                 });
 
                 responseBody = {
@@ -75,9 +125,13 @@ router.post('/', async (req, res) => {
                 break;
 
             case "튀김 종류 메뉴를 알려줘":
-                title.forEach((value, index) => {
+                menu = fried.split('\n');
+                menu.forEach((value, index) => {
                     // console.log(value, index);
-                    itemList.push({"title": index, "description": value});
+                    itemList.push({
+                        "title": index + 1,
+                        "description": value
+                    });
                 });
 
                 responseBody = {
