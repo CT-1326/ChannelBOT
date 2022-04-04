@@ -18,7 +18,6 @@ const number = require('./Crawling/number');
 const library = require('./Crawling/library');
 const cafe = require('./Crawling/cafe');
 const notice = require('./Crawling/notice');
-
 const notcold = require('./Scheduler/notcold');
 
 app.use(cors());
@@ -32,12 +31,11 @@ app.use('/schoolNotice/schoolNotice_service', noticeService);
 exports.middleWare = functions
     .region('asia-northeast1')
     .https
-    .onRequest(app);
+    .onRequest(app); // 채널봇 기본 주소 미들웨어
 
-exports.bus = bus.bus;
-exports.number = number.number;
-exports.library = library.library;
-exports.cafe = cafe.cafe;
-exports.notice = notice.notice;
-
-exports.notcold = notcold.notcold;
+exports.bus = bus.bus; // 셔틀버스 크롤링 미들웨어
+exports.number = number.number; // 대표번호 크롤링 미들웨어
+exports.library = library.library; // 학술정보관 열람실 크롤링 미들웨어
+exports.cafe = cafe.cafe; // 학식 크롤링 미들웨어
+exports.notice = notice.notice; // 학교 게시판 크롤링 미들웨어
+exports.notcold = notcold.notcold; // cold start 이슈 개선의 미들웨어
