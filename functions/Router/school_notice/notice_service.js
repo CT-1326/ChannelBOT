@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    const userRequest = req.body.userRequest.utterance;
+    const userRequest = req.body.userRequest.utterance; // 사용자 요청문
     // console.log(userRequest);
     let titleResult,
         dateResult,
@@ -13,8 +13,9 @@ router.post('/', async (req, res) => {
 
     switch (userRequest) {
         case "학사 관련해서 알려줘":
-            [titleResult, dateResult, urlResult] = await getData('School_Notice/학사');
+            [titleResult, dateResult, urlResult] = await getData('School_Notice/학사'); // 해당 게시판의 제목, 날짜, 경로 데이터를 get
             // console.log(titleResult, dateResult, urlResult);
+            /*리스트 뷰 본문 작성*/
             titleResult.forEach((value, index) => {
                 items.push({
                     "title": value,
@@ -29,7 +30,7 @@ router.post('/', async (req, res) => {
                 template: {
                     outputs: [
                         {
-                            "listCard": {
+                            "listCard": { // 리스트 카드 뷰 블록으로 출력
                                 "header": {
                                     "title": "학사 공지사항"
                                 },
@@ -340,6 +341,7 @@ router.post('/', async (req, res) => {
             break;
     }
 
+    /*요청 받은 게시판의 게시물 데이터 get 처리 함수*/
     async function getData(params) {
         let title = new Array();
         let date = new Array();
@@ -352,7 +354,7 @@ router.post('/', async (req, res) => {
             .once('value')
             .then(snapshot => {
                 snapshot.forEach(item => {
-                    title.push(item.val());
+                    title.push(item.val()); // 제목 데이터 get
                 })
             })
             .catch(e => {
@@ -365,7 +367,7 @@ router.post('/', async (req, res) => {
             .once('value')
             .then(snapshot => {
                 snapshot.forEach(item => {
-                    date.push(item.val());
+                    date.push(item.val()); // 날짜 데이터 get
                 })
             })
             .catch(e => {
@@ -378,18 +380,19 @@ router.post('/', async (req, res) => {
             .once('value')
             .then(snapshot => {
                 snapshot.forEach(item => {
-                    url.push(item.val());
+                    url.push(item.val()); // 경로 데이터 get
                 })
             })
             .catch(e => {
                 console.error('Error from notice url :', e);
             });
-        return [title, date, url];
+
+        return [title, date, url]; // get 처리 된 변수를 반환
     };
 
     res
         .status(201)
-        .send(responseBody);
+        .send(responseBody); // 응답 상태 코드와 내용 전송
 });
 
 module.exports = router;

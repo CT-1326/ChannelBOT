@@ -3,11 +3,12 @@ const admin = require('firebase-admin');
 const router = express.Router();
 
 router.post('/', async function (req, res) {
-    const userFriend = req.body.userRequest.user.properties.isFriend;
+    const userFriend = req.body.userRequest.user.properties.isFriend; // 사용자 카카오 채널 정보
     // console.log(userFriend);
     let responseBody;
 
-    if (userFriend == true) {
+    if (userFriend == true) { // 채널을 추가한 사용자인경우
+        /*일반 그리고 노트북 열람실 좌석 데이터 변수 처리*/
         const normal = await admin
             .database()
             .ref('Library_State/1f_normal')
@@ -36,7 +37,7 @@ router.post('/', async function (req, res) {
             template: {
                 outputs: [
                     {
-                        "listCard": {
+                        "listCard": { // 리스트 카드 뷰 블록으로 출력
                             "header": {
                                 "title": "학술정보관 열람실 좌석 현황",
                                 "imageUrl": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1." +
@@ -63,24 +64,23 @@ router.post('/', async function (req, res) {
                 ]
             }
         };
-    } else {
+    } else { // 채널을 추가하지 않은 사용자인경우
         responseBody = {
             version: "2.0",
             template: {
                 outputs: [
                     {
                         simpleText: {
-                            text: "🔕 채널봇 채널 추가부터 하셔야 이용이 가능해요!"
+                            text: "🔕 채널봇 채널 추가부터 하셔야 이용이 가능해요!" // 텍스트 뷰 블록으로 출력
                         }
                     }
                 ]
             }
         };
     }
-
     res
         .status(201)
-        .send(responseBody);
+        .send(responseBody); // 응답 상태 코드와 내용 전송
 });
 
 module.exports = router;

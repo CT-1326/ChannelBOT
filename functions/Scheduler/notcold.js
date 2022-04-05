@@ -50,21 +50,21 @@ exports.notcold = functions // 함수 이름
                 {userRequest}
             )
             .then(result => {
-                console.log(result.status); // 셔틀 버스 안내 서비스 조회 성공 시 HTTP 코드 출력
+                console.log(result.status); // 셔틀 버스 안내 서비스 조회 성공 시 HTTP 성공 코드 출력
             })
             .catch(error => {
                 console.error('Error from notcold bus : ', error);
             });
         await axios(config)
             .then(result => {
-                console.log(result.status); // 학식 안내 서비스 조회 성공 시 HTTP 코드 출력
+                console.log(result.status); // 학식 안내 서비스 조회 성공 시 HTTP 성공 코드 출력
             })
             .catch(function (error) {
                 console.log('Error from notcold cafe : ', error);
             });
         await axios(config2)
             .then(result => {
-                console.log(result.status); // 학사 공지사항 서비스 조회 성공 시 HTTP 코드 출력
+                console.log(result.status); // 학사 공지사항 서비스 조회 성공 시 HTTP 성공 코드 출력
             })
             .catch(function (error) {
                 console.log('Error from notcold notice : ', error);
