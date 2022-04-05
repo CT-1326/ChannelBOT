@@ -3,12 +3,12 @@ const admin = require('firebase-admin');
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-exports.notice = functions
+exports.notice = functions // 크롤링 함수 이름
     .region('asia-northeast1')
     .https
     .onRequest((req, res) => {
         axios
-            .get('https://www.sungkyul.ac.kr/sites/skukr/index.do#page2')
+            .get('https://www.sungkyul.ac.kr/sites/skukr/index.do#page2') // 학교 메인 페이지 주소
             .then(html => {
                 const $ = cheerio.load(html.data);
                 const liSize = $('#menu160_obj5589 > div._fnctWrap > div > ul > li').length;
@@ -16,6 +16,7 @@ exports.notice = functions
                 const title = new Array();
                 const date = new Array();
                 const url = new Array();
+                /*각 게시판의 키워드이자 이름 명칭 갯수별로 배열을 생성*/
                 for (let index = 1; index <= liSize; index++) {
                     const inliSize = $(
                         '#menu160_obj5589 > div._fnctWrap > div > ul > li:nth-child(' + index + ') > di' +
@@ -25,6 +26,7 @@ exports.notice = functions
                     title[index] = new Array();
                     date[index] = new Array();
                     url[index] = new Array();
+                    /*각 배열에 게시물의 이름, 업로드 날짜, 페이지주소 값을 추출하여 저장*/
                     for (let jndex = 1; jndex <= inliSize; jndex++) {
                         title[index][jndex] = $(
                             '#menu160_obj5589 > div._fnctWrap > div > ul > li:nth-child(' + index + ') > di' +
@@ -42,7 +44,7 @@ exports.notice = functions
                             .replace(/^/, 'https://www.sungkyul.ac.kr');
                     }
                 }
-                return ([title, date, url]);
+                return ([title, date, url]); // 추출한 각각의 배열들을 반환
             })
             .then(async ([title, date, url]) => {
                 console.log("타이틀: ", title);
@@ -59,6 +61,7 @@ exports.notice = functions
                     '일반',
                     '비교과'
                 ];
+                /* 추출 값을 담은 배열들을 각 게시판 명칭인 KEY 값으로 분류해 DB에 저장*/
                 for (let index = 0; index < item.length; index++) {
                     await admin
                         .database()
@@ -69,9 +72,10 @@ exports.notice = functions
                             url: url[index + 1]
                         });
                 }
-                res.send(201);
+                res.sendStatus(201); // 성공 코드 전송
             })
             .catch(e => {
                 console.error('Error from crawling notice:', e);
+                res.sendStatus(e.response.status); // 에러 코드 전송
             });
     });
