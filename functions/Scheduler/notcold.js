@@ -14,7 +14,7 @@ exports.notcold = functions // 함수 이름
                 }
             }
         };
-        const config = { // 학식 안내 서비스 조회 관련 데이터 시나리오
+        const config = { // 오늘의 학식 안내 서비스 조회 관련 데이터 시나리오
             method: 'post',
             url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolC' +
                     'afe/schoolCafe_service',
@@ -50,21 +50,23 @@ exports.notcold = functions // 함수 이름
                 {userRequest}
             )
             .then(result => {
-                console.log(result.status); // 셔틀 버스 안내 서비스 조회 성공 시 HTTP 성공 코드 출력
+                console.log(result.status); // 서비스 조회 성공 시 성공 상태 코드 출력
             })
             .catch(error => {
-                console.error('Error from notcold bus : ', error);
+                console.error('Error from notcold bus : ', error); // 실패 시 에러문 출력
             });
+
         await axios(config)
             .then(result => {
-                console.log(result.status); // 학식 안내 서비스 조회 성공 시 HTTP 성공 코드 출력
+                console.log(result.status);
             })
             .catch(function (error) {
                 console.log('Error from notcold cafe : ', error);
             });
+
         await axios(config2)
             .then(result => {
-                console.log(result.status); // 학사 공지사항 서비스 조회 성공 시 HTTP 성공 코드 출력
+                console.log(result.status);
             })
             .catch(function (error) {
                 console.log('Error from notcold notice : ', error);
