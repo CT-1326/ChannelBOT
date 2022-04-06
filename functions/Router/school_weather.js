@@ -38,13 +38,16 @@ router.post('/', async function (req, res) {
         // console.log(statWeather);
         /* 아이템 카드 뷰 본문 작성*/
         description.push(
-            mainWeather.temp,
-            mainWeather.feels,
-            mainWeather.temp_max,
-            mainWeather.temp_min
+            parseFloat(mainWeather.temp) - 273.15,
+            parseFloat(mainWeather.feels) - 273.15,
+            parseFloat(mainWeather.temp_max) - 273.15,
+            parseFloat(mainWeather.temp_min) - 273.15
         );
         title.forEach((value, index) => {
-            itemList.push({"title": value, "description": description[index]});
+            itemList.push({
+                "title": value,
+                "description": description[index] + '도'
+            });
         });
         // console.log(itemList);
         responseBody = {
