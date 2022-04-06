@@ -23,7 +23,7 @@ exports.weather = functions // 함수 이름
                 /* 날씨 데이터(조건,아이콘,온도)를 DB에 저장*/
                 await admin
                     .database()
-                    .ref('Scool_Weather')
+                    .ref('School_Weather')
                     .set({
                         weather: {
                             stat: `${result
