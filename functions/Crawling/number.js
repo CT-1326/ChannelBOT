@@ -63,6 +63,7 @@ exports.number = functions // 크롤링 함수 이름
                     .ref('School_Number')
                     .set({info: result}); // DB에 추출 값 저장
                 res.sendStatus(201); // 성공 코드 전송
+                console.log('School Number DB input success');
             })
             .catch(e => {
                 console.error('Error from crawling number:', e);

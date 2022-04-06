@@ -12,6 +12,7 @@ const schoolCafe = require('./Router/school_cafe/school_cafe');
 const cafeService = require('./Router/school_cafe/cafe_service');
 const schoolNotice = require('./Router/school_notice/school_notice');
 const noticeService = require('./Router/school_notice/notice_service');
+const schoolWeather = require('./Router/school_weather');
 
 const bus = require('./Crawling/bus');
 const number = require('./Crawling/number');
@@ -19,6 +20,7 @@ const library = require('./Crawling/library');
 const cafe = require('./Crawling/cafe');
 const notice = require('./Crawling/notice');
 const notcold = require('./Scheduler/notcold');
+const weather = require('./Scheduler/weather');
 
 app.use(cors());
 app.use('/schoolBus', schoolBus);
@@ -28,6 +30,7 @@ app.use('/schoolCafe', schoolCafe);
 app.use('/schoolCafe/schoolCafe_service', cafeService);
 app.use('/schoolNotice', schoolNotice);
 app.use('/schoolNotice/schoolNotice_service', noticeService);
+app.use('/schoolWeather', schoolWeather);
 exports.middleWare = functions
     .region('asia-northeast1')
     .https
@@ -39,3 +42,4 @@ exports.library = library.library; // 학술정보관 열람실 크롤링 미들
 exports.cafe = cafe.cafe; // 학식 크롤링 미들웨어
 exports.notice = notice.notice; // 학교 게시판 크롤링 미들웨어
 exports.notcold = notcold.notcold; // cold start 이슈 개선의 미들웨어
+exports.weather = weather.weather;

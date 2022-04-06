@@ -73,6 +73,7 @@ exports.notice = functions // 크롤링 함수 이름
                         });
                 }
                 res.sendStatus(201); // 성공 코드 전송
+                console.log('School Notice DB input success');
             })
             .catch(e => {
                 console.error('Error from crawling notice:', e);
