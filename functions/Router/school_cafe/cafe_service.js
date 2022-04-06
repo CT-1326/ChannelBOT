@@ -152,11 +152,56 @@ router.post('/', async (req, res) => {
                 };
                 break;
 
+            case "모든 메뉴를 알려줘":
+                menu = [noodel, rice, fried];
+                let items = [];
+                for (let index = 0; index < 3; index++) {
+                    const element = menu[index].split('\n')
+                    element.forEach((value, index) => {
+                        // console.log(value, index);
+                        items.push({
+                            "title": index + 1,
+                            "description": value
+                        });
+                    });
+                    itemList[index] = items;
+                }
+                responseBody = {
+                    version: "2.0",
+                    template: {
+                        outputs: [
+                            {
+                                carousel: { // 캐러셀 구조의 아이템 카드형 응답 블록 출력
+                                    type: "itemCard",
+                                    items: [
+                                        {
+                                            "head": {
+                                                "title": "🍜 면 종류"
+                                            },
+                                            "itemList": itemList[0]
+                                        }, {
+                                            "head": {
+                                                "title": "🍛 밥 종류"
+                                            },
+                                            "itemList": itemList[1]
+                                        }, {
+                                            "head": {
+                                                "title": "🍤 튀김 종류"
+                                            },
+                                            "itemList": itemList[2]
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                };
+                break;
+
             default:
                 break;
         }
     }
-
     res
         .status(201)
         .send(responseBody); // 응답 상태 코드와 내용 전송

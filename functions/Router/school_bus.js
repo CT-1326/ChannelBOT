@@ -38,8 +38,8 @@ router.post('/', async function (req, res) {
             template: {
                 outputs: [
                     {
-                        carousel: {
-                            type: "itemCard", // 아이템 카드 뷰 블록으로 출력
+                        carousel: { // 캐러셀 구조의 아이템 카드형 응답 블록 출력
+                            type: "itemCard",
                             items: [
                                 {
                                     "head": {

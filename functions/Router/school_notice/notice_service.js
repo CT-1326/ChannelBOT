@@ -389,7 +389,6 @@ router.post('/', async (req, res) => {
 
         return [title, date, url]; // get 처리 된 변수를 반환
     };
-
     res
         .status(201)
         .send(responseBody); // 응답 상태 코드와 내용 전송

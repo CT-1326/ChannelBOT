@@ -9,8 +9,8 @@ router.post('/', async function (req, res) {
     let responseBody;
     /*바로가기 관련 요청문과 버튼명 배열 생성*/
     const quickReplies = [];
-    const messageText = ["면 종류 메뉴를 알려줘", "밥 종류 메뉴를 알려줘", "튀김 종류 메뉴를 알려줘"];
-    const label = ["면 종류", "밥 종류", "튀김 종류"];
+    const messageText = ["면 종류 메뉴를 알려줘", "밥 종류 메뉴를 알려줘", "튀김 종류 메뉴를 알려줘", "모든 메뉴를 알려줘"];
+    const label = ["면 종류", "밥 종류", "튀김 종류", "모든 메뉴"];
 
     if (userFriend == true) { // 채널을 추가한 사용자인경우
         /*바로가기 작성*/
