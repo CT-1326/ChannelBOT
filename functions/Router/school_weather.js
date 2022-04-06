@@ -6,7 +6,7 @@ router.post('/', async function (req, res) {
     const userFriend = req.body.userRequest.user.properties.isFriend; // 사용자 카카오 채널 정보
     // console.log(userFriend);
     let responseBody;
-    const title = ['현재 온도', '체감 온도', '최고기온', '최저기온'];
+    const title = ['현재 온도', '체감 온도', '최고 기온', '최저 기온'];
     const description = [];
     let itemList = [];
 
@@ -56,12 +56,13 @@ router.post('/', async function (req, res) {
                 outputs: [
                     {
                         itemCard: { // 아이템 카드 뷰 블록으로 출력
-                            thumbnail: {
+                            imageTitle: { // 설정 서비스 경우 사용자의 프로필을 첫번째로 출력
+                                "title": `현재 시각 성결대학교 날씨 상태 : ${statWeather.stat}`,
                                 "imageUrl": `${statWeather.icon}`
                             },
-                            title: '[현재 시각 성결대학교 날씨]',
+                            title: '[알림]',
                             itemList: itemList,
-                            description: '1시간 간격으로 날씨 정보를 변경하여 안내되고 있습니다.'
+                            description: '1시간 간격으로 날씨 정보를 변경하여 안내하고 있습니다.'
                         }
                     }
                 ]
