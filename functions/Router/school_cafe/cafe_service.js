@@ -154,9 +154,9 @@ router.post('/', async (req, res) => {
 
             case "모든 메뉴를 알려줘":
                 menu = [noodel, rice, fried];
-                let items = [];
-                for (let index = 0; index < 3; index++) {
-                    const element = menu[index].split('\n')
+                for (let i = 0; i < 3; i++) {
+                    let items = [];
+                    const element = menu[i].split('\n')
                     element.forEach((value, index) => {
                         // console.log(value, index);
                         items.push({
@@ -164,7 +164,7 @@ router.post('/', async (req, res) => {
                             "description": value
                         });
                     });
-                    itemList[index] = items;
+                    itemList[i] = items;
                 }
                 responseBody = {
                     version: "2.0",
