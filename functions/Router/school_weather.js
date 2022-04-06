@@ -6,7 +6,7 @@ router.post('/', async function (req, res) {
     const userFriend = req.body.userRequest.user.properties.isFriend; // 사용자 카카오 채널 정보
     // console.log(userFriend);
     let responseBody;
-    const title = ['현재 온도', '체감 온도', '오늘 최고기온', '오늘 최저기온'];
+    const title = ['현재 온도', '체감 온도', '최고기온', '최저기온'];
     const description = [];
     let itemList = [];
 
@@ -46,7 +46,7 @@ router.post('/', async function (req, res) {
         title.forEach((value, index) => {
             itemList.push({
                 "title": value,
-                "description": description[index] + '도'
+                "description": parseInt(description[index]) + '도'
             });
         });
         // console.log(itemList);
@@ -57,13 +57,11 @@ router.post('/', async function (req, res) {
                     {
                         itemCard: { // 아이템 카드 뷰 블록으로 출력
                             thumbnail: {
-                                "imageUrl": `${statWeather.icon}`,
-                                "width": 800,
-                                "height": 800
+                                "imageUrl": `${statWeather.icon}`
                             },
-                            title: '[현재 셩결대학교의 날씨]',
+                            title: '[현재 시각 성결대학교 날씨]',
                             itemList: itemList,
-                            description: '한 시간 간격으로 날씨 정보를 변경하여 안내되고 있습니다.'
+                            description: '1시간 간격으로 날씨 정보를 변경하여 안내되고 있습니다.'
                         }
                     }
                 ]
