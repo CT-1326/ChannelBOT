@@ -13,6 +13,8 @@ const cafeService = require('./Router/school_cafe/cafe_service');
 const schoolNotice = require('./Router/school_notice/school_notice');
 const noticeService = require('./Router/school_notice/notice_service');
 const schoolWeather = require('./Router/school_weather');
+const schoolWifi = require('./Router/School_wifi/school_wifi');
+const wifiService = require('./Router/School_wifi/wifi_service');
 
 const bus = require('./Crawling/bus');
 const number = require('./Crawling/number');
@@ -31,6 +33,8 @@ app.use('/schoolCafe/schoolCafe_service', cafeService);
 app.use('/schoolNotice', schoolNotice);
 app.use('/schoolNotice/schoolNotice_service', noticeService);
 app.use('/schoolWeather', schoolWeather);
+app.use('/schoolWifi', schoolWifi);
+app.use('/schoolWifi/schoolWifi_service', wifiService);
 exports.middleWare = functions
     .region('asia-northeast1')
     .https

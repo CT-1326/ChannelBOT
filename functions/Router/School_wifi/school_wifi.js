@@ -9,8 +9,8 @@ router.post('/', async function (req, res) {
     let responseBody;
     /*바로가기 관련 요청문과 버튼명 배열 생성*/
     const quickReplies = [];
-    const messageText = ["면 종류 메뉴를 알려줘", "밥 종류 메뉴를 알려줘", "튀김 종류 메뉴를 알려줘", "모든 메뉴를 알려줘"];
-    const label = ["면 종류", "밥 종류", "튀김 종류", "모든 메뉴"];
+    const messageText = ["안드로이드 OS야", "IOS OS야", "윈도우 OS야"];
+    const label = ["안드로이드", "IOS", "윈도우"];
 
     if (userFriend == true) { // 채널을 추가한 사용자인경우
         /*바로가기 작성*/
@@ -21,40 +21,17 @@ router.post('/', async function (req, res) {
                 "blockId": functions
                     .config()
                     .service_key
-                    .cafe,
+                    .wifi,
                 "label": value
             });
         });
-        /*학식당 이름과 정보를 각각 변수 처리*/
-        const title = await admin
-            .database()
-            .ref('School_Cafe/')
-            .child('title')
-            .once('value')
-            .then(snapshot => {
-                return snapshot.val();
-            })
-            .catch(e => {
-                console.error('Error from cafe title :', e);
-            });
-        const description = await admin
-            .database()
-            .ref('School_Cafe/')
-            .child('description')
-            .once('value')
-            .then(snapshot => {
-                return snapshot.val();
-            })
-            .catch(e => {
-                console.error('Error from cafe description :', e);
-            });
         responseBody = {
             version: "2.0",
             template: {
                 outputs: [
                     {
-                        simpleText: { // 학식당 정보와 함께 텍스트 뷰 블록으로 출력
-                            text: title + '\n\n' + description + '\n\n💬 보고 싶은 오늘의 학식 종류를 선택해주세요'
+                        simpleText: { // 텍스트 뷰 블록으로 출력
+                            text: '💬 본인의 운영체제를 선택해주세요'
                         }
                     }
                 ],

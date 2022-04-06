@@ -37,7 +37,7 @@ router.post('/', async function (req, res) {
             template: {
                 outputs: [
                     {
-                        "listCard": { // 리스트 카드 뷰 블록으로 출력
+                        listCard: { // 리스트 카드 뷰 블록으로 출력
                             "header": {
                                 "title": "학술정보관 열람실 좌석 현황",
                                 "imageUrl": "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1." +

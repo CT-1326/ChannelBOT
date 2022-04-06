@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
                 template: {
                     outputs: [
                         {
-                            "listCard": { // 리스트 카드 뷰 블록으로 출력
+                            listCard: { // 리스트 카드 뷰 블록으로 출력
                                 "header": {
                                     "title": "학사 공지사항"
                                 },
@@ -66,7 +66,7 @@ router.post('/', async (req, res) => {
                 template: {
                     outputs: [
                         {
-                            "listCard": {
+                            listCard: {
                                 "header": {
                                     "title": "새소식 공지사항"
                                 },
@@ -102,7 +102,7 @@ router.post('/', async (req, res) => {
                 template: {
                     outputs: [
                         {
-                            "listCard": {
+                            listCard: {
                                 "header": {
                                     "title": "장학/등록 공지사항"
                                 },
@@ -138,7 +138,7 @@ router.post('/', async (req, res) => {
                 template: {
                     outputs: [
                         {
-                            "listCard": {
+                            listCard: {
                                 "header": {
                                     "title": "입학 공지사항"
                                 },
@@ -174,7 +174,7 @@ router.post('/', async (req, res) => {
                 template: {
                     outputs: [
                         {
-                            "listCard": {
+                            listCard: {
                                 "header": {
                                     "title": "취업 공지사항"
                                 },
@@ -210,7 +210,7 @@ router.post('/', async (req, res) => {
                 template: {
                     outputs: [
                         {
-                            "listCard": {
+                            listCard: {
                                 "header": {
                                     "title": "행사 공지사항"
                                 },
@@ -246,7 +246,7 @@ router.post('/', async (req, res) => {
                 template: {
                     outputs: [
                         {
-                            "listCard": {
+                            listCard: {
                                 "header": {
                                     "title": "글로벌 공지사항"
                                 },
@@ -282,7 +282,7 @@ router.post('/', async (req, res) => {
                 template: {
                     outputs: [
                         {
-                            "listCard": {
+                            listCard: {
                                 "header": {
                                     "title": "일반 공지사항"
                                 },
@@ -318,7 +318,7 @@ router.post('/', async (req, res) => {
                 template: {
                     outputs: [
                         {
-                            "listCard": {
+                            listCard: {
                                 "header": {
                                     "title": "비교과 공지사항"
                                 },

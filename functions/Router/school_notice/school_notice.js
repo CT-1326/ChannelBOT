@@ -54,7 +54,7 @@ router.post('/', async function (req, res) {
                         }
                     }
                 ],
-                quickReplies: quickReplies // 바로가기 설정
+                quickReplies: quickReplies // 바로가기 출력
             }
         };
     } else { // 채널을 추가하지 않은 사용자인경우
