@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
     let responseBody;
 
     switch (userRequest) {
-        case "안드로이드 OS야":
+        case "안드로이드야":
             responseBody = {
                 version: "2.0",
                 template: {
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
             };
             break;
 
-        case "IOS OS야":
+        case "IOS야":
             responseBody = {
                 version: "2.0",
                 template: {
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
             };
             break;
 
-        case "윈도우 OS야":
+        case "윈도우야":
             responseBody = {
                 version: "2.0",
                 template: {
