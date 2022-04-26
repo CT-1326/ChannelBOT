@@ -6,6 +6,18 @@ router.post('/', async (req, res) => {
     const userRequest = req.body.userRequest.utterance; // 사용자 요청문
     // console.log(userRequest);
     let responseBody;
+    const quickReplies = [
+        {
+            //바로가기 작성
+            "messageText": "뒤로 돌아갈래",
+            "action": "block",
+            "blockId": functions
+                .config()
+                .service_key
+                .wifi_hub,
+            "label": "↩ 뒤로가기"
+        }
+    ];
 
     switch (userRequest) {
         case "안드로이드야":
@@ -21,7 +33,8 @@ router.post('/', async (req, res) => {
                                 "altText": "안드로이드OS일 때 연결"
                             }
                         }
-                    ]
+                    ],
+                    quickReplies: quickReplies
                 }
             };
             break;
@@ -39,7 +52,8 @@ router.post('/', async (req, res) => {
                                 "altText": "IOS OS일 때 연결"
                             }
                         }
-                    ]
+                    ],
+                    quickReplies: quickReplies
                 }
             };
             break;
@@ -56,7 +70,8 @@ router.post('/', async (req, res) => {
                                 "altText": "윈도우OS일 때 연결"
                             }
                         }
-                    ]
+                    ],
+                    quickReplies: quickReplies
                 }
             };
             break;

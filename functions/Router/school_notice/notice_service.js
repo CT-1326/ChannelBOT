@@ -10,6 +10,18 @@ router.post('/', async (req, res) => {
         urlResult;
     let items = [];
     let responseBody;
+    const quickReplies = [
+        {
+            //바로가기 작성
+            "messageText": "뒤로 돌아갈래",
+            "action": "block",
+            "blockId": functions
+                .config()
+                .service_key
+                .notice_hub,
+            "label": "↩ 뒤로가기"
+        }
+    ];
 
     switch (userRequest) {
         case "학사 관련해서 알려줘":
@@ -44,7 +56,8 @@ router.post('/', async (req, res) => {
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    quickReplies: quickReplies // 바로가기 출력
                 }
             };
             break;
@@ -80,7 +93,8 @@ router.post('/', async (req, res) => {
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    quickReplies: quickReplies
                 }
             };
             break;
@@ -116,7 +130,8 @@ router.post('/', async (req, res) => {
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    quickReplies: quickReplies
                 }
             };
             break;
@@ -152,7 +167,8 @@ router.post('/', async (req, res) => {
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    quickReplies: quickReplies
                 }
             };
             break;
@@ -188,7 +204,8 @@ router.post('/', async (req, res) => {
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    quickReplies: quickReplies
                 }
             };
             break;
@@ -224,7 +241,8 @@ router.post('/', async (req, res) => {
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    quickReplies: quickReplies
                 }
             };
             break;
@@ -260,7 +278,8 @@ router.post('/', async (req, res) => {
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    quickReplies: quickReplies
                 }
             };
             break;
@@ -296,7 +315,8 @@ router.post('/', async (req, res) => {
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    quickReplies: quickReplies
                 }
             };
             break;
@@ -332,7 +352,8 @@ router.post('/', async (req, res) => {
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    quickReplies: quickReplies
                 }
             };
             break;

@@ -9,6 +9,18 @@ router.post('/', async (req, res) => {
     let today = day.getDay(); // 오늘 날짜
     // console.log(today);
     let responseBody;
+    const quickReplies = [
+        {
+            //바로가기 작성
+            "messageText": "뒤로 돌아갈래",
+            "action": "block",
+            "blockId": functions
+                .config()
+                .service_key
+                .cafe_hub,
+            "label": "↩ 뒤로가기"
+        }
+    ];
 
     if (today == 0 || today == 6) { // 주말인 경우
         responseBody = {
@@ -20,7 +32,8 @@ router.post('/', async (req, res) => {
                             text: "오늘은 주말이라 학식당 운영이 없어요!" // 텍스트 뷰 블록으로 출력
                         }
                     }
-                ]
+                ],
+                quickReplies: quickReplies // 바로가기 출력
             }
         };
     } else { // 평일인 경우
@@ -93,7 +106,8 @@ router.post('/', async (req, res) => {
                                     "itemList": itemList
                                 }
                             }
-                        ]
+                        ],
+                        quickReplies: quickReplies
                     }
                 };
                 break;
@@ -120,7 +134,8 @@ router.post('/', async (req, res) => {
                                     "itemList": itemList
                                 }
                             }
-                        ]
+                        ],
+                        quickReplies: quickReplies
                     }
                 };
                 break;
@@ -147,7 +162,8 @@ router.post('/', async (req, res) => {
                                     "itemList": itemList
                                 }
                             }
-                        ]
+                        ],
+                        quickReplies: quickReplies
                     }
                 };
                 break;
