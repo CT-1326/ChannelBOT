@@ -1,6 +1,7 @@
 const admin = require('firebase-admin');
 const express = require('express');
 const router = express.Router();
+const functions = require('firebase-functions');
 
 router.post('/', async (req, res) => {
     const userRequest = req.body.userRequest.utterance; // 사용자 요청문
@@ -170,7 +171,7 @@ router.post('/', async (req, res) => {
 
             case "모든 메뉴를 알려줘":
                 menu = [noodel, rice, fried];
-                for (let i = 0; i < 3; i++) {
+                for (let i = 0; i < menu.length; i++) {
                     let items = [];
                     const element = menu[i].split('\n')
                     element.forEach((value, index) => {

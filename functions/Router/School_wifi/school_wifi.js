@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const functions = require('firebase-functions');
-const admin = require('firebase-admin');
 
 router.post('/', async function (req, res) {
     const userFriend = req.body.userRequest.user.properties.isFriend; // 사용자 카카오 채널 정보

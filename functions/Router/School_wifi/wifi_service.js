@@ -1,6 +1,6 @@
-const admin = require('firebase-admin');
 const express = require('express');
 const router = express.Router();
+const functions = require('firebase-functions');
 
 router.post('/', async (req, res) => {
     const userRequest = req.body.userRequest.utterance; // 사용자 요청문
