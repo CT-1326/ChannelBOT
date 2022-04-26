@@ -171,6 +171,7 @@ router.post('/', async (req, res) => {
 
             case "모든 메뉴를 알려줘":
                 menu = [noodel, rice, fried];
+                const menuTitle = ['🍜 면 종류', '🍛 밥 종류', '🍤 튀김 종류'];
                 for (let i = 0; i < menu.length; i++) {
                     let items = [];
                     const element = menu[i].split('\n')
@@ -181,36 +182,21 @@ router.post('/', async (req, res) => {
                             "description": value
                         });
                     });
-                    itemList[i] = items;
+                    itemList.push({
+                        itemCard: {
+                            head: {
+                                "title": menuTitle[i]
+                            },
+                            itemList: items
+                        }
+                    });
                 }
+                console.log(itemList);
                 responseBody = {
                     version: "2.0",
                     template: {
-                        outputs: [
-                            {
-                                carousel: { // 캐러셀 구조의 아이템 카드형 응답 블록 출력
-                                    type: "itemCard",
-                                    items: [
-                                        {
-                                            "head": {
-                                                "title": "🍜 면 종류"
-                                            },
-                                            "itemList": itemList[0]
-                                        }, {
-                                            "head": {
-                                                "title": "🍛 밥 종류"
-                                            },
-                                            "itemList": itemList[1]
-                                        }, {
-                                            "head": {
-                                                "title": "🍤 튀김 종류"
-                                            },
-                                            "itemList": itemList[2]
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
+                        outputs: itemList,
+                        quickReplies: quickReplies
                     }
                 };
                 break;
