@@ -11,7 +11,7 @@ exports.weather = functions // 함수 이름
             method: 'get',
             url: `https://api.openweathermap.org/data/2.5/weather?lat=37.38&lon=126.927&lang=kr&appid=${functions
                 .config()
-                .service_key
+                .api_key
                 .weather}`,
             headers: {}
         };
