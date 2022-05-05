@@ -17,8 +17,9 @@
   },
   "homepage": "https://github.com/BSAA0203/Channel_BOT#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
-    "morgan": "^1.9.1"
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.14.0"
   }
 }
