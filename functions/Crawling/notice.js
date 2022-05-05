@@ -3,16 +3,17 @@ const admin = require('firebase-admin');
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-exports.notice = functions // 크롤링 함수 이름
+exports.notice = functions //크롤링 함수 이름
     .region('asia-northeast1')
     .https
     .onRequest((req, res) => {
         axios
-            .get('https://www.sungkyul.ac.kr/sites/skukr/index.do#page2') // 학교 메인 페이지 주소
+            .get('https://www.sungkyul.ac.kr/sites/skukr/index.do#page2') //학교 메인 페이지 주소
             .then(html => {
+                //eslint-disable-next-line id-length
                 const $ = cheerio.load(html.data);
                 const liSize = $('#menu160_obj5589 > div._fnctWrap > div > ul > li').length;
-                // console.log(liSize);
+                //console.log(liSize);
                 const title = new Array();
                 const date = new Array();
                 const url = new Array();
@@ -22,7 +23,7 @@ exports.notice = functions // 크롤링 함수 이름
                         '#menu160_obj5589 > div._fnctWrap > div > ul > li:nth-child(' + index + ') > di' +
                         'v > ul > li'
                     ).length;
-                    // console.log(inliSize);
+                    //console.log(inliSize);
                     title[index] = new Array();
                     date[index] = new Array();
                     url[index] = new Array();
@@ -44,7 +45,7 @@ exports.notice = functions // 크롤링 함수 이름
                             .replace(/^/, 'https://www.sungkyul.ac.kr');
                     }
                 }
-                return ([title, date, url]); // 추출한 각각의 배열들을 반환
+                return ([title, date, url]); //추출한 각각의 배열들을 반환
             })
             .then(async ([title, date, url]) => {
                 console.log("타이틀: ", title);
@@ -61,7 +62,7 @@ exports.notice = functions // 크롤링 함수 이름
                     '일반',
                     '비교과'
                 ];
-                /* 추출 값을 담은 배열들을 각 게시판 명칭인 KEY 값으로 분류해 DB에 저장*/
+                /*추출 값을 담은 배열들을 각 게시판 명칭인 KEY 값으로 분류해 DB에 저장*/
                 for (let index = 0; index < item.length; index++) {
                     await admin
                         .database()
@@ -72,11 +73,11 @@ exports.notice = functions // 크롤링 함수 이름
                             url: url[index + 1]
                         });
                 }
-                res.sendStatus(201); // 성공 코드 전송
+                res.sendStatus(201); //성공 코드 전송
                 console.log('School Notice DB input success');
             })
-            .catch(e => {
-                console.error('Error from crawling notice:', e);
-                res.sendStatus(e.response.status); // 에러 코드 전송
+            .catch(error => {
+                console.error('Error from crawling notice:', error);
+                res.sendStatus(error.response.status); //에러 코드 전송
             });
     });

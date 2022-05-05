@@ -3,13 +3,14 @@ const admin = require('firebase-admin');
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-exports.bus = functions // 크롤링 함수 이름
+exports.bus = functions //크롤링 함수 이름
     .region('asia-northeast1')
     .https
     .onRequest((req, res) => {
         axios
-            .get('https://www.sungkyul.ac.kr/skukr/262/subview.do') // 셔틀버스 안내 페이지 주소
+            .get('https://www.sungkyul.ac.kr/skukr/262/subview.do') //셔틀버스 안내 페이지 주소
             .then(async (html) => {
+                //eslint-disable-next-line id-length
                 const $ = cheerio.load(html.data);
                 /*명학역 -> 학교 관련 버스 안내 구간 텍스트 추출*/
                 const inTitle = $("#menu262_obj3182 > h3").text();
@@ -40,11 +41,25 @@ exports.bus = functions // 크롤링 함수 이름
                             end: `${outBody2}`
                         }
                     });
-                res.sendStatus(201); // 성공 코드 전송
+                // const result = { in: {
+                //         title: `${inTitle}`,
+                //         start: `${inBody}`,
+                //         end: `${inBody2}`
+                //     },
+                //     out: {
+                //         title: `${outTitle}`,
+                //         start: `${outBody}`,
+                //         end: `${outBody2}`
+                //     }
+                // };
+                // res
+                //     .status(201)
+                //     .send(result);
+                res.sendStatus(201); //성공 코드 전송
                 console.log('School Bus DB input success');
             })
-            .catch(e => {
-                console.error('Error from crawling bus:', e);
-                res.sendStatus(e.response.status); // 에러 코드 전송
+            .catch(error => {
+                console.error('Error from crawling bus:', error);
+                res.sendStatus(error.response.status); //에러 코드 전송
             });
     });

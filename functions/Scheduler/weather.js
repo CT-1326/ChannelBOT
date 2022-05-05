@@ -2,7 +2,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const axios = require("axios");
 
-exports.weather = functions // 함수 이름
+exports.weather = functions //함수 이름
     .region('asia-northeast1')
     .https
     .onRequest((req, res) => {
@@ -18,9 +18,9 @@ exports.weather = functions // 함수 이름
 
         axios(config)
             .then(async (response) => {
-                const result = response.data; // 요청 결과 값 변수 처리
-                // console.log(result);
-                /* 날씨 데이터(조건,아이콘,온도)를 DB에 저장*/
+                const result = response.data; //요청 결과 값 변수 처리
+                //console.log(result);
+                /*날씨 데이터(조건,아이콘,온도)를 DB에 저장*/
                 await admin
                     .database()
                     .ref('School_Weather')
@@ -39,13 +39,13 @@ exports.weather = functions // 함수 이름
                             temp_min: `${result.main.temp_min}`,
                             temp_max: `${result.main.temp_max}`
                         }
-                    })
-                res.sendStatus(201); // 성공 코드 전송
+                    });
+                res.sendStatus(201); //성공 코드 전송
                 console.log('School Weather DB input success');
             })
             .catch(function (error) {
                 console.error('Error from weather:', error);
-                res.sendStatus(error.response.status); // 에러 코드 전송
+                res.sendStatus(error.response.status); //에러 코드 전송
             });
 
     });
