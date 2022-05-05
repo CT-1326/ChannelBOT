@@ -11,7 +11,7 @@ router.post('/', async function (req, res) {
         /*일반 그리고 노트북 열람실 좌석 데이터 변수 처리*/
         const normal = await admin
             .database()
-            .ref('Library_State/1f_normal')
+            .ref('Library_State/normal')
             .child('state')
             .once('value')
             .then(snapshot => {
@@ -22,7 +22,7 @@ router.post('/', async function (req, res) {
             });
         const laptop = await admin
             .database()
-            .ref('Library_State/1f_laptop')
+            .ref('Library_State/laptap')
             .child('state')
             .once('value')
             .then(snapshot => {

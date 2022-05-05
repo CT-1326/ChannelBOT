@@ -7,14 +7,14 @@ const app = express();
 
 const schoolBus = require('./router/school_bus');
 const schoolNumber = require('./router/school_number');
-const libraryState = require('./router/library_state');
+const schoolLibrary = require('./router/school_library');
 const schoolCafe = require('./router/school_cafe/school_cafe');
 const cafeService = require('./router/school_cafe/cafe_service');
 const schoolNotice = require('./router/school_notice/school_notice');
 const noticeService = require('./router/school_notice/notice_service');
 const schoolWeather = require('./router/school_weather');
-const schoolWifi = require('./router/School_wifi/school_wifi');
-const wifiService = require('./router/School_wifi/wifi_service');
+const schoolWifi = require('./router/school_wifi/school_wifi');
+const wifiService = require('./router/school_wifi/wifi_service');
 
 const bus = require('./crawling/bus');
 const number = require('./crawling/number');
@@ -27,7 +27,7 @@ const weather = require('./scheduler/weather');
 app.use(cors());
 app.use('/schoolBus', schoolBus);
 app.use('/schoolNumber', schoolNumber);
-app.use('/libraryState', libraryState);
+app.use('/schoolLibrary', schoolLibrary);
 app.use('/schoolCafe', schoolCafe);
 app.use('/schoolCafe/schoolCafe_service', cafeService);
 app.use('/schoolNotice', schoolNotice);

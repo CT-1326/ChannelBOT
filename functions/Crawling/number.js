@@ -11,8 +11,8 @@ exports.number = functions //크롤링 함수 이름
     .runWith(op)
     .region('asia-northeast1')
     .https
-    .onRequest((req, res) => {
-        const getData = async () => {
+    .onRequest(async (req, res) => {
+        try {
             const browser = await puppeteer.launch({
                 args: [
                     '--no-sandbox', '--disable-setuid-sandbox', '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHT' +
@@ -30,7 +30,8 @@ exports.number = functions //크롤링 함수 이름
                 .number
                 .pw;
             await page.goto('https://everytime.kr/login', {waitUntil: "domcontentloaded"}); //에타 로그인
-            await page.evaluate((id, pw) => { //id, password 입력
+            /*id, password 입력*/
+            await page.evaluate((id, pw) => {
                 document
                     .querySelector('#container > form > p:nth-child(1) > input')
                     .value = id;
@@ -43,31 +44,32 @@ exports.number = functions //크롤링 함수 이름
             }, ID, PW);
             console.log('login success');
             await page.waitForNavigation();
+            /*번호 관련 페이지로 이동*/
             await page.goto(
                 'https://everytime.kr/389111/v/79312283',
                 {waitUntil: "domcontentloaded"}
             );
+            /*추출하고자 하는 DOM 내용 추출 및 저장*/
             await page.waitForSelector('#container > div.wrap.articles > article > a > p');
-            const info = await page.$eval(
+            const result = await page.$eval(
                 '#container > div.wrap.articles > article > a > p',
                 //eslint-disable-next-line id-length
                 e => e.outerText
-            ); //본문 텍스트 추출 및 저장
-            await browser.close();
-            return info; //추출 값 반환
-        };
-        getData()
-            .then(result => {
-                console.log(result);
-                admin
-                    .database()
-                    .ref('School_Number')
-                    .set({info: result}); //DB에 추출 값 저장
-                res.sendStatus(201); //성공 코드 전송
-                console.log('School Number DB input success');
-            })
-            .catch(error => {
-                console.error('Error from crawling number:', error);
-                res.sendStatus(error.response.status); //에러 코드 전송
-            });
+            );
+            console.log(result);
+            await browser.close(); //puppteer 종료
+
+            admin
+                .database()
+                .ref('School_Number')
+                .set({info: result}); //DB에 추출 값 저장
+            // res
+            //     .status(201)
+            //     .send(result);
+            res.sendStatus(201); //성공 코드 전송
+        } catch (error) {
+            console.error('Error from crawling number:', error);
+            res.sendStatus(error.response.status); //에러 코드 전송
+        }
+
     });

@@ -20,13 +20,13 @@ exports.weather = functions //함수 이름
             .then(async (response) => {
                 const result = response.data; //요청 결과 값 변수 처리
                 //console.log(result);
-                /*날씨 데이터(조건,아이콘,온도)를 DB에 저장*/
+                /*날씨 데이터(상태,아이콘,온도)를 DB에 저장*/
                 await admin
                     .database()
                     .ref('School_Weather')
                     .set({
                         weather: {
-                            stat: `${result
+                            state: `${result
                                 .weather[0]
                                 .description}`,
                             icon: `http://openweathermap.org/img/w/${result
@@ -40,6 +40,25 @@ exports.weather = functions //함수 이름
                             temp_max: `${result.main.temp_max}`
                         }
                     });
+                // const resultData = {
+                //     weather: {
+                //         state: `${result
+                //             .weather[0]
+                //             .description}`,
+                //         icon: `http://openweathermap.org/img/w/${result
+                //             .weather[0]
+                //             .icon}.png`
+                //     },
+                //     main: {
+                //         temp: `${result.main.temp}`,
+                //         feels: `${result.main.feels_like}`,
+                //         temp_min: `${result.main.temp_min}`,
+                //         temp_max: `${result.main.temp_max}`
+                //     }
+                // };
+                // res
+                //     .status(201)
+                //     .send(resultData);
                 res.sendStatus(201); //성공 코드 전송
                 console.log('School Weather DB input success');
             })

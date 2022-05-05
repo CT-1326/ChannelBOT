@@ -9,7 +9,7 @@ exports.notice = functions //크롤링 함수 이름
     .onRequest((req, res) => {
         axios
             .get('https://www.sungkyul.ac.kr/sites/skukr/index.do#page2') //학교 메인 페이지 주소
-            .then(html => {
+            .then(async (html) => {
                 //eslint-disable-next-line id-length
                 const $ = cheerio.load(html.data);
                 const liSize = $('#menu160_obj5589 > div._fnctWrap > div > ul > li').length;
@@ -45,12 +45,11 @@ exports.notice = functions //크롤링 함수 이름
                             .replace(/^/, 'https://www.sungkyul.ac.kr');
                     }
                 }
-                return ([title, date, url]); //추출한 각각의 배열들을 반환
-            })
-            .then(async ([title, date, url]) => {
                 console.log("타이틀: ", title);
                 console.log("날짜: ", date);
                 console.log("링크: ", url);
+
+                /*추출 값을 담은 배열들을 각 게시판 명칭인 KEY 값으로 분류해 DB에 저장*/
                 const item = [
                     '학사',
                     '새소식',
@@ -62,7 +61,7 @@ exports.notice = functions //크롤링 함수 이름
                     '일반',
                     '비교과'
                 ];
-                /*추출 값을 담은 배열들을 각 게시판 명칭인 KEY 값으로 분류해 DB에 저장*/
+                const result = new Object();
                 for (let index = 0; index < item.length; index++) {
                     await admin
                         .database()
@@ -72,8 +71,16 @@ exports.notice = functions //크롤링 함수 이름
                             date: date[index + 1],
                             url: url[index + 1]
                         });
+                    result[index] = {
+                        title: title[index + 1],
+                        date: date[index + 1],
+                        url: url[index + 1]
+                    };
                 }
-                res.sendStatus(201); //성공 코드 전송
+                res
+                    .status(201)
+                    .send(result);
+                // res.sendStatus(201); 성공 코드 전송
                 console.log('School Notice DB input success');
             })
             .catch(error => {

@@ -57,7 +57,7 @@ router.post('/', async function (req, res) {
                     {
                         itemCard: { // 아이템 카드 뷰 블록으로 출력
                             imageTitle: { // 설정 서비스 경우 사용자의 프로필을 첫번째로 출력
-                                "title": `현재 성결대학교 날씨: ${statWeather.stat}`,
+                                "title": `현재 성결대학교 날씨: ${statWeather.state}`,
                                 "imageUrl": `${statWeather.icon}`
                             },
                             title: '[알림]',

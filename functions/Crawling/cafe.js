@@ -53,6 +53,7 @@ exports.cafe = functions //크롤링 함수 이름
                     }
                 }
                 //console.log(result);
+                
                 /*추출한 학식당 정보를 DB에 저장*/
                 await admin
                     .database()
@@ -76,6 +77,11 @@ exports.cafe = functions //크롤링 함수 이름
                         .ref('School_Cafe/' + menuTitle[index])
                         .update({menu: result[index]});
                 }
+                // res
+                //     .status(201)
+                //     .send(
+                //         {title: title, description: description, menuTitle: menuTitle, menus: result}
+                //     );
                 res.sendStatus(201); //성공 코드 전송
                 console.log('School Cafe DB input success');
             })
