@@ -22,7 +22,7 @@ router.post('/', async function (req, res) {
             });
         const laptop = await admin
             .database()
-            .ref('Library_State/laptap')
+            .ref('Library_State/laptop')
             .child('state')
             .once('value')
             .then(snapshot => {

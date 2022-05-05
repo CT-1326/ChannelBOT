@@ -36,6 +36,7 @@ exports.library = functions //크롤링 함수 이름
                 const result = new Array();
                 result.push(now_laptop + '/' + max_laptop);
                 result.push(now_normal + '/' + max_normal);
+                console.log(result);
                 
                 /*노트북 그리고 일반 열람실 관련 배열 데이터를 각각 DB key 값으로 저장*/
                 await admin
