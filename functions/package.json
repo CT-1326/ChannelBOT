@@ -7,7 +7,7 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "test": "mocha test/crawling/notice_spec -t 10000",
+    "test": "mocha test/router/school_library_spec -t 10000",
     "lint": "eslint . --fix"
   },
   "engines": {

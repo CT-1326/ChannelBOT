@@ -31,7 +31,7 @@ router.post('/', async function (req, res) {
             .catch((e) => {
                 console.error(e);
             });
-
+        //console.log(normal, laptop);
         responseBody = {
             version: "2.0",
             template: {
