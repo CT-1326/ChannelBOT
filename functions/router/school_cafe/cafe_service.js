@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
     let responseBody;
     const quickReplies = [
         {
-            //바로가기 작성
+            // 바로가기 작성
             "messageText": "뒤로 돌아갈래",
             "action": "block",
             "blockId": functions
@@ -85,7 +85,7 @@ router.post('/', async (req, res) => {
 
         switch (userRequest) {
             case "면 종류 메뉴를 알려줘":
-                /*선택한 음식 종류 명칭과 데이터를 아이템 카드 본문으로 작성*/
+                /* 선택한 음식 종류 명칭과 데이터를 아이템 카드 본문으로 작성*/
                 menu = noodel.split('\n');
                 menu.forEach((value, index) => {
                     // console.log(value, index);
@@ -174,7 +174,7 @@ router.post('/', async (req, res) => {
                 const menuTitle = ['🍜 면 종류', '🍛 밥 종류', '🍤 튀김 종류'];
                 for (let i = 0; i < menu.length; i++) {
                     let items = [];
-                    const element = menu[i].split('\n')
+                    const element = menu[i].split('\n');
                     element.forEach((value, index) => {
                         // console.log(value, index);
                         items.push({

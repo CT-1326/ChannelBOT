@@ -3,31 +3,31 @@ const admin = require('firebase-admin');
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-exports.notice = functions //크롤링 함수 이름
+exports.notice = functions // 크롤링 함수 이름
     .region('asia-northeast1')
     .https
     .onRequest((req, res) => {
         axios
-            .get('https://www.sungkyul.ac.kr/sites/skukr/index.do#page2') //학교 메인 페이지 주소
+            .get('https://www.sungkyul.ac.kr/sites/skukr/index.do#page2') // 학교 메인 페이지 주소
             .then(async (html) => {
-                //eslint-disable-next-line id-length
+                // eslint-disable-next-line id-length
                 const $ = cheerio.load(html.data);
                 const liSize = $('#menu160_obj5589 > div._fnctWrap > div > ul > li').length;
-                //console.log(liSize);
+                // console.log(liSize);
                 const title = new Array();
                 const date = new Array();
                 const url = new Array();
-                /*각 게시판의 키워드이자 이름 명칭 갯수별로 배열을 생성*/
+                /* 각 게시판의 키워드이자 이름 명칭 갯수별로 배열을 생성*/
                 for (let index = 1; index <= liSize; index++) {
                     const inliSize = $(
                         '#menu160_obj5589 > div._fnctWrap > div > ul > li:nth-child(' + index + ') > di' +
                         'v > ul > li'
                     ).length;
-                    //console.log(inliSize);
+                    // console.log(inliSize);
                     title[index] = new Array();
                     date[index] = new Array();
                     url[index] = new Array();
-                    /*각 배열에 게시물의 이름, 업로드 날짜, 페이지주소 값을 추출하여 저장*/
+                    /* 각 배열에 게시물의 이름, 업로드 날짜, 페이지주소 값을 추출하여 저장*/
                     for (let jndex = 1; jndex <= inliSize; jndex++) {
                         title[index][jndex] = $(
                             '#menu160_obj5589 > div._fnctWrap > div > ul > li:nth-child(' + index + ') > di' +
@@ -49,7 +49,7 @@ exports.notice = functions //크롤링 함수 이름
                 console.log("날짜: ", date);
                 console.log("링크: ", url);
 
-                /*추출 값을 담은 배열들을 각 게시판 명칭인 KEY 값으로 분류해 DB에 저장*/
+                /* 추출 값을 담은 배열들을 각 게시판 명칭인 KEY 값으로 분류해 DB에 저장*/
                 const item = [
                     '학사',
                     '새소식',
@@ -85,6 +85,6 @@ exports.notice = functions //크롤링 함수 이름
             })
             .catch(error => {
                 console.error('Error from crawling notice:', error);
-                res.sendStatus(error.response.status); //에러 코드 전송
+                res.sendStatus(error.response.status); // 에러 코드 전송
             });
     });

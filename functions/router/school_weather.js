@@ -11,7 +11,7 @@ router.post('/', async function (req, res) {
     let itemList = [];
 
     if (userFriend == true) { // 채널을 추가한 사용자인 경우
-        /*온도 그리고 기상 조건 데이터를 각각 변수처리*/
+        /* 온도 그리고 기상 조건 데이터를 각각 변수처리*/
         const mainWeather = await admin
             .database()
             .ref('School_Weather/')

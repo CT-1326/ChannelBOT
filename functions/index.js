@@ -38,12 +38,12 @@ app.use('/schoolWifi/schoolWifi_service', wifiService);
 exports.middleWare = functions
     .region('asia-northeast1')
     .https
-    .onRequest(app); //채널봇 기본 주소 미들웨어
+    .onRequest(app); // 채널봇 기본 주소 미들웨어
 
-exports.bus = bus.bus; //셔틀버스 크롤링 미들웨어
-exports.number = number.number; //대표번호 크롤링 미들웨어
-exports.library = library.library; //학술정보관 열람실 크롤링 미들웨어
-exports.cafe = cafe.cafe; //학식 크롤링 미들웨어
-exports.notice = notice.notice; //학교 게시판 크롤링 미들웨어
-exports.notcold = notcold.notcold; //cold start 이슈 개선의 미들웨어
-exports.weather = weather.weather; //학교 날씨 조회 미들웨어
+exports.bus = bus.bus; // 셔틀버스 크롤링 미들웨어
+exports.number = number.number; // 대표번호 크롤링 미들웨어
+exports.library = library.library; // 학술정보관 열람실 크롤링 미들웨어
+exports.cafe = cafe.cafe; // 학식 크롤링 미들웨어
+exports.notice = notice.notice; // 학교 게시판 크롤링 미들웨어
+exports.notcold = notcold.notcold; // cold start 이슈 개선의 미들웨어
+exports.weather = weather.weather; // 학교 날씨 조회 미들웨어

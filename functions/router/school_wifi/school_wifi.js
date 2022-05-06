@@ -6,13 +6,13 @@ router.post('/', async function (req, res) {
     const userFriend = req.body.userRequest.user.properties.isFriend; // 사용자 카카오 채널 정보
     // console.log(userFriend);
     let responseBody;
-    /*바로가기 관련 요청문과 버튼명 배열 생성*/
+    /* 바로가기 관련 요청문과 버튼명 배열 생성*/
     const quickReplies = [];
     const messageText = ["안드로이드야", "IOS야", "윈도우야"];
     const label = ["안드로이드", "IOS", "윈도우"];
 
     if (userFriend == true) { // 채널을 추가한 사용자인경우
-        /*바로가기 작성*/
+        /* 바로가기 작성*/
         label.forEach((value, index) => {
             quickReplies.push({
                 "messageText": messageText[index],

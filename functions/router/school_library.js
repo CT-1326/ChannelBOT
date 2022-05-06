@@ -8,7 +8,7 @@ router.post('/', async function (req, res) {
     let responseBody;
 
     if (userFriend == true) { // 채널을 추가한 사용자인경우
-        /*일반 그리고 노트북 열람실 좌석 데이터 변수 처리*/
+        /* 일반 그리고 노트북 열람실 좌석 데이터 변수 처리*/
         const normal = await admin
             .database()
             .ref('Library_State/normal')
@@ -31,7 +31,7 @@ router.post('/', async function (req, res) {
             .catch(error => {
                 console.error(error);
             });
-        //console.log(normal, laptop);
+        // console.log(normal, laptop);
         responseBody = {
             version: "2.0",
             template: {

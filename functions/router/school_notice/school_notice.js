@@ -6,7 +6,7 @@ router.post('/', async function (req, res) {
     const userFriend = req.body.userRequest.user.properties.isFriend; // 사용자 카카오 채널 정보
     // console.log(userFriend);
     let responseBody;
-    /*바로가기 관련 요청문과 버튼명 배열 생성*/
+    /* 바로가기 관련 요청문과 버튼명 배열 생성*/
     const quickReplies = [];
     const messageText = [
         "학사 관련해서 알려줘",
@@ -32,7 +32,7 @@ router.post('/', async function (req, res) {
     ];
 
     if (userFriend == true) { // 채널을 추가한 사용자인경우
-        /*바로가기 작성*/
+        /* 바로가기 작성*/
         label.forEach((value, index) => {
             quickReplies.push({
                 "messageText": messageText[index],

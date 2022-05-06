@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
     let responseBody;
     const quickReplies = [
         {
-            //바로가기 작성
+            // 바로가기 작성
             "messageText": "뒤로 돌아갈래",
             "action": "block",
             "blockId": functions

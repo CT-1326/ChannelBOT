@@ -7,13 +7,13 @@ router.post('/', async function (req, res) {
     const userFriend = req.body.userRequest.user.properties.isFriend; // 사용자 카카오 채널 정보
     // console.log(userFriend);
     let responseBody;
-    /*바로가기 관련 요청문과 버튼명 배열 생성*/
+    /* 바로가기 관련 요청문과 버튼명 배열 생성*/
     const quickReplies = [];
     const messageText = ["면 종류 메뉴를 알려줘", "밥 종류 메뉴를 알려줘", "튀김 종류 메뉴를 알려줘", "모든 메뉴를 알려줘"];
     const label = ["면 종류", "밥 종류", "튀김 종류", "모든 메뉴"];
 
     if (userFriend == true) { // 채널을 추가한 사용자인경우
-        /*바로가기 작성*/
+        /* 바로가기 작성*/
         label.forEach((value, index) => {
             quickReplies.push({
                 "messageText": messageText[index],
@@ -25,7 +25,7 @@ router.post('/', async function (req, res) {
                 "label": value
             });
         });
-        /*학식당 이름과 정보를 각각 변수 처리*/
+        /* 학식당 이름과 정보를 각각 변수 처리*/
         const title = await admin
             .database()
             .ref('School_Cafe/')

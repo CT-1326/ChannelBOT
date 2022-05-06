@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     let responseBody;
     const quickReplies = [
         {
-            //바로가기 작성
+            // 바로가기 작성
             "messageText": "뒤로 돌아갈래",
             "action": "block",
             "blockId": functions
@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
         case "학사 관련해서 알려줘":
             [titleResult, dateResult, urlResult] = await getData('School_Notice/학사'); // 해당 게시판의 제목, 날짜, 경로 데이터를 get
             // console.log(titleResult, dateResult, urlResult);
-            /*리스트 뷰 본문 작성*/
+            /* 리스트 뷰 본문 작성*/
             titleResult.forEach((value, index) => {
                 items.push({
                     "title": value,
@@ -363,7 +363,7 @@ router.post('/', async (req, res) => {
             break;
     }
 
-    /*요청 받은 게시판의 게시물 데이터 get 처리 함수*/
+    /* 요청 받은 게시판의 게시물 데이터 get 처리 함수*/
     async function getData(params) {
         let title = new Array();
         let date = new Array();
@@ -377,7 +377,7 @@ router.post('/', async (req, res) => {
             .then(snapshot => {
                 snapshot.forEach(item => {
                     title.push(item.val()); // 제목 데이터 get
-                })
+                });
             })
             .catch(e => {
                 console.error('Error from notice title :', e);
@@ -390,7 +390,7 @@ router.post('/', async (req, res) => {
             .then(snapshot => {
                 snapshot.forEach(item => {
                     date.push(item.val()); // 날짜 데이터 get
-                })
+                });
             })
             .catch(e => {
                 console.error('Error from notice date :', e);
@@ -403,14 +403,14 @@ router.post('/', async (req, res) => {
             .then(snapshot => {
                 snapshot.forEach(item => {
                     url.push(item.val()); // 경로 데이터 get
-                })
+                });
             })
             .catch(e => {
                 console.error('Error from notice url :', e);
             });
 
         return [title, date, url]; // get 처리 된 변수를 반환
-    };
+    }
     res
         .status(201)
         .send(responseBody); // 응답 상태 코드와 내용 전송

@@ -1,10 +1,10 @@
 const functions = require('firebase-functions');
 const axios = require('axios');
 
-exports.notcold = functions //함수 이름
+exports.notcold = functions // 함수 이름
     .region('asia-northeast1')
     .pubsub
-    .schedule('*/5 * * * *') //5분 단위로 실행
+    .schedule('*/5 * * * *') // 5분 단위로 실행
     .timeZone('Asia/Seoul')
     .onRun(async () => {
         const userRequest = {
@@ -14,7 +14,7 @@ exports.notcold = functions //함수 이름
                 }
             }
         };
-        const config = { //오늘의 학식 안내 서비스 조회 관련 데이터 시나리오
+        const config = { // 오늘의 학식 안내 서비스 조회 관련 데이터 시나리오
             method: 'post',
             url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolC' +
                     'afe/schoolCafe_service',
@@ -28,7 +28,7 @@ exports.notcold = functions //함수 이름
                 }
             }
         };
-        const config2 = { //학사 공지사항 게시판 조회 관련 데이터 시나리오
+        const config2 = { // 학사 공지사항 게시판 조회 관련 데이터 시나리오
             method: 'post',
             url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/schoolN' +
                     'otice/schoolNotice_service',
@@ -50,10 +50,10 @@ exports.notcold = functions //함수 이름
                 {userRequest}
             )
             .then(result => {
-                console.log(result.status); //서비스 조회 성공 시 성공 상태 코드 출력
+                console.log(result.status); // 서비스 조회 성공 시 성공 상태 코드 출력
             })
             .catch(error => {
-                console.error('Error from notcold bus : ', error); //실패 시 에러문 출력
+                console.error('Error from notcold bus : ', error); // 실패 시 에러문 출력
             });
 
         await axios(config)
