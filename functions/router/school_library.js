@@ -17,8 +17,8 @@ router.post('/', async function (req, res) {
             .then(snapshot => {
                 return snapshot.val();
             })
-            .catch((e) => {
-                console.error(e);
+            .catch(error => {
+                console.error(error);
             });
         const laptop = await admin
             .database()
@@ -28,8 +28,8 @@ router.post('/', async function (req, res) {
             .then(snapshot => {
                 return snapshot.val();
             })
-            .catch((e) => {
-                console.error(e);
+            .catch(error => {
+                console.error(error);
             });
         //console.log(normal, laptop);
         responseBody = {

@@ -34,8 +34,8 @@ router.post('/', async function (req, res) {
             .then(snapshot => {
                 return snapshot.val();
             })
-            .catch(e => {
-                console.error('Error from cafe title :', e);
+            .catch(error => {
+                console.error('Error from cafe title :', error);
             });
         const description = await admin
             .database()
@@ -45,9 +45,10 @@ router.post('/', async function (req, res) {
             .then(snapshot => {
                 return snapshot.val();
             })
-            .catch(e => {
-                console.error('Error from cafe description :', e);
+            .catch(error => {
+                console.error('Error from cafe description :', error);
             });
+        // console.log(title, description);
         responseBody = {
             version: "2.0",
             template: {

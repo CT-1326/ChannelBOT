@@ -20,8 +20,8 @@ router.post('/', async function (req, res) {
             .then(snapshot => {
                 return snapshot.val();
             })
-            .catch((e) => {
-                console.error(e);
+            .catch(error => {
+                console.error(error);
             });
         // console.log(mainWeather);
         const statWeather = await admin
@@ -32,10 +32,11 @@ router.post('/', async function (req, res) {
             .then(snapshot => {
                 return snapshot.val();
             })
-            .catch((e) => {
-                console.error(e);
+            .catch(error => {
+                console.error(error);
             });
         // console.log(statWeather);
+        
         /* 아이템 카드 뷰 본문 작성*/
         description.push(
             parseFloat(mainWeather.temp) - 273.15,

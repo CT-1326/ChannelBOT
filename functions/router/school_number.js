@@ -16,10 +16,10 @@ router.post('/', async function (req, res) {
             .then(snapshot => {
                 return snapshot.val();
             })
-            .catch((e) => {
-                console.error(e);
+            .catch(error => {
+                console.error(error);
             });
-
+        // console.log(number);
         responseBody = {
             version: "2.0",
             template: {
