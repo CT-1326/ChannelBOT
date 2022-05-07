@@ -17,8 +17,8 @@ router.post('/', async function (req, res) {
             .then(snapshot => {
                 return snapshot.val();
             })
-            .catch(error => {
-                console.error(error);
+            .catch(err => {
+                console.error(err);
             });
         // console.log(inBus);
         const outBus = await admin
@@ -29,8 +29,8 @@ router.post('/', async function (req, res) {
             .then(snapshot => {
                 return snapshot.val();
             })
-            .catch(error => {
-                console.error(error);
+            .catch(err => {
+                console.error(err);
             });
         // console.log(outBus);
         responseBody = {

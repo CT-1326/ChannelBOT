@@ -67,9 +67,9 @@ exports.number = functions // 크롤링 함수 이름
             //     .status(201)
             //     .send(result);
             res.sendStatus(201); // 성공 코드 전송
-        } catch (error) {
-            console.error('Error from crawling number:', error);
-            res.sendStatus(error.response.status); // 에러 코드 전송
+        } catch (err) {
+            console.error('Error from crawling number:', err);
+            res.sendStatus(err.response.status); // 에러 코드 전송
         }
 
     });

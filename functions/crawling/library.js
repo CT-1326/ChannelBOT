@@ -52,8 +52,8 @@ exports.library = functions // 크롤링 함수 이름
                     });
                 // res.status(201).send(result);
             })
-            .catch(error => {
-                console.error('Error from crawling library:', error);
+            .catch(err => {
+                console.error('Error from crawling library:', err);
             });
         return null;
     });

@@ -62,9 +62,9 @@ exports.weather = functions // 함수 이름
                 res.sendStatus(201); // 성공 코드 전송
                 console.log('School Weather DB input success');
             })
-            .catch(function (error) {
-                console.error('Error from weather:', error);
-                res.sendStatus(error.response.status); // 에러 코드 전송
+            .catch(function (err) {
+                console.error('Error from weather:', err);
+                res.sendStatus(err.response.status); // 에러 코드 전송
             });
 
     });

@@ -52,24 +52,24 @@ exports.notcold = functions // 함수 이름
             .then(result => {
                 console.log(result.status); // 서비스 조회 성공 시 성공 상태 코드 출력
             })
-            .catch(error => {
-                console.error('Error from notcold bus : ', error); // 실패 시 에러문 출력
+            .catch(err => {
+                console.error('Error from notcold bus : ', err); // 실패 시 에러문 출력
             });
 
         await axios(config)
             .then(result => {
                 console.log(result.status);
             })
-            .catch(function (error) {
-                console.log('Error from notcold cafe : ', error);
+            .catch(function (err) {
+                console.error('Error from notcold cafe : ', err);
             });
 
         await axios(config2)
             .then(result => {
                 console.log(result.status);
             })
-            .catch(function (error) {
-                console.log('Error from notcold notice : ', error);
+            .catch(function (err) {
+                console.error('Error from notcold notice : ', err);
             });
         return null;
     });

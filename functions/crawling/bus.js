@@ -58,8 +58,8 @@ exports.bus = functions // 크롤링 함수 이름
                 res.sendStatus(201); // 성공 코드 전송
                 console.log('School Bus DB input success');
             })
-            .catch(error => {
-                console.error('Error from crawling bus:', error);
-                res.sendStatus(error.response.status); // 에러 코드 전송
+            .catch(err => {
+                console.error('Error from crawling bus:', err);
+                res.sendStatus(err.response.status); // 에러 코드 전송
             });
     });

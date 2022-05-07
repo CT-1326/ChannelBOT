@@ -83,8 +83,8 @@ exports.notice = functions // 크롤링 함수 이름
                 // res.sendStatus(201); 성공 코드 전송
                 console.log('School Notice DB input success');
             })
-            .catch(error => {
-                console.error('Error from crawling notice:', error);
-                res.sendStatus(error.response.status); // 에러 코드 전송
+            .catch(err => {
+                console.error('Error from crawling notice:', err);
+                res.sendStatus(err.response.status); // 에러 코드 전송
             });
     });
