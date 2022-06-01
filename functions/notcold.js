@@ -20,8 +20,7 @@ exports.notcold = functions // 함수 이름
 
             const config = {
                 method: 'post',
-                url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/school-' +
-                        'bus',
+                url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/school-bus',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -50,8 +49,7 @@ exports.notcold = functions // 함수 이름
 
             const config = {
                 method: 'post',
-                url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/school-' +
-                        'cafe',
+                url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/school-cafe',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -80,8 +78,7 @@ exports.notcold = functions // 함수 이름
 
             const config = {
                 method: 'post',
-                url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/school-' +
-                        'notice',
+                url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/school-notice',
                 headers: {
                     'Content-Type': 'application/json'
                 },
