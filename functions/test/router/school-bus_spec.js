@@ -2,7 +2,7 @@ const request = require('supertest');
 const {expect} = require('chai');
 const functions = require('firebase-functions');
 
-describe('POST /schoolBus', () => { // 테스트 수트
+describe('POST /school-bus', () => { // 테스트 수트
     it('responds isFriend is false', done => { // 테스트 단위 : 채널 추가가 안되어있을 떄
         const userRequest = { // 기본 사용자 정보 시나리오
             user: {
@@ -12,7 +12,7 @@ describe('POST /schoolBus', () => { // 테스트 수트
             }
         };
         request(functions.config().test_url.app) // 테스트 하려는 기본 주소
-            .post('/schoolBus') // 주소의 엔드포인트
+            .post('/school-bus') // 주소의 엔드포인트
             .set('Accept', 'application/json')
             .type('application/json')
             .send({userRequest}) // body 데이터 전송
@@ -49,7 +49,7 @@ describe('POST /schoolBus', () => { // 테스트 수트
             utterance: "셔틀 버스 안내"
         };
         request(functions.config().test_url.app) // 테스트 하려는 기본 주소
-            .post('/schoolBus') // 주소의 엔드포인트
+            .post('/school-bus') // 주소의 엔드포인트
             .set('Accept', 'application/json')
             .type('application/json')
             .send({userRequest}) // body 데이터 전송
