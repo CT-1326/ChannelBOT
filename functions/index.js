@@ -38,7 +38,7 @@ app.use('/school-wifi/service', wifiService);
 exports.middleWare = functions
     .region('asia-northeast1')
     .https
-    .onRequest(app); // 채널봇 기본 주소 미들웨어
+    .onRequest(app); // ChannelBOT 기본 주소 미들웨어
 
 exports.bus = bus.bus; // 셔틀버스 크롤링 미들웨어
 exports.number = number.number; // 대표번호 크롤링 미들웨어

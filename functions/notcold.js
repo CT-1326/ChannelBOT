@@ -33,7 +33,7 @@ exports.notcold = functions // 함수 이름
                     console.log(JSON.stringify(response.data));
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    console.error('Error from busCold : ', error);
                 });
         }
 
@@ -54,14 +54,13 @@ exports.notcold = functions // 함수 이름
                 data: data
             };
 
-            return axios(config)
+            axios(config)
                 .then(function (response) {
                     console.log(JSON.stringify(response.data));
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    console.error('Error from cafeCold : ', error);
                 });
-
         }
 
         function noticeCold() {
@@ -81,12 +80,12 @@ exports.notcold = functions // 함수 이름
                 data: data
             };
 
-            return axios(config)
+            axios(config)
                 .then(function (response) {
                     console.log(JSON.stringify(response.data));
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    console.error('Error from noticeCold : ', error);
                 });
         }
 
