@@ -12,7 +12,7 @@ router.post('/', async function (req, res) {
     const messageText = ["면 종류 메뉴를 알려줘", "밥 종류 메뉴를 알려줘", "튀김 종류 메뉴를 알려줘", "모든 메뉴를 알려줘"];
     const label = ["면 종류", "밥 종류", "튀김 종류", "모든 메뉴"];
 
-    if (userFriend == true) { // 채널을 추가한 사용자인경우
+    if (userFriend === true) { // 채널을 추가한 사용자인경우
         /* 바로가기 작성*/
         label.forEach((value, index) => {
             quickReplies.push({

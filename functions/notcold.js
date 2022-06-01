@@ -40,14 +40,18 @@ exports.notcold = functions // 함수 이름
         function cafeCold() {
             const data = JSON.stringify({
                 "userRequest": {
-                    "utterance": "면 종류 메뉴 알려줘"
+                    "user": {
+                        "properties": {
+                            "isFriend": true
+                        }
+                    }
                 }
             });
 
             const config = {
                 method: 'post',
                 url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/school-' +
-                        'cafe/service',
+                        'cafe',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -66,14 +70,18 @@ exports.notcold = functions // 함수 이름
         function noticeCold() {
             const data = JSON.stringify({
                 "userRequest": {
-                    "utterance": "학사 관련해서 알려줘"
+                    "user": {
+                        "properties": {
+                            "isFriend": true
+                        }
+                    }
                 }
             });
 
             const config = {
                 method: 'post',
                 url: 'https://asia-northeast1-channelbot-d349b.cloudfunctions.net/middleWare/school-' +
-                        'notice/service',
+                        'notice',
                 headers: {
                     'Content-Type': 'application/json'
                 },

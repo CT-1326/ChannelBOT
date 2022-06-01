@@ -7,7 +7,7 @@ router.post('/', async function (req, res) {
     // console.log(userFriend);
     let responseBody;
 
-    if (userFriend == true) { // 채널을 추가한 사용자인 경우
+    if (userFriend === true) { // 채널을 추가한 사용자인 경우
         /* 출발과 도착 그리고 그 반대 경로의 버스 안내 데이터를 각각 변수처리*/
         const inBus = await admin
             .database()

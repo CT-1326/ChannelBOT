@@ -7,7 +7,7 @@ router.post('/', async function (req, res) {
     // console.log(userFriend);
     let responseBody;
 
-    if (userFriend == true) { // 채널을 추가한 사용자인경우
+    if (userFriend === true) { // 채널을 추가한 사용자인경우
         const number = await admin // 전화번호 안내 데이터 변수 처리
             .database()
             .ref('School_Number/')

@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
         }
     ];
 
-    if (today == 0 || today == 6) { // 주말인 경우
+    if (today === 0 || today === 6) { // 주말인 경우
         responseBody = {
             version: "2.0",
             template: {

@@ -31,7 +31,7 @@ router.post('/', async function (req, res) {
         "비교과"
     ];
 
-    if (userFriend == true) { // 채널을 추가한 사용자인경우
+    if (userFriend === true) { // 채널을 추가한 사용자인경우
         /* 바로가기 작성*/
         label.forEach((value, index) => {
             quickReplies.push({

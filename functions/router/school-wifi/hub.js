@@ -11,7 +11,7 @@ router.post('/', async function (req, res) {
     const messageText = ["안드로이드야", "IOS야", "윈도우야"];
     const label = ["안드로이드", "IOS", "윈도우"];
 
-    if (userFriend == true) { // 채널을 추가한 사용자인경우
+    if (userFriend === true) { // 채널을 추가한 사용자인경우
         /* 바로가기 작성*/
         label.forEach((value, index) => {
             quickReplies.push({

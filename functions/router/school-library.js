@@ -7,7 +7,7 @@ router.post('/', async function (req, res) {
     // console.log(userFriend);
     let responseBody;
 
-    if (userFriend == true) { // 채널을 추가한 사용자인경우
+    if (userFriend === true) { // 채널을 추가한 사용자인경우
         /* 일반 그리고 노트북 열람실 좌석 데이터 변수 처리*/
         const normal = await admin
             .database()
