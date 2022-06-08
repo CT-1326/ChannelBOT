@@ -18,18 +18,18 @@ describe('GET /bus', () => { // 테스트 수트
                 expect(busIn.title)
                     .to
                     .be
-                    .a('string'); // 응답 결과가 문자열 타입인가
+                    .a('string'); // 응답 결과의 제목이 문자열 타입인가
                 expect(busIn.title)
                     .to
-                    .include('명학'); // 응답 결과가 작성한 텍스트 내용을 포함하는가
+                    .include('명학'); // 응답 결과의 제목이 작성한 텍스트 내용을 포함하는가
                 expect(busIn.start)
                     .to
                     .be
-                    .a('string');
+                    .a('string'); // 응답 결과의 오전 값이 문자열 타입인가
                 expect(busIn.end)
                     .to
                     .be
-                    .a('string');
+                    .a('string'); // 응답 결과의 저녁 값이 문자열 타입인가
 
                 expect(Object.keys(busOut).length)
                     .to
@@ -37,18 +37,18 @@ describe('GET /bus', () => { // 테스트 수트
                 expect(busOut.title)
                     .to
                     .be
-                    .a('string');
+                    .a('string'); // 응답 결과의 제목이 문자열 타입인가
                 expect(busOut.title)
                     .to
-                    .include('학교');
+                    .include('학교'); // 응답 결과의 제목이 작성한 텍스트 내용을 포함하는가
                 expect(busOut.start)
                     .to
                     .be
-                    .a('string');
+                    .a('string'); // 응답 결과의 오후 값이 문자열 타입인가
                 expect(busOut.end)
                     .to
                     .be
-                    .a('string');
+                    .a('string'); // 응답 결과의 밤 값이 문자열 타입인가
                 done();
             })
             .catch(err => {
