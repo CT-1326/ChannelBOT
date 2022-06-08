@@ -14,7 +14,7 @@ describe('GET /bus', () => { // 테스트 수트
                 // console.log(busIn, busOut);
                 expect(Object.keys(busIn).length)
                     .to
-                    .equal(3); // 응답 결과의 갯수가 지정한 값 만큼인가
+                    .equal(3); // 명학역 -> 학교의 응답 결과의 갯수가 지정한 값 만큼인가
                 expect(busIn.title)
                     .to
                     .be
@@ -33,7 +33,7 @@ describe('GET /bus', () => { // 테스트 수트
 
                 expect(Object.keys(busOut).length)
                     .to
-                    .equal(3); // 응답 결과의 갯수가 지정한 값 만큼인가
+                    .equal(3); // 학교 -> 명학역 응답 결과의 갯수가 지정한 값 만큼인가
                 expect(busOut.title)
                     .to
                     .be

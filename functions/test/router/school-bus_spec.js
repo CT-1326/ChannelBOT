@@ -79,33 +79,33 @@ describe('POST /school-bus', () => { // 테스트 수트
                     expect(itemTitle)
                         .to
                         .be
-                        .a('string'); // 해당 배열이 문자열 타입인가
+                        .a('string'); // 응답 결과 블록의 제목이 문자열 타입인가
                     expect(itemTitle)
                         .to
-                        .equal('해당 안내 내용은 학교 홈페이지의 내용을 기반으로 작성되었습니다.'); // 해당 배열의 값이 작성한 텍스트 내용과 완전일치 하는가
+                        .equal('해당 안내 내용은 학교 홈페이지의 내용을 기반으로 작성되었습니다.'); // 응답 결과 블록의 제목이 작성한 텍스트 내용과 완전일치 하는가
                     expect(itemHead)
                         .to
                         .be
-                        .an('object');
+                        .an('object'); // 응답 결과 블록의 헤더가 오브젝트 타입인가
                     expect(itemHead.title)
                         .to
                         .be
-                        .a('string');
+                        .a('string'); // 응답 결과 블록의 헤더 제목이 문자열 타입인가
                     expect(itemList)
                         .to
                         .be
-                        .an('array');
+                        .an('array'); // 응답 결과 블록의 본문이 배열 구조인가
                     for (let jndex = 0; jndex < itemList.length; jndex++) {
                         const title = itemList[jndex].title;
                         const description = itemList[jndex].description;
                         expect(title)
                             .to
                             .be
-                            .a('string');
+                            .a('string'); // 응답 결과의 블록 본문 제목이 문자열 타입인가
                         expect(description)
                             .to
                             .be
-                            .a('string');
+                            .a('string'); // 응답 결과의 블록 본문 내용이 문자열 타입인가
                     }
                 }
                 done();

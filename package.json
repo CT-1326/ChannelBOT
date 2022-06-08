@@ -4,7 +4,10 @@
   "description": "build channel_bot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "firebase emulators:start",
+    "config" : "cd functions && npm run config",
+    "test_crawling": "cd functions && npm run test_crawling",
+    "test": "cd functions && npm run test",
     "lint": "eslint . --fix"
   },
   "repository": {

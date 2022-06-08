@@ -24,17 +24,17 @@ const notice = require('./crawling/notice');
 const weather = require('./crawling/weather');
 const notcold = require('./notcold');
 
-app.use(cors());
-app.use('/school-bus', schoolBus);
-app.use('/school-number', schoolNumber);
-app.use('/school-library', schoolLibrary);
-app.use('/school-cafe', schoolCafe);
-app.use('/school-cafe/service', cafeService);
-app.use('/school-notice', schoolNotice);
-app.use('/school-notice/service', noticeService);
-app.use('/school-weather', schoolWeather);
-app.use('/school-wifi', schoolWifi);
-app.use('/school-wifi/service', wifiService);
+app.use(cors()); // cors 설정
+app.use('/school-bus', schoolBus); // 셔틀버스 안내
+app.use('/school-number', schoolNumber); // 학교번호 안내
+app.use('/school-library', schoolLibrary); // 학술정보관 좌석 현황 안내
+app.use('/school-cafe', schoolCafe); // 오늘의 학식 안내 메뉴 선택
+app.use('/school-cafe/service', cafeService); // 오늘의 학식 안내
+app.use('/school-notice', schoolNotice); // 학교 공지사항 안내 메뉴 선택
+app.use('/school-notice/service', noticeService); // 학교 공지사항 안내
+app.use('/school-weather', schoolWeather); // 현재 학교 날씨 안내
+app.use('/school-wifi', schoolWifi); // 학교 WIFI 연결 안내 메뉴 선택
+app.use('/school-wifi/service', wifiService); // 학교 WIFI 연결 안내
 exports.middleWare = functions
     .region('asia-northeast1')
     .https
