@@ -5,7 +5,7 @@
     "logs": "firebase functions:log",
     "test_crawling": "mocha test/crawling/*.js -t 10000",
     "config": "firebase functions:config:get > .runtimeconfig.json",
-    "test": "mocha test/router/school-number_spec -t 10000"
+    "test": "mocha test/crawling/library_spec -t 10000"
   },
   "engines": {
     "node": "10"
