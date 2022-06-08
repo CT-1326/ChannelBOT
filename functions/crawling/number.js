@@ -51,14 +51,17 @@ exports.number = functions // 크롤링 함수 이름
             );
             /* 추출하고자 하는 DOM 내용 추출 및 저장*/
             await page.waitForSelector('#container > div.wrap.articles > article > a > p');
-            const result = await page.$eval(
+            let result = await page.$eval(
                 '#container > div.wrap.articles > article > a > p',
                 // eslint-disable-next-line id-length
                 e => e.outerText
             );
-            console.log(result);
+            // console.log(result);
             await browser.close(); // puppteer 종료
 
+            const addData = '시설관재과: 031 467 8257\n[각종 교내 시설 관리 관련 문의]\n\n#';
+            result = result.replace('#',addData);
+            console.log(result);
             admin
                 .database()
                 .ref('School_Number')
