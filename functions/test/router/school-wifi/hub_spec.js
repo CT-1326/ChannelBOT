@@ -2,7 +2,7 @@ const request = require('supertest');
 const {expect} = require('chai');
 const functions = require('firebase-functions');
 
-describe('POST /school-weather', () => { // 테스트 수트
+describe('POST /school-wifi', () => { // 테스트 수트
     it('responds isFriend is undefined', done => { // 테스트 단위 : 채널 추가가 안되어있을 떄
         const userRequest = { // 기본 사용자 정보 시나리오
             user: {
@@ -12,7 +12,7 @@ describe('POST /school-weather', () => { // 테스트 수트
             }
         };
         request(functions.config().test_url.app) // 테스트 하려는 기본 주소
-            .post('/school-weather') // 주소의 엔드포인트
+            .post('/school-wifi') // 주소의 엔드포인트
             .set('Accept', 'application/json')
             .type('application/json')
             .send({userRequest}) // body 데이터 전송
@@ -50,10 +50,10 @@ describe('POST /school-weather', () => { // 테스트 수트
                     "isFriend": true
                 }
             },
-            utterance: "현재 학교 날씨"
+            utterance: "학교 WIFI 연결 안내"
         };
         request(functions.config().test_url.app) // 테스트 하려는 기본 주소
-            .post('/school-weather') // 주소의 엔드포인트
+            .post('/school-wifi') // 주소의 엔드포인트
             .set('Accept', 'application/json')
             .type('application/json')
             .send({userRequest}) // body 데이터 전송
@@ -63,52 +63,30 @@ describe('POST /school-weather', () => { // 테스트 수트
                     .body
                     .template
                     .outputs[0]
-                    .itemCard;
+                    .simpleText;
                 // console.log(element);
-                expect(element)
+                expect(element.text)
                     .to
                     .be
-                    .an('object'); // 응답 결과가 오브젝트 타입인가
-                expect(element.title)
+                    .a('string'); // 응답 블록의 본문이 문자열 타입인가
+                expect(element.text)
                     .to
-                    .include('알림'); // 응답 결과의 제목이 작성한 텍스트 내용을 포함하는가
-                expect(element.description)
-                    .to
-                    .equal('1시간 간격으로 날씨 정보를 변경하여 안내하고 있습니다.'); // 응답 결과의 설명이 작성한 텍스트 내용과 완전일치 하는가
+                    .include('본인의 운영체제를 선택'); // 응답 블록의 본문이 작성한 텍스트 내용을 포함하는가
 
-                const elementImage = element.imageTitle;
-                expect(elementImage.title)
+                const elementQuick = res.body.template.quickReplies;
+                // console.log(element);
+                const array = ['안드로이드', 'IOS', '윈도우'];
+                expect(elementQuick)
                     .to
-                    .be
-                    .a('string'); // 응답 결과의 날씨 아이콘 이미지 제목이 문자열 타입인가
-                expect(elementImage.title)
-                    .to
-                    .include('현재 성결대학교 날씨'); // 응답 결과의 날씨 아이콘 이미지 제목이 작성한 텍스트 내용을 포함하는가
-                expect(elementImage.imageUrl)
-                    .to
-                    .be
-                    .a('string'); // 응답 결과의 날씨 아이콘 이미지 경로가 문자열 타입인가
-                expect(elementImage.imageUrl)
-                    .to
-                    .include('png'); // 응답 결과의 날씨 아이콘 이미지가 png 인가
-
-                const elementItems = element.itemList;
-                // console.log(elementItems);
-                const title = ['현재 온도', '체감 온도', '최고 기온', '최저 기온'];
-                for (let index = 0; index < elementItems.length; index++) {
-                    const itemTitle = elementItems[index].title;
-                    const itemDescription = elementItems[index].description;
-                    expect(itemTitle)
+                    .have
+                    .lengthOf(array.length); // 응답 블록의 바로가기 개수가 지정한 배열 사이즈 만큼인가
+                for (let index = 0; index < elementQuick.length; index++) {
+                    expect(elementQuick[index].action)
                         .to
-                        .be
-                        .a('string'); // 응답 결과의 아이템 제목이 문자열 타입인가
-                    expect(itemTitle)
+                        .equal('block'); // 응답 블록의 바로가기가 블록 타입인가
+                    expect(elementQuick[index].label)
                         .to
-                        .include(title[index]); // 응답 결과의 아이템 제목이 지정한 배열 내용을 포함하는가
-                    expect(itemDescription)
-                        .to
-                        .be
-                        .a('string'); // 응답 결과의 아이템 본문이 문자열 타입인가
+                        .include(array[index]); // 응답 블록의 바로가기 버튼명이 지정한 배열 내용을 포함하는가
                 }
                 done();
             })

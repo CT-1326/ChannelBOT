@@ -3,7 +3,7 @@ const {expect} = require('chai');
 const functions = require('firebase-functions');
 
 describe('POST /school-number', () => { // 테스트 수트
-    it('responds isFriend is false', done => { // 테스트 단위 : 채널 추가가 안되어있을 떄
+    it('responds isFriend is undefined', done => { // 테스트 단위 : 채널 추가가 안되어있을 떄
         const userRequest = { // 기본 사용자 정보 시나리오
             user: {
                 "properties": {
@@ -24,13 +24,17 @@ describe('POST /school-number', () => { // 테스트 수트
                     .outputs[0]
                     .simpleText;
                 // console.log(element);
+                expect(element)
+                    .to
+                    .be
+                    .an('object'); // 응답 결과가 오브젝트 타입인가
                 expect(element.text)
                     .to
                     .be
-                    .a('string'); // 응답 결과가 문자열 타입인가
+                    .a('string'); // 응답 결과의 텍스트가 문자열 타입인가
                 expect(element.text)
                     .to
-                    .include("채널봇 채널 추가부터"); // 응답 결과가 작성한 텍스트 내용을 포함하는가
+                    .include("채널봇 채널 추가부터"); // 응답 결과의 텍스트가 작성한 텍스트 내용을 포함하는가
                 done();
             })
             .catch(err => {
