@@ -16,15 +16,15 @@
         "default-case-last": "error", // default 문이 마지막으로 없으면 에러
         "id-length": "error", // 변수 작명이 2글자 미만이면 에러
         "max-depth": [
-            // 로직 깊이를 3개 이상으로 하면 에러
+            // 로직 깊이를 4개 이상으로 하면 에러
             "error", {
-                "max": 3
+                "max": 4
             }
         ],
         "max-nested-callbacks": [
-            // 콜백 함수 깊이를 3개 이상으로 하면 에러
+            // 콜백 함수 깊이를 4개 이상으로 하면 에러
             "error",
-            3
+            4
         ],
         "spaced-comment": ["error", "always"] // 주석처리 시작부분에 공백이 없으면 에러
     }

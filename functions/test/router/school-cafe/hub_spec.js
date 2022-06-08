@@ -2,7 +2,7 @@ const request = require('supertest');
 const {expect} = require('chai');
 const functions = require('firebase-functions');
 
-describe('POST /school-wifi', () => { // 테스트 수트
+describe('POST /school-cafe', () => { // 테스트 수트
     it('responds isFriend is undefined', done => { // 테스트 단위 : 채널 추가가 안되어있을 떄
         const userRequest = { // 기본 사용자 정보 시나리오
             user: {
@@ -12,7 +12,7 @@ describe('POST /school-wifi', () => { // 테스트 수트
             }
         };
         request(functions.config().test_url.app) // 테스트 하려는 기본 주소
-            .post('/school-wifi') // 주소의 엔드포인트
+            .post('/school-cafe') // 주소의 엔드포인트
             .set('Accept', 'application/json')
             .type('application/json')
             .send({userRequest}) // body 데이터 전송
@@ -50,10 +50,10 @@ describe('POST /school-wifi', () => { // 테스트 수트
                     "isFriend": true
                 }
             },
-            utterance: "학교 WIFI 연결 안내"
+            utterance: "오늘의 학식 안내"
         };
         request(functions.config().test_url.app) // 테스트 하려는 기본 주소
-            .post('/school-wifi') // 주소의 엔드포인트
+            .post('/school-cafe') // 주소의 엔드포인트
             .set('Accept', 'application/json')
             .type('application/json')
             .send({userRequest}) // body 데이터 전송
@@ -75,11 +75,20 @@ describe('POST /school-wifi', () => { // 테스트 수트
                     .a('string'); // 응답 블록의 본문이 문자열 타입인가
                 expect(element.text)
                     .to
-                    .include('본인의 운영체제를 선택'); // 응답 블록의 본문이 작성한 텍스트 내용을 포함하는가
-
+                    .include('보고 싶은 오늘의 학식 종류를 선택'); // 응답 블록의 본문이 작성한 텍스트 내용을 포함하는가
+                expect(element.text)
+                    .to
+                    .include('학생식당');
+                expect(element.text)
+                    .to
+                    .include('위치');
+                expect(element.text)
+                    .to
+                    .include('운영시간');
+                    
                 const elementQuick = res.body.template.quickReplies;
                 // console.log(element);
-                const array = ['안드로이드', 'IOS', '윈도우'];
+                const array = ["면 종류", "밥 종류", "튀김 종류", "모든 메뉴"];
                 expect(elementQuick)
                     .to
                     .have
