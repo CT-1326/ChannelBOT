@@ -1,29 +1,17 @@
 {
-  "name": "channel_bot",
-  "version": "1.0.0",
-  "description": "build channel_bot",
-  "main": "index.js",
-  "scripts": {
-    "start": "firebase emulators:start",
-    "config" : "cd functions && npm run config",
-    "test_crawling": "cd functions && npm run test_crawling",
-    "test": "cd functions && npm run test",
-    "lint": "eslint . --fix"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BSAA0203/Channel_BOT.git"
-  },
-  "author": "",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/BSAA0203/Channel_BOT/issues"
-  },
-  "homepage": "https://github.com/BSAA0203/Channel_BOT#readme",
-  "dependencies": {
-    "express": "^4.17.1"
-  },
-  "devDependencies": {
-    "eslint": "^8.14.0"
-  }
+    "name": "channel_bot",
+    "version": "1.0.0",
+    "description": "build channel_bot",
+    "main": "index.js",
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BSAA0203/Channel_BOT.git"
+    },
+    "author": "",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/BSAA0203/Channel_BOT/issues"
+    },
+    "homepage": "https://github.com/BSAA0203/Channel_BOT#readme"
 }
