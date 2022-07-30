@@ -14,6 +14,11 @@
     mocha V10.0.0
     
     Heroku Scheduler
+# Get start
+    > cd functions
+    > npm install 
+    > npm run config
+    > npm start
 # Open-source libraries
 https://github.com/axios/axios
 
