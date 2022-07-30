@@ -76,17 +76,17 @@ describe('POST /school-cafe/service', () => { // 테스트 수트
                     expect(elementHead)
                         .to
                         .be
-                        .a('string');
+                        .a('string'); // 응답 결과의 헤더 제목이 문자열 타입인가
                     expect(elementHead)
                         .to
-                        .include('면 종류');
+                        .include('면 종류'); // 응답 결과의 헤더 제목이 작성한 텍스트 내용을 포함하는가
 
                     const elementItems = element.itemList;
                     // console.log(elementItems);
                     for (let index = 0; index < elementItems.length; index++) {
                         const itemTitle = elementItems[index].title;
                         const itemDescription = elementItems[index].description;
-                        console.log(itemTitle, itemDescription);
+                        // console.log(itemTitle, itemDescription);
                         expect(itemTitle)
                             .to
                             .be
@@ -153,17 +153,17 @@ describe('POST /school-cafe/service', () => { // 테스트 수트
                     expect(elementHead)
                         .to
                         .be
-                        .a('string');
+                        .a('string'); // 응답 결과의 헤더 제목이 문자열 타입인가
                     expect(elementHead)
                         .to
-                        .include('밥 종류');
+                        .include('밥 종류'); // 응답 결과의 헤더 제목이 작성한 텍스트 내용을 포함하는가
 
                     const elementItems = element.itemList;
                     // console.log(elementItems);
                     for (let index = 0; index < elementItems.length; index++) {
                         const itemTitle = elementItems[index].title;
                         const itemDescription = elementItems[index].description;
-                        console.log(itemTitle, itemDescription);
+                        // console.log(itemTitle, itemDescription);
                         expect(itemTitle)
                             .to
                             .be
@@ -230,17 +230,17 @@ describe('POST /school-cafe/service', () => { // 테스트 수트
                     expect(elementHead)
                         .to
                         .be
-                        .a('string');
+                        .a('string'); // 응답 결과의 헤더 제목이 문자열 타입인가
                     expect(elementHead)
                         .to
-                        .include('튀김 종류');
+                        .include('튀김 종류'); // 응답 결과의 헤더 제목이 작성한 텍스트 내용을 포함하는가
 
                     const elementItems = element.itemList;
                     // console.log(elementItems);
                     for (let index = 0; index < elementItems.length; index++) {
                         const itemTitle = elementItems[index].title;
                         const itemDescription = elementItems[index].description;
-                        console.log(itemTitle, itemDescription);
+                        // console.log(itemTitle, itemDescription);
                         expect(itemTitle)
                             .to
                             .be

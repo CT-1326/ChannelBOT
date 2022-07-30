@@ -6,7 +6,7 @@
         "start": "firebase emulators:start",
         "config": "firebase functions:config:get > .runtimeconfig.json",
         "test_crawling": "mocha test/crawling/*.js -t 10000",
-        "test": "mocha test/router/school-cafe/service_spec -t 10000",
+        "test": "mocha test/router/school-notice/service_spec -t 10000",
         "lint": "eslint . --fix"
     },
     "engines": {

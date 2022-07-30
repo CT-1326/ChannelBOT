@@ -379,8 +379,8 @@ router.post('/', async (req, res) => {
                     title.push(item.val()); // 제목 데이터 get
                 });
             })
-            .catch(e => {
-                console.error('Error from notice title :', e);
+            .catch(err => {
+                console.error('Error from notice title :', err);
             });
         await admin
             .database()
@@ -392,8 +392,8 @@ router.post('/', async (req, res) => {
                     date.push(item.val()); // 날짜 데이터 get
                 });
             })
-            .catch(e => {
-                console.error('Error from notice date :', e);
+            .catch(err => {
+                console.error('Error from notice date :', err);
             });
         await admin
             .database()
@@ -405,8 +405,8 @@ router.post('/', async (req, res) => {
                     url.push(item.val()); // 경로 데이터 get
                 });
             })
-            .catch(e => {
-                console.error('Error from notice url :', e);
+            .catch(err => {
+                console.error('Error from notice url :', err);
             });
 
         return [title, date, url]; // get 처리 된 변수를 반환
