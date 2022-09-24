@@ -113,7 +113,7 @@ router.post('/', async function (req, res) {
                 outputs: [
                     {
                         simpleText: {
-                            text: "🔕 채널봇 채널 추가부터 하셔야 이용이 가능해요!"
+                            text: "🔕 채널봇 채널 추가부터 하셔야 이용이 가능해요!!"
                         }
                     }
                 ]
