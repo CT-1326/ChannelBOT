@@ -3,7 +3,7 @@ const admin = require('firebase-admin');
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-exports.bus = functions // 크롤링 함수 이름
+exports.bus = functions
     .region('asia-northeast1')
     .https
     .onRequest((req, res) => {
@@ -41,25 +41,30 @@ exports.bus = functions // 크롤링 함수 이름
                             end: `${outBody2}`
                         }
                     });
-                // const result = { in: {
-                //         title: `${inTitle}`,
-                //         start: `${inBody}`,
-                //         end: `${inBody2}`
-                //     },
-                //     out: {
-                //         title: `${outTitle}`,
-                //         start: `${outBody}`,
-                //         end: `${outBody2}`
-                //     }
-                // };
-                // res
-                //     .status(201)
-                //     .send(result);
-                res.sendStatus(201); // 성공 코드 전송
+
+                /* 개발/배포 모드에 따라 결과 값 전송 혹은 미전송 */
+                if (process.env.NODE_ENV) {
+                    const result = { in: {
+                            title: `${inTitle}`,
+                            start: `${inBody}`,
+                            end: `${inBody2}`
+                        },
+                        out: {
+                            title: `${outTitle}`,
+                            start: `${outBody}`,
+                            end: `${outBody2}`
+                        }
+                    };
+                    res
+                        .status(201)
+                        .send(result);
+                } else {
+                    res.sendStatus(201);
+                }
                 console.log('School Bus DB input success');
             })
             .catch(err => {
                 console.error('Error from crawling bus:', err);
-                res.sendStatus(err.response.status); // 에러 코드 전송
+                res.sendStatus(err.response.status);
             });
     });

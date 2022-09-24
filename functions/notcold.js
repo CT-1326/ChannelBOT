@@ -1,10 +1,10 @@
 const functions = require('firebase-functions');
 const axios = require('axios');
 
-exports.notcold = functions // 함수 이름
+exports.notcold = functions
     .region('asia-northeast1')
     .pubsub
-    .schedule('*/3 * * * *') // 3분 단위로 실행
+    .schedule('*/3 * * * *')
     .timeZone('Asia/Seoul')
     .onRun(() => {
         function busCold() {
@@ -12,7 +12,7 @@ exports.notcold = functions // 함수 이름
                 "userRequest": {
                     "user": {
                         "properties": {
-                            "isFriend": true
+                            "isFriend": true // 카카오 채널 친구 추가 상태 명시
                         }
                     }
                 }
@@ -94,6 +94,7 @@ exports.notcold = functions // 함수 이름
                 });
         }
 
+        /* 순차적으로 3분 단위로 함수 호출 */
         axios
             .all([busCold(), cafeCold(), noticeCold()])
             .then(axios.spread(() => {

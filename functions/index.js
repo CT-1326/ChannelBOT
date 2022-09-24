@@ -24,26 +24,29 @@ const notice = require('./crawling/notice');
 const weather = require('./crawling/weather');
 const notcold = require('./notcold');
 
+app.use(express.json()); // 모든 입력&출력은 JSON 포맷으로
 app.use(cors()); // cors 설정
-app.use('/school-bus', schoolBus); // 셔틀버스 컨트롤러
-app.use('/school-number', schoolNumber); // 학교번호 컨트롤러
-app.use('/school-library', schoolLibrary); // 학술정보관 좌석 현황 컨트롤러
-app.use('/school-cafe', schoolCafe); // 오늘의 학식 미들웨어
-app.use('/school-cafe/service', cafeService); // 오늘의 학식 컨트롤러
-app.use('/school-notice', schoolNotice); // 학교 공지사항 미들웨어
-app.use('/school-notice/service', noticeService); // 학교 공지사항 컨트롤러
-app.use('/school-weather', schoolWeather); // 현재 학교 날씨 컨트롤러
-app.use('/school-wifi', schoolWifi); // 학교 WIFI 연결 미들웨어
-app.use('/school-wifi/service', wifiService); // 학교 WIFI 연결 컨트롤러
+/* 메뉴 선택에는 미들웨어/컨트롤러로 나누어 구분 */
+app.use('/school-bus', schoolBus); 
+app.use('/school-number', schoolNumber); 
+app.use('/school-library', schoolLibrary); 
+app.use('/school-cafe', schoolCafe); 
+app.use('/school-cafe/service', cafeService); 
+app.use('/school-notice', schoolNotice); 
+app.use('/school-notice/service', noticeService); 
+app.use('/school-weather', schoolWeather); 
+app.use('/school-wifi', schoolWifi); 
+app.use('/school-wifi/service', wifiService);
 exports.middleWare = functions
     .region('asia-northeast1')
     .https
-    .onRequest(app); // ChannelBOT 기본 주소 미들웨어
+    .onRequest(app);
 
-exports.bus = bus.bus; // 셔틀버스 크롤링 미들웨어
-exports.number = number.number; // 대표번호 크롤링 미들웨어
-exports.library = library.library; // 학술정보관 열람실 크롤링 미들웨어
-exports.cafe = cafe.cafe; // 학식 크롤링 미들웨어
-exports.notice = notice.notice; // 학교 게시판 크롤링 미들웨어
-exports.weather = weather.weather; // 학교 날씨 조회 미들웨어
-exports.notcold = notcold.notcold; // cold start 이슈 개선의 미들웨어
+/* 크롤링 미들웨어 */
+exports.bus = bus.bus; 
+exports.number = number.number; 
+exports.library = library.library;
+exports.cafe = cafe.cafe;
+exports.notice = notice.notice;
+exports.weather = weather.weather; 
+exports.notcold = notcold.notcold; // Cold Start 이슈 해결을 위한 모듈
