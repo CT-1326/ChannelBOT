@@ -5,8 +5,16 @@ const functions = require('firebase-functions');
 describe('GET /bus', () => {
     it('responds crawling result', done => {
         request(functions.config().test_url.crawling)
-            .get('/bus')
+            .post('/bus')
             .expect(201)
+            .set('Accept', 'application/json')
+            .type('application/json')
+            .send({
+                'admin': functions
+                    .config()
+                    .api_key
+                    .admin
+            }) // 어드민 인증 key 전송
             .then(res => {
                 // console.log(res);
                 const busIn = res.body. in;
