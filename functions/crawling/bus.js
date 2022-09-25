@@ -9,7 +9,6 @@ exports.bus = functions
     .onRequest((req, res) => {
         /* 어드민 인증 key 값이 있는지 요청 상태 인지를 확인해 크롤링 실행 혹은 미실행 */
         if (req.body.admin === functions.config().api_key.admin) {
-            console.log(process.env.NODE_ENV);
             axios
                 .get('https://www.sungkyul.ac.kr/skukr/262/subview.do') // 셔틀버스 안내 페이지 주소
                 .then(async (html) => {
@@ -45,8 +44,9 @@ exports.bus = functions
                             }
                         });
 
-                    /* 개발/배포 모드에 따라 결과 값 전송 혹은 미전송 */
-                    if (process.env.NODE_ENV) {
+                    /* 개발 모드에는 mocha 테스트 코드 실행을 위해 결과 값을 함께 전송 */
+                    /* 배포 모드에는 결과 코드만 전송 */
+                    if (process.env.NODE_ENV === 'development') {
                         const result = { in: {
                                 title: `${inTitle}`,
                                 start: `${inBody}`,

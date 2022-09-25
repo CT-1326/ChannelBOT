@@ -92,7 +92,7 @@ describe('POST /school-bus', () => {
                         .a('string');
                     expect(itemTitle)
                         .to
-                        .equal('해당 안내 내용은 학교 홈페이지의 내용을 기반으로 작성되었습니다.'); // 응답 결과 블록의 제목이 작성한 텍스트 내용과 완전일치 하는가
+                        .equal('해당 안내 내용은 학교 홈페이지의 내용을 기반으로 작성되었습니다.');
                     expect(itemHead)
                         .to
                         .be
