@@ -50,3 +50,5 @@ exports.cafe = cafe.cafe;
 exports.notice = notice.notice;
 exports.weather = weather.weather; 
 exports.notcold = notcold.notcold; // Cold Start 이슈 해결을 위한 모듈
+
+process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'production' ) ? 'production' : 'development';
