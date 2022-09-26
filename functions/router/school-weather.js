@@ -3,15 +3,16 @@ const admin = require('firebase-admin');
 const router = express.Router();
 
 router.post('/', async function (req, res) {
-    const userFriend = req.body.userRequest.user.properties.isFriend; // 사용자 카카오 채널 정보
+    /* 사용자의 카카오 채널 추가 상태를 획인해 데이터 출력 혹은 경고문 출력 */
+    const userFriend = req.body.userRequest.user.properties.isFriend; 
     // console.log(userFriend);
     let responseBody;
     const title = ['현재 온도', '체감 온도', '최고 기온', '최저 기온'];
     const description = [];
     let itemList = [];
 
-    if (userFriend === true) { // 채널을 추가한 사용자인 경우
-        /* 온도 그리고 기상 조건 데이터를 각각 변수처리*/
+    if (userFriend === true) {
+        /* 날씨 그리고 온도 상태 데이터를 각각 아이템 카드 뷰 본문으로 작성 및 해당 구조로 출력 */
         const mainWeather = await admin
             .database()
             .ref('School_Weather/')
@@ -35,9 +36,7 @@ router.post('/', async function (req, res) {
             .catch(err => {
                 console.error(err);
             });
-        // console.log(statWeather);
-        
-        /* 아이템 카드 뷰 본문 작성*/
+        // console.log(statWeather);       
         description.push(
             parseFloat(mainWeather.temp) - 273.15,
             parseFloat(mainWeather.feels) - 273.15,
@@ -56,7 +55,7 @@ router.post('/', async function (req, res) {
             template: {
                 outputs: [
                     {
-                        itemCard: { // 아이템 카드 뷰 블록으로 출력
+                        itemCard: { 
                             imageTitle: {
                                 "title": `현재 성결대학교 날씨: ${statWeather.state}`,
                                 "imageUrl": `${statWeather.icon}`
@@ -69,14 +68,14 @@ router.post('/', async function (req, res) {
                 ]
             }
         };
-    } else { // 채널을 추가하지 않은 사용자인경우
+    } else { 
         responseBody = {
             version: "2.0",
             template: {
                 outputs: [
                     {
                         simpleText: {
-                            text: "🔕 채널봇 채널 추가부터 하셔야 이용이 가능해요!" // 텍스트 뷰 블록으로 출력
+                            text: "🔕 채널봇 채널 추가부터 하셔야 이용이 가능해요!" 
                         }
                     }
                 ]
@@ -85,7 +84,7 @@ router.post('/', async function (req, res) {
     }
     res
         .status(201)
-        .send(responseBody); // 응답 상태 코드와 내용 전송
+        .send(responseBody); 
 });
 
 module.exports = router;

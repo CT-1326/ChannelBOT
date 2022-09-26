@@ -9,6 +9,7 @@ router.post('/', async function (req, res) {
     let responseBody;
 
     if (userFriend === true) {
+        /* 리스트 카드 뷰 블록 구조로 일반, 노트북 열람실 좌석 현황 출력 */
         const normal = await admin
             .database()
             .ref('Library_State/normal')
@@ -37,7 +38,6 @@ router.post('/', async function (req, res) {
             template: {
                 outputs: [
                     {
-                        /* 리스트 카드 뷰 블록 구조로 일반, 노트북 열람실 좌석 현황 출력 */
                         listCard: {
                             "header": {
                                 "title": "학술정보관 열람실 좌석 현황",

@@ -12,6 +12,7 @@ exports.number = functions
     .region('asia-northeast1')
     .https
     .onRequest(async (req, res) => {
+        /* 어드민 인증 key 값이 있는지 요청 상태 인지를 확인해 크롤링 실행 혹은 미실행 */
         if (req.body.admin === functions.config().api_key.admin) {
             try {
                 const browser = await puppeteer.launch({
