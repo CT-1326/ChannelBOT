@@ -69,7 +69,7 @@ describe('POST /school-bus', () => {
                     .outputs[0]
                     .carousel;
                 // console.log(element);
-                /* 응답 결과가 구조가 지정한 데이터 타입이자 개수만큼 인지를 테스트 */
+                /* 응답 결과가 구조가 지정한 데이터 타입이자 개수만큼인지를 테스트 */
                 expect(element.type)
                     .to
                     .equal('itemCard');
@@ -80,7 +80,7 @@ describe('POST /school-bus', () => {
                     .to
                     .have
                     .lengthOf(2);
-                /* 응답 결과 내용이 지정한 데이터 타입, 내용 인지를 테스트 */
+                /* 응답 결과 내용이 지정한 데이터 타입, 내용인지를 테스트 */
                 for (let index = 0; index < items.length; index++) {
                     const itemTitle = items[index].title;
                     const itemHead = items[index].head;

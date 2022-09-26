@@ -2,22 +2,31 @@ const request = require('supertest');
 const {expect} = require('chai');
 const functions = require('firebase-functions');
 
-describe('GET /library', () => { // 테스트 수트
-    it('responds crawling result', done => { // 테스트 단위(확인하고자 하는 내용을 명시)
-        request(functions.config().test_url.crawling) // 테스트 하려는 기본 주소
-            .get('/library') // 주소의 엔드포인트
-            .expect(201) // 응답 상태코드
+describe('GET /library', () => {
+    it('responds crawling result', done => {
+        request(functions.config().test_url.crawling)
+            .post('/library')
+            .expect(201)
+            .set('Accept', 'application/json')
+            .type('application/json')
+            .send({
+                'admin': functions
+                    .config()
+                    .api_key
+                    .admin
+            }) // 어드민 인증 key 전송
             .then(res => {
                 // console.log(res.body);
                 const stats = res.body;
+                /* 응답 결과가 지정한 데이터 타입, 개수인지를 테스트 */
                 expect(stats)
                     .to
                     .be
-                    .an('array'); // 응답 결과가 배열 타입인가
+                    .an('array');
                 expect(stats)
                     .to
                     .have
-                    .lengthOf(2); // 응답 결과 개수가 작성한 값 만큼인가
+                    .lengthOf(2);
                 done();
             })
             .catch(err => {
