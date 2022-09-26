@@ -27,7 +27,7 @@ exports.bus = functions
                     console.log(outTitle);
                     console.log(outBody, outBody2);
 
-                    /* 각각의 추출구간에 맞춰 추출한 셔틀버스 안내 데이터를 DB에 저장*/
+                    /* 각각의 추출구간에 맞춰 셔틀버스 시간표 안내 데이터를 DB에 저장*/
                     await admin
                         .database()
                         .ref('School_Bus/')

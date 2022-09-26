@@ -8,7 +8,7 @@ describe('POST /school-bus', () => {
         const userRequest = {
             user: {
                 "properties": {
-                    "isFriend": undefined // 카카오 채널 미추가 상태
+                    "isFriend": undefined
                 }
             }
         };
@@ -47,7 +47,7 @@ describe('POST /school-bus', () => {
 
     /* 테스트 단위 : 채널이 추가되어 서비스를 이용할 때 */
     it('responds isFriend is true', done => {
-        /* 테스트 사용자 채널 추가 상태와 요청 발화문 */
+        /* 테스트 사용자 요청 발화문 추가 */
         const userRequest = {
             user: {
                 "properties": {
