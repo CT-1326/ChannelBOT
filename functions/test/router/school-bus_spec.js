@@ -69,7 +69,7 @@ describe('POST /school-bus', () => {
                     .outputs[0]
                     .carousel;
                 // console.log(element);
-                /* 응답 결과가 구조가 지정한 데이터 타입이자 개수만큼인지를 테스트 */
+                /* 응답 결과 구조가 지정한 데이터 타입이자 개수만큼인지를 테스트 */
                 expect(element.type)
                     .to
                     .equal('itemCard');

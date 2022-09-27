@@ -4,16 +4,17 @@ const router = express.Router();
 const functions = require('firebase-functions');
 
 router.post('/', async (req, res) => {
-    const userFriend = req.body.userRequest.user.properties.isFriend; // 사용자 카카오 채널 정보
-    const userRequest = req.body.userRequest.utterance; // 사용자 요청문
+    /* 사용자의 카카오 채널 추가 상태를 획인해 사용자가 요청한 학식 메뉴 데이터 출력 혹은 경고문 출력 */
+    const userFriend = req.body.userRequest.user.properties.isFriend;
+    const userRequest = req.body.userRequest.utterance;
     // console.log(userRequest);
     let day = new Date();
-    let today = day.getDay(); // 오늘 날짜
+    let today = day.getDay();
     // console.log(today);
     let responseBody;
+    /* 뒤로가기 작성 */
     const quickReplies = [
         {
-            // 바로가기 작성
             "messageText": "뒤로 돌아갈래",
             "action": "block",
             "blockId": functions
@@ -24,22 +25,23 @@ router.post('/', async (req, res) => {
         }
     ];
 
-    if (userFriend === true) { // 채널을 추가한 사용자인경우
-        if (today === 0 || today === 6) { // 주말인 경우
+    if (userFriend === true) {
+        /* 주말인 경우엔 관련 내용의 응답 블록으로 출력 */
+        if (today === 0 || today === 6) {
             responseBody = {
                 version: "2.0",
                 template: {
                     outputs: [
                         {
                             simpleText: {
-                                text: "오늘은 주말이라 학식당 운영이 없어요!" // 텍스트 뷰 블록으로 출력
+                                text: "오늘은 주말이라 학식당 운영이 없어요!"
                             }
                         }
                     ],
-                    quickReplies: quickReplies // 바로가기 출력
+                    quickReplies: quickReplies
                 }
             };
-        } else { // 평일인 경우
+        } else {
             const noodel = await admin
                 .database()
                 .ref('School_Cafe/')
@@ -48,7 +50,7 @@ router.post('/', async (req, res) => {
                 ))
                 .once('value')
                 .then(snapshot => {
-                    return snapshot.val(); // 오늘의 면 종류 데이터 get
+                    return snapshot.val();
                 })
                 .catch(err => {
                     console.error('Error from noodel :', err);
@@ -62,7 +64,7 @@ router.post('/', async (req, res) => {
                 ))
                 .once('value')
                 .then(snapshot => {
-                    return snapshot.val(); // 오늘의 밥 종류 데이터 get
+                    return snapshot.val();
                 })
                 .catch(err => {
                     console.error('Error from rice :', err);
@@ -76,7 +78,7 @@ router.post('/', async (req, res) => {
                 ))
                 .once('value')
                 .then(snapshot => {
-                    return snapshot.val(); // 오늘의 튀김 종류 데이터 get
+                    return snapshot.val();
                 })
                 .catch(err => {
                     console.error('Error from fried :', err);
@@ -86,10 +88,9 @@ router.post('/', async (req, res) => {
             let itemList = [];
             let menuTitle = [];
 
-            /* 사용자 요청문 내용에 따라 개별 처리 */
+            /* 사용자가 요청한 학식 종류 명칭의 데이터를 아이템 카드 본문으로 작성해 출력*/
             switch (userRequest) {
                 case "면 종류 메뉴를 알려줘":
-                    /* 선택한 음식 종류 명칭과 데이터를 아이템 카드 본문으로 작성*/
                     menu = noodel.split('\n');
                     menu.forEach((value, index) => {
                         // console.log(value, index);
@@ -104,7 +105,7 @@ router.post('/', async (req, res) => {
                         template: {
                             outputs: [
                                 {
-                                    itemCard: { // 아이템 카드 뷰 블록으로 출력
+                                    itemCard: {
                                         "head": {
                                             "title": "🍜 면 종류"
                                         },
@@ -173,6 +174,7 @@ router.post('/', async (req, res) => {
                     };
                     break;
 
+                /* 전체 메뉴 조회 경우 응답 수를 늘려 한꺼번에 출력 */
                 case "모든 메뉴를 알려줘":
                     menu = [noodel, rice, fried];
                     menuTitle = ['🍜 면 종류', '🍛 밥 종류', '🍤 튀김 종류'];
@@ -209,14 +211,14 @@ router.post('/', async (req, res) => {
                     break;
             }
         }
-    } else { // 채널을 추가하지 않은 사용자인경우
+    } else {
         responseBody = {
             version: "2.0",
             template: {
                 outputs: [
                     {
                         simpleText: {
-                            text: "🔕 채널봇 채널 추가부터 하셔야 이용이 가능해요!" // 텍스트 뷰 블록으로 출력
+                            text: "🔕 채널봇 채널 추가부터 하셔야 이용이 가능해요!"
                         }
                     }
                 ]
@@ -225,7 +227,7 @@ router.post('/', async (req, res) => {
     }
     res
         .status(201)
-        .send(responseBody); // 응답 상태 코드와 내용 전송
+        .send(responseBody);
 });
 
 module.exports = router;

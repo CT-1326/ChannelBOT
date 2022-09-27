@@ -14,7 +14,7 @@ exports.library = functions
             .then(async (html) => {
                 // eslint-disable-next-line id-length
                 const $ = cheerio.load(html.data);
-                /* 노트북 열람실 총 좌석과 현재 좌석 텍스트 값 추출*/
+                /* 노트북 열람실 총 좌석과 현재 좌석 상태 구간 추출*/
                 const max_laptop = $(
                     '#table_board_list > tbody > tr:nth-child(1) > td:nth-child(2)'
                 )
@@ -23,7 +23,7 @@ exports.library = functions
                 const now_laptop = $('#clicker_ajax_room_status_absent_20150629114729638')
                     .text()
                     .replace(/\s/g, '');
-                /* 일반 열람실 총 좌석과 현재 좌석 텍스트 값 추출*/
+                /* 일반 열람실 총 좌석과 현재 좌석 상태 구간 추출*/
                 const max_normal = $(
                     '#table_board_list > tbody > tr:nth-child(2) > td:nth-child(2)'
                 )

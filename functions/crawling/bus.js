@@ -14,13 +14,13 @@ exports.bus = functions
                 .then(async (html) => {
                     // eslint-disable-next-line id-length
                     const $ = cheerio.load(html.data);
-                    /* 명학역 -> 학교 관련 버스 안내 구간 텍스트 추출*/
+                    /* 명학역 -> 학교 관련 버스 안내 구간 추출*/
                     const inTitle = $("#menu262_obj3182 > h3").text();
                     const inBody = $("#menu262_obj3183 > ul > li:nth-child(1)").text();
                     const inBody2 = $("#menu262_obj3183 > ul > li:nth-child(2)").text();
                     console.log(inTitle);
                     console.log(inBody, inBody2);
-                    /* 학교 -> 명학역 관련 버스 안내 구간 텍스트 추출*/
+                    /* 학교 -> 명학역 관련 버스 안내 구간 추출*/
                     const outTitle = $("#menu262_obj3185 > h3").text();
                     const outBody = $("#menu262_obj3186 > ul > li:nth-child(1)").text();
                     const outBody2 = $("#menu262_obj3186 > ul > li:nth-child(2)").text();
@@ -45,7 +45,7 @@ exports.bus = functions
                         });
 
                     /* 개발 모드에는 mocha 테스트 코드 실행을 위해 결과 값을 함께 전송 */
-                    /* 배포 모드에는 결과 코드만 전송 */
+                    /* 배포 모드에는 성공 상태 코드만 전송 */
                     if (process.env.NODE_ENV === 'development') {
                         const result = { in: {
                                 title: `${inTitle}`,

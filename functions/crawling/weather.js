@@ -22,7 +22,7 @@ exports.weather = functions
                 .then(async (response) => {
                     const result = response.data;
                     // console.log(result);
-                    /* 날씨 데이터(상태,아이콘,온도)를 DB에 저장*/
+                    /* 응답 값 중 날씨 데이터(상태,아이콘,온도)를 DB에 저장*/
                     await admin
                         .database()
                         .ref('School_Weather')
@@ -43,7 +43,7 @@ exports.weather = functions
                             }
                         });
                     /* 개발 모드에는 mocha 테스트 코드 실행을 위해 결과 값을 함께 전송 */
-                    /* 배포 모드에는 결과 코드만 전송 */
+                    /* 배포 모드에는 성공 상태 코드만 전송 */
                     if (process.env.NODE_ENV === 'development') {
                         const resultData = {
                             weather: {

@@ -46,7 +46,7 @@ exports.number = functions
                 }, ID, PW);
                 console.log('login success');
                 await page.waitForNavigation();
-                /* 학교 번호 페이지로 이동 후 관련 DOM 추출 및 DB에 저장*/
+                /* 학교 번호 페이지로 이동 후 본문 내용 구간 추출 및 DB에 저장*/
                 await page.goto(
                     'https://everytime.kr/389111/v/79312283',
                     {waitUntil: "domcontentloaded"}
@@ -69,7 +69,7 @@ exports.number = functions
                     .set({info: result});
 
                 /* 개발 모드에는 mocha 테스트 코드 실행을 위해 결과 값을 함께 전송 */
-                /* 배포 모드에는 결과 코드만 전송 */
+                /* 배포 모드에는 성공 상태 코드만 전송 */
                 if (process.env.NODE_ENV === 'development') {
                     res
                         .status(201)
