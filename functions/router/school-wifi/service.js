@@ -3,8 +3,9 @@ const router = express.Router();
 const functions = require('firebase-functions');
 
 router.post('/', async (req, res) => {
-    const userFriend = req.body.userRequest.user.properties.isFriend; // 사용자 카카오 채널 정보
-    const userRequest = req.body.userRequest.utterance; // 사용자 요청문
+    /* 사용자의 카카오 채널 추가 상태를 획인해 사용자가 요청한 OS 데이터 출력 혹은 경고문 출력 */
+    const userFriend = req.body.userRequest.user.properties.isFriend; 
+    const userRequest = req.body.userRequest.utterance; 
     // console.log(userRequest);
     let responseBody;
     const quickReplies = [
@@ -20,8 +21,8 @@ router.post('/', async (req, res) => {
         }
     ];
 
-    if (userFriend === true) { // 채널을 추가한 사용자인경우
-        /* 사용자 요청문 내용에 따라 개별 처리 */
+    if (userFriend === true) {
+        /* storage에 저장된 OS별 이미지를 이미지 뷰 블록으로 출력 */ 
         switch (userRequest) {
             case "안드로이드야":
                 responseBody = {
@@ -29,7 +30,7 @@ router.post('/', async (req, res) => {
                     template: {
                         outputs: [
                             {
-                                simpleImage: { // 이미지 뷰 블록으로 출력
+                                simpleImage: { 
                                     "imageUrl": "https://firebasestorage.googleapis.com/v0/b/channelbot-d349b.appspot.com/o/10." +
                                         "241.0.2_wifi4.php%20(1).png?alt=media&token=ef46a504-c13f-44ff-b694-a8dc09a666" +
                                         "56",
@@ -82,14 +83,14 @@ router.post('/', async (req, res) => {
             default:
                 break;
         }
-    } else { // 채널을 추가하지 않은 사용자인경우
+    } else { 
         responseBody = {
             version: "2.0",
             template: {
                 outputs: [
                     {
                         simpleText: {
-                            text: "🔕 채널봇 채널 추가부터 하셔야 이용이 가능해요!" // 텍스트 뷰 블록으로 출력
+                            text: "🔕 채널봇 채널 추가부터 하셔야 이용이 가능해요!" 
                         }
                     }
                 ]
@@ -98,7 +99,7 @@ router.post('/', async (req, res) => {
     }
     res
         .status(201)
-        .send(responseBody); // 응답 상태 코드와 내용 전송
+        .send(responseBody); 
 
 });
 
