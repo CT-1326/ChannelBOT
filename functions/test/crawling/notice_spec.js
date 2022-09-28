@@ -2,19 +2,28 @@ const request = require('supertest');
 const {expect} = require('chai');
 const functions = require('firebase-functions');
 
-describe('GET /notice', () => { // 테스트 수트
-    it('responds crawling result', done => { // 테스트 단위(확인하고자 하는 내용을 명시)
-        request(functions.config().test_url.crawling) // 테스트 하려는 기본 주소
-            .get('/notice') // 주소의 엔드포인트
-            .expect(201) // 응답 상태코드
+describe('GET /notice', () => {
+    it('responds crawling result', done => {
+        request(functions.config().test_url.crawling)
+            .post('/bus')
+            .expect(201)
+            .set('Accept', 'application/json')
+            .type('application/json')
+            .send({
+                'admin': functions
+                    .config()
+                    .api_key
+                    .admin
+            }) // 어드민 인증 key 전송
             .then(res => {
                 // console.log(res);
                 const keyLength = Object
                     .keys(res.body)
                     .length;
+                /* 응답 결과의 개수가 지정한 값 만큼인지를 테스트 */
                 expect(keyLength)
                     .to
-                    .equal(9); // 응답 결과의 갯수가 지정한 값 만큼인가
+                    .equal(9);
 
                 for (let index = 0; index < keyLength; index++) {
                     // console.log(res.body[index]);
@@ -29,10 +38,11 @@ describe('GET /notice', () => { // 테스트 수트
                         .url;
                     // console.log(title, date, url);
 
+                    /* 응답 결과의 구조가 지정한 데이터 타입인지를 테스트 */
                     expect(title)
                         .to
                         .be
-                        .an('array'); // 응답 결과가 배열 타입인가
+                        .an('array');
                     expect(date)
                         .to
                         .be

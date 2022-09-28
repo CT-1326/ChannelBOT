@@ -4,16 +4,17 @@ const router = express.Router();
 const functions = require('firebase-functions');
 
 router.post('/', async (req, res) => {
-    const userRequest = req.body.userRequest.utterance; // 사용자 요청문
+    /* 사용자의 카카오 채널 추가 상태를 획인해 사용자가 요청한 공지사항 데이터 출력 혹은 경고문 출력 */
+    const userRequest = req.body.userRequest.utterance; 
     // console.log(userRequest);
     let titleResult,
         dateResult,
         urlResult;
     let items = [];
     let responseBody;
+    /* 뒤로가기 작성 */
     const quickReplies = [
         {
-            // 바로가기 작성
             "messageText": "뒤로 돌아갈래",
             "action": "block",
             "blockId": functions
@@ -24,11 +25,11 @@ router.post('/', async (req, res) => {
         }
     ];
 
+    /* 각 공지사항별 게시물 제목, 업로드 날짜, 페이지 주소 값을 리스트 뷰 내용으로 작성 및 출력 */
     switch (userRequest) {
         case "학사 관련해서 알려줘":
-            [titleResult, dateResult, urlResult] = await getData('School_Notice/학사'); // 해당 게시판의 제목, 날짜, 경로 데이터를 get
+            [titleResult, dateResult, urlResult] = await getData('School_Notice/학사'); 
             // console.log(titleResult, dateResult, urlResult);
-            /* 리스트 뷰 본문 작성*/
             titleResult.forEach((value, index) => {
                 items.push({
                     "title": value,
@@ -43,7 +44,7 @@ router.post('/', async (req, res) => {
                 template: {
                     outputs: [
                         {
-                            listCard: { // 리스트 카드 뷰 블록으로 출력
+                            listCard: {
                                 "header": {
                                     "title": "학사 공지사항"
                                 },
@@ -58,7 +59,7 @@ router.post('/', async (req, res) => {
                             }
                         }
                     ],
-                    quickReplies: quickReplies // 바로가기 출력
+                    quickReplies: quickReplies 
                 }
             };
             break;
@@ -363,7 +364,7 @@ router.post('/', async (req, res) => {
             break;
     }
 
-    /* 요청 받은 게시판의 게시물 데이터 get 처리 함수*/
+    /* 공지사항 데이터 GET 처리*/
     async function getData(params) {
         let title = new Array();
         let date = new Array();
@@ -376,7 +377,7 @@ router.post('/', async (req, res) => {
             .once('value')
             .then(snapshot => {
                 snapshot.forEach(item => {
-                    title.push(item.val()); // 제목 데이터 get
+                    title.push(item.val());
                 });
             })
             .catch(err => {
@@ -389,7 +390,7 @@ router.post('/', async (req, res) => {
             .once('value')
             .then(snapshot => {
                 snapshot.forEach(item => {
-                    date.push(item.val()); // 날짜 데이터 get
+                    date.push(item.val()); 
                 });
             })
             .catch(err => {
@@ -402,18 +403,18 @@ router.post('/', async (req, res) => {
             .once('value')
             .then(snapshot => {
                 snapshot.forEach(item => {
-                    url.push(item.val()); // 경로 데이터 get
+                    url.push(item.val()); 
                 });
             })
             .catch(err => {
                 console.error('Error from notice url :', err);
             });
 
-        return [title, date, url]; // get 처리 된 변수를 반환
+        return [title, date, url]; 
     }
     res
         .status(201)
-        .send(responseBody); // 응답 상태 코드와 내용 전송
+        .send(responseBody); 
 });
 
 module.exports = router;
