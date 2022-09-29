@@ -5,7 +5,7 @@ const functions = require('firebase-functions');
 describe('GET /cafe', () => {
     it('responds crawling result', done => {
         request(functions.config().test_url.crawling)
-            .get('/cafe')
+            .post('/cafe')
             .expect(201)
             .set('Accept', 'application/json')
             .type('application/json')
