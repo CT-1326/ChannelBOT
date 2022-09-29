@@ -26,7 +26,7 @@ const notcold = require('./notcold');
 
 app.use(express.json()); // 모든 입력&출력은 JSON 포맷으로
 app.use(cors()); // cors 설정
-/* 메뉴 선택에는 미들웨어/컨트롤러로 나누어 구분 */
+/* 서비스 선택에는 미들웨어/컨트롤러로 나누어 구분 */
 app.use('/school-bus', schoolBus); 
 app.use('/school-number', schoolNumber); 
 app.use('/school-library', schoolLibrary); 
