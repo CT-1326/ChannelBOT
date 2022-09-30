@@ -94,7 +94,7 @@ exports.notcold = functions
                 });
         }
 
-        /* 순차적으로 3분 단위로 함수 호출 */
+        /* 순차적으로 3분 단위로 각 서비스 함수 호출 */
         axios
             .all([busCold(), cafeCold(), noticeCold()])
             .then(axios.spread(() => {
