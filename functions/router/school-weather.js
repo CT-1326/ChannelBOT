@@ -12,7 +12,7 @@ router.post('/', async function (req, res) {
     let itemList = [];
 
     if (userFriend === true) {
-        /* 날씨 그리고 온도 상태 데이터를 각각 아이템 카드 뷰 본문으로 작성 및 해당 구조로 출력 */
+        /* 날씨 그리고 온도 상태 데이터를 각각 아이템 카드 뷰 블록 본문으로 작성 및 해당 구조로 출력 */
         const mainWeather = await admin
             .database()
             .ref('School_Weather/')

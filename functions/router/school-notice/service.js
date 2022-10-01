@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
         }
     ];
 
-    /* 각 공지사항별 게시물 제목, 업로드 날짜, 페이지 주소 값을 리스트 뷰 내용으로 작성 및 출력 */
+    /* 각 공지사항별 게시물 제목, 업로드 날짜, 페이지 주소 값을 리스트 뷰 블록 내용으로 작성 및 출력 */
     switch (userRequest) {
         case "학사 관련해서 알려줘":
             [titleResult, dateResult, urlResult] = await getData('School_Notice/학사'); 
