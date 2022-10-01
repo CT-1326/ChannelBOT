@@ -4,7 +4,7 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
 router.post('/', async function (req, res) {
-    /* 사용자의 카카오 채널 추가 상태를 획인해 메뉴 바로가기 출력 혹은 경고문 출력 */
+    /* 사용자의 카카오 채널 추가 상태를 획인해 메뉴 바로가기 혹은 경고문 출력 */
     const userFriend = req.body.userRequest.user.properties.isFriend; 
     // console.log(userFriend);
     let responseBody;
