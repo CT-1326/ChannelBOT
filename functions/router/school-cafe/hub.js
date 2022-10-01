@@ -13,7 +13,7 @@ router.post('/', async function (req, res) {
     const label = ["면 종류", "밥 종류", "튀김 종류", "모든 메뉴"];
 
     if (userFriend === true) {
-        /* 바로가기 내용 작성*/
+        /* 메뉴 바로가기 내용 작성*/
         label.forEach((value, index) => {
             quickReplies.push({
                 "messageText": messageText[index],

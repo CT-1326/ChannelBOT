@@ -12,7 +12,7 @@ router.post('/', async function (req, res) {
     const label = ["안드로이드", "IOS", "윈도우"];
 
     if (userFriend === true) {
-        /* 바로가기 내용 작성 및 출력*/
+        /* 메뉴 바로가기 내용 작성 및 출력*/
         label.forEach((value, index) => {
             quickReplies.push({
                 "messageText": messageText[index],
