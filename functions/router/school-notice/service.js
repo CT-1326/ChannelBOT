@@ -4,7 +4,7 @@ const router = express.Router();
 const functions = require('firebase-functions');
 
 router.post('/', async (req, res) => {
-    /* 사용자의 카카오 채널 추가 상태를 획인해 사용자가 요청한 공지사항 데이터 출력 혹은 경고문 출력 */
+    /* 사용자의 카카오 채널 추가 상태를 획인해 사용자가 요청한 공지사항 데이터 혹은 경고문 출력 */
     const userRequest = req.body.userRequest.utterance; 
     // console.log(userRequest);
     let titleResult,
