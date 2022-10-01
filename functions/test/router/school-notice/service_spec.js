@@ -110,7 +110,7 @@ describe('POST /school-notice/service', () => {
                         .a('string');
                 }
 
-                /* 본문 하단의 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
+                /* 페이지 바로가기 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
                 const elementButton = element.buttons;
                 // console.log(elementButton);
                 const itemLabel = elementButton[0].label;
@@ -220,7 +220,7 @@ describe('POST /school-notice/service', () => {
                         .a('string');
                 }
 
-                /* 본문 하단의 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
+                /* 페이지 바로가기 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
                 const elementButton = element.buttons;
                 // console.log(elementButton);
                 const itemLabel = elementButton[0].label;
@@ -330,7 +330,7 @@ describe('POST /school-notice/service', () => {
                         .a('string');
                 }
 
-                /* 본문 하단의 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
+                /* 페이지 바로가기 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
                 const elementButton = element.buttons;
                 // console.log(elementButton);
                 const itemLabel = elementButton[0].label;
@@ -440,7 +440,7 @@ describe('POST /school-notice/service', () => {
                         .a('string');
                 }
 
-                /* 본문 하단의 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
+                /* 페이지 바로가기 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
                 const elementButton = element.buttons;
                 // console.log(elementButton);
                 const itemLabel = elementButton[0].label;
@@ -550,7 +550,7 @@ describe('POST /school-notice/service', () => {
                         .a('string');
                 }
 
-                /* 본문 하단의 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
+                /* 페이지 바로가기 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
                 const elementButton = element.buttons;
                 // console.log(elementButton);
                 const itemLabel = elementButton[0].label;
@@ -660,7 +660,7 @@ describe('POST /school-notice/service', () => {
                         .a('string');
                 }
 
-                /* 본문 하단의 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
+                /* 페이지 바로가기 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
                 const elementButton = element.buttons;
                 // console.log(elementButton);
                 const itemLabel = elementButton[0].label;
@@ -770,7 +770,7 @@ describe('POST /school-notice/service', () => {
                         .a('string');
                 }
 
-                /* 본문 하단의 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
+                /* 페이지 바로가기 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
                 const elementButton = element.buttons;
                 // console.log(elementButton);
                 const itemLabel = elementButton[0].label;
@@ -880,7 +880,7 @@ describe('POST /school-notice/service', () => {
                         .a('string');
                 }
 
-                /* 본문 하단의 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
+                /* 페이지 바로가기 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
                 const elementButton = element.buttons;
                 // console.log(elementButton);
                 const itemLabel = elementButton[0].label;
@@ -990,7 +990,7 @@ describe('POST /school-notice/service', () => {
                         .a('string');
                 }
 
-                /* 본문 하단의 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
+                /* 페이지 바로가기 버튼 응답 결과가 지정한 데이터 타입, 내용인지를 테스트 */
                 const elementButton = element.buttons;
                 // console.log(elementButton);
                 const itemLabel = elementButton[0].label;
