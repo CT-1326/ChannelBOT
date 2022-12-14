@@ -13,7 +13,7 @@
     
     mocha V10.0.0
     
-    Heroku Scheduler
+    pipedream Scheduler
 # Get start
     > cd functions
     > npm install 
